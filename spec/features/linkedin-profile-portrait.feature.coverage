@@ -1,0 +1,33 @@
+{
+  "scenarios": [
+    {
+      "name": "Homepage shows Brandon's sourced portrait and leadership diagram",
+      "testMappings": [
+        {
+          "file": "tests/e2e/site.spec.mjs",
+          "lines": "75-83",
+          "implMappings": [
+            {
+              "file": "public/index.html",
+              "lines": [
+                5
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "totalScenarios": 1,
+    "coveredScenarios": 1,
+    "coveragePercent": 100,
+    "testFiles": [
+      "tests/e2e/site.spec.mjs"
+    ],
+    "implFiles": [
+      "public/index.html"
+    ],
+    "totalLinesCovered": 10
+  }
+}

@@ -11,6 +11,9 @@ for (const file of ['index.html', 'site.css']) fs.copyFileSync(path.join(root, '
 fs.mkdirSync(path.join(out, 'downloads'), { recursive: true });
 const resume = path.join(root, 'public', 'downloads', 'Brandon-Houle-AI-Enablement-Resume.pdf');
 if (fs.existsSync(resume)) fs.copyFileSync(resume, path.join(out, 'downloads', path.basename(resume)));
+fs.mkdirSync(path.join(out, 'images'), { recursive: true });
+const portrait = path.join(root, 'public', 'images', 'brandon-houle-linkedin.jpg');
+if (fs.existsSync(portrait)) fs.copyFileSync(portrait, path.join(out, 'images', path.basename(portrait)));
 const requirements = loadCatalog(root);
 fs.writeFileSync(path.join(out, 'requirements.json'), JSON.stringify(requirements, null, 2));
 fs.writeFileSync(path.join(out, 'requirements.html'), renderRequirements(requirements));

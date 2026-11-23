@@ -71,3 +71,14 @@ test('unified process page offers a complete downloadable manual test pack', asy
   await expect(page.locator('body')).toContainText('Not run');
   await expect(page.locator('table').last().locator('tbody tr')).toHaveCount(16);
 });
+
+test('homepage uses the connected LinkedIn portrait beside the leadership diagram', async ({ page }) => {
+  // @step Given the connected LinkedIn profile photo is included in the site build
+  // @step When a visitor opens the homepage
+  await page.goto('/');
+  // @step Then Brandon's portrait has meaningful alternative text and the original leadership diagram remains visible
+  const portrait = page.locator('#linkedin-portrait');
+  await expect(portrait).toBeVisible();
+  await expect(portrait).toHaveAttribute('alt', "Brandon Houle, technology and AI enablement leader");
+  await expect(page.locator('.hero-art .core')).toBeVisible();
+});
