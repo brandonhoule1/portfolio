@@ -24,6 +24,8 @@ test('build emits requirements and evidence pages', () => {
   assert.ok(fs.existsSync('dist/evidence.html'));
   // @step When security results are published
   assert.ok(JSON.parse(fs.readFileSync('dist/evidence.json', 'utf8')).checks);
-  // @step Then the site shows a sanitized summary and general owner-reviewable suggestions
-  assert.ok(JSON.parse(fs.readFileSync('dist/evidence.json', 'utf8')).securitySuggestions.length);
+  // @step Then the site shows every expected quality category and general owner-reviewable suggestions
+  const evidence = JSON.parse(fs.readFileSync('dist/evidence.json', 'utf8'));
+  assert.deepEqual(Object.keys(evidence.checks), ['Unit tests', 'Integration tests', 'Playwright GUI tests', 'Single-pass performance', 'Security review']);
+  assert.ok(evidence.securitySuggestions.length);
 });
