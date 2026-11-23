@@ -47,6 +47,7 @@ Development status tags
 
 | Tag | Description |
 |-----|-------------|
+| `@done` | This requirement is implemented, validated, and complete. |
 | `@public` | Requirement is reviewed and approved for public display. |
 
 ### Testing Tags
@@ -59,4 +60,4 @@ Automation integration tags
 
 ---
 
-_Last updated: 2026-11-23T18:02:15.737Z_
+_Last updated: 2026-11-23T18:22:22.165Z_

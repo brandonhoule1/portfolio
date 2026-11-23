@@ -64,6 +64,10 @@
       "required": false,
       "tags": [
         {
+          "name": "@done",
+          "description": "This requirement is implemented, validated, and complete."
+        },
+        {
           "name": "@public",
           "description": "Requirement is reviewed and approved for public display."
         }
@@ -83,6 +87,6 @@
     }
   ],
   "statistics": {
-    "lastUpdated": "2026-11-23T18:02:15.737Z"
+    "lastUpdated": "2026-11-23T18:22:22.165Z"
   }
 }

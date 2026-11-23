@@ -12,6 +12,14 @@ const requirements = loadCatalog(root);
 fs.writeFileSync(path.join(out, 'requirements.json'), JSON.stringify(requirements, null, 2));
 fs.writeFileSync(path.join(out, 'requirements.html'), renderRequirements(requirements));
 const reportPath = path.join(root, 'public/evidence.json');
-const report = fs.existsSync(reportPath) ? JSON.parse(fs.readFileSync(reportPath, 'utf8')) : { generatedAt: null, revision: 'local', checks: {} };
+const report = fs.existsSync(reportPath) ? JSON.parse(fs.readFileSync(reportPath, 'utf8')) : {
+  generatedAt: null,
+  revision: 'local',
+  checks: {},
+  securitySuggestions: [
+    'Keep direct and transitive dependencies current; review npm audit details before upgrading.',
+    'Use the CI browser report and source scan to review regressions before deployment.'
+  ]
+};
 fs.writeFileSync(path.join(out, 'evidence.json'), JSON.stringify(report, null, 2));
 fs.writeFileSync(path.join(out, 'evidence.html'), renderEvidence(report));

@@ -17,15 +17,18 @@ test('requirements page exposes public status, criteria, and GitHub issue', asyn
   // @step Then the page lists marked PORT requirements and omits internal foundation work
   await expect(page.getByText('FOUND-001', { exact: true })).toHaveCount(0);
 });
-// FSPEC scenario: Security checks produce reviewable findings and suggestions.
+// FSPEC scenario: Visitors inspect latest sanitized quality and test results.
 test('quality evidence page states the reporting limits', async ({ page }) => {
-  // @step Given the static portfolio has been built and served
-  // @step When the browser tests open the requirements and evidence pages
+  // @step Given the latest quality runner has completed
+  // @step When a visitor opens the quality evidence page
   await page.goto('/evidence.html');
-  // @step Then the requirements, acceptance criteria, GitHub issue, and check summaries are visible
+  // @step Then the page shows check outcomes and summaries without exposing raw logs or traces
   await expect(page.getByRole('heading', { name: 'Quality evidence' })).toBeVisible();
   await expect(page.getByText('Single-pass performance')).toBeVisible();
   await expect(page.getByText(/not load tests or statistical benchmarks/)).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Security suggestions' })).toBeVisible();
   await expect(page.getByText(/Keep direct and transitive dependencies current/)).toBeVisible();
+  await expect(page.locator('table tbody tr')).toHaveCount(5);
+  await expect(page.getByText('passed', { exact: true })).toHaveCount(5);
+  expect(await page.locator('time').innerText()).not.toBe('Not yet run');
 });
