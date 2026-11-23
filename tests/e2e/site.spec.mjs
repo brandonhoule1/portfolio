@@ -24,7 +24,7 @@ test('quality evidence page states the reporting limits', async ({ page }) => {
   await page.goto('/evidence.html');
   // @step Then the page shows check outcomes and summaries without exposing raw logs or traces
   await expect(page.getByRole('heading', { name: 'Quality evidence' })).toBeVisible();
-  await expect(page.getByText('Single-pass performance')).toBeVisible();
+  await expect(page.getByRole('rowheader', { name: 'Single-pass performance' })).toBeVisible();
   await expect(page.getByText(/not load tests or statistical benchmarks/)).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Security suggestions' })).toBeVisible();
   await expect(page.getByText(/Keep direct and transitive dependencies current/)).toBeVisible();

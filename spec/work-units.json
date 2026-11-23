@@ -2,7 +2,7 @@
   "version": "0.7.1",
   "meta": {
     "version": "1.0.0",
-    "lastUpdated": "2026-11-23T18:22:06.333Z"
+    "lastUpdated": "2026-11-23T18:25:45.535Z"
   },
   "workUnits": {
     "FOUND-001": {
@@ -597,9 +597,9 @@
       "id": "PORT-010",
       "title": "Quality-gated Cloudflare Pages deployment",
       "type": "story",
-      "status": "backlog",
+      "status": "testing",
       "createdAt": "2026-11-23T17:39:09.508Z",
-      "updatedAt": "2026-11-23T17:46:27.960Z",
+      "updatedAt": "2026-11-23T18:26:37.626Z",
       "description": "Pull requests and production-branch commits run required quality checks. Cloudflare Pages publishes a build only when the same unit, integration, Playwright, single-pass performance, and security report generation commands succeed.",
       "epic": "engineering-evidence",
       "parent": "PORT-001",
@@ -619,18 +619,62 @@
           "createdAt": "2026-11-23T17:46:27.960Z"
         }
       ],
-      "nextNoteId": 1
+      "nextNoteId": 1,
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-23T18:25:18.958Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-23T18:25:45.535Z"
+        }
+      ],
+      "rules": [
+        {
+          "id": 0,
+          "text": "Cloudflare Pages must run the repository quality command on the exact commit before publishing that commit to production.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:25:24.700Z"
+        }
+      ],
+      "nextRuleId": 1,
+      "examples": [
+        {
+          "id": 0,
+          "text": "When the production build executes the complete unit, integration, Playwright, one-pass performance, and security checks successfully, Pages publishes the generated dist directory.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:25:24.798Z"
+        },
+        {
+          "id": 1,
+          "text": "When any required check fails, Pages must not publish that revision to production and GitHub Actions must retain sanitized diagnostic artifacts.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:25:24.890Z"
+        }
+      ],
+      "nextExampleId": 2,
+      "userStory": {
+        "role": "portfolio visitor",
+        "action": "view the latest production build and its quality evidence",
+        "benefit": "trust that the published revision passed its documented checks"
+      },
+      "attachments": [
+        "spec/attachments/PORT-010/ast-research-quality-report.md"
+      ],
+      "estimate": 2
     }
   },
   "states": {
     "backlog": [
       "FOUND-001",
       "PORT-001",
-      "PORT-009",
-      "PORT-010"
+      "PORT-009"
     ],
     "specifying": [],
-    "testing": [],
+    "testing": [
+      "PORT-010"
+    ],
     "implementing": [],
     "validating": [],
     "done": [
