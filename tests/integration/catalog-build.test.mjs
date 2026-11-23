@@ -8,7 +8,7 @@ import { renderRequirements } from '../../src/html.mjs';
 test('repository requirements become a linked, status-bearing public catalog', () => {
   // @step Given the FSPEC repository contains explicitly public portfolio requirements and internal setup records
   const catalog = loadCatalog();
-  assert.equal(catalog.length, 17);
+  assert.equal(catalog.length, 18);
   assert.ok(catalog.every(item => item.status && item.description && item.acceptanceCriteria.length));
   assert.ok(catalog.find(item => item.id === 'PORT-002').relatesTo.includes('PORT-006'));
   // @step When the static catalog and evidence report are built
@@ -26,6 +26,16 @@ test('build emits requirements and evidence pages', () => {
   assert.ok(fs.existsSync('dist/manual-test-cases.csv'));
   assert.ok(fs.existsSync('dist/manual-test-cases.md'));
   assert.ok(fs.existsSync('dist/downloads/Brandon-Houle-AI-Enablement-Resume.pdf'));
+  assert.ok(fs.existsSync('dist/commits.json'));
+  assert.ok(JSON.parse(fs.readFileSync('dist/commits.json', 'utf8')).length > 0);
+  assert.ok(fs.existsSync('dist/robots.txt'));
+  assert.ok(fs.existsSync('dist/sitemap.xml'));
+  assert.ok(fs.existsSync('dist/llms.txt'));
+  const home = fs.readFileSync('dist/index.html', 'utf8');
+  assert.match(home, /Technology Leader \/ Innovator/);
+  assert.match(home, /case-studies/);
+  assert.match(home, /field-notes/);
+  assert.doesNotMatch(home, /<!--(?:CASE_STUDIES|FIELD_NOTES|COMMIT_LOG|COMMIT_ITEMS)-->/);
   // @step When security results are published
   assert.ok(JSON.parse(fs.readFileSync('dist/evidence.json', 'utf8')).checks);
   // @step Then the site shows every expected quality category and general owner-reviewable suggestions

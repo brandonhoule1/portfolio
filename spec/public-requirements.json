@@ -80,12 +80,128 @@
       "Deployed evidence corresponds to the same commit that passed the gate."
     ]
   },
-  {"id":"PORT-011","githubIssue":11,"acceptanceCriteria":["The home experience foregrounds Brandon’s leadership profile and resume-backed credibility.","Navigation groups implementation evidence under one How this was made destination.","Leadership demonstrations are discoverable without distracting from the profile.","Audience entry points serve executive, technology leader, and recruiter needs.","Claims distinguish sourced career evidence from illustrative examples."]},
-  {"id":"PORT-012","githubIssue":12,"acceptanceCriteria":["The unmodified canonical resume PDF is downloadable.","Profile and career timeline use supportable facts from source materials.","No unsupported outcomes, metrics, confidential content, or target-employer-specific positioning is presented as fact."],"relatesTo":["PORT-011"]},
-  {"id":"PORT-013","githubIssue":13,"acceptanceCriteria":["One primary nav item opens the How this was made experience.","Requirements grid exposes description, acceptance criteria, status, related work, and GitHub issue.","Unit, integration, Playwright, performance, and security evidence are visible with honest run status.","Existing CI evidence remains linked and traceable."],"relatesTo":["PORT-011","PORT-015"]},
-  {"id":"PORT-014","githubIssue":14,"acceptanceCriteria":["30/60/90-day plan is explicitly illustrative and organization-adaptable.","Original visuals communicate AI-first, human-led delivery and governance.","Demonstrations identify fictional/synthetic data and are not presented as Brandon’s achieved business outcomes.","Motion respects reduced-motion preferences."],"relatesTo":["PORT-011"]},
-  {"id":"PORT-015","githubIssue":15,"acceptanceCriteria":["Each case includes ID, category, priority, preconditions, steps, expected result, and execution status.","All eight requested categories have concrete scenarios.","Cases are downloadable from How this was made in CSV and Markdown formats.","Unexecuted cases are clearly marked Not run; no manual execution is implied."],"relatesTo":["PORT-013"]},
-  {"id":"PORT-016","githubIssue":16,"acceptanceCriteria":["Career evidence is limited to substantiated experience; avoid unsupported quantitative impact.","Executive briefing is concise and clear about evidence versus perspective.","AI maturity, build/buy/defer, governance, change adoption, and value scorecard demos use fictional scenarios where needed.","Blog/insight content reflects the AI-first, human-led thesis."],"relatesTo":["PORT-011","PORT-014"]},
-  {"id":"PORT-017","githubIssue":17,"acceptanceCriteria":["The portrait is sourced from the connected LinkedIn profile in RobinReach.","The image loads from the deployed portfolio and has meaningful alternative text.","The original people, practice, and AI visual remains visible alongside the portrait.","The CI browser test verifies the portrait is visible."],"relatesTo":["PORT-011"]},
-  {"id":"PORT-018","githubIssue":18,"acceptanceCriteria":["The wordmark identifies Brandon Houle and Technology Leader.","Visual hierarchy is professional, readable, and suitable for hiring leaders and recruiters.","Color, spacing, typography, geometry, and motion are restrained; avoid generic AI-generated visual tropes and sales-page styling.","Existing copy, links, diagrams, demonstrations, and sections remain intact.","Mobile, keyboard focus, and reduced-motion behavior remain usable."],"relatesTo":["PORT-011","PORT-017"]}
+  {
+    "id": "PORT-011",
+    "githubIssue": 11,
+    "acceptanceCriteria": [
+      "The home experience foregrounds Brandon’s leadership profile and resume-backed credibility.",
+      "Navigation groups implementation evidence under one How this was made destination.",
+      "Leadership demonstrations are discoverable without distracting from the profile.",
+      "Audience entry points serve executive, technology leader, and recruiter needs.",
+      "Claims distinguish sourced career evidence from illustrative examples."
+    ]
+  },
+  {
+    "id": "PORT-012",
+    "githubIssue": 12,
+    "acceptanceCriteria": [
+      "The unmodified canonical resume PDF is downloadable.",
+      "Profile and career timeline use supportable facts from source materials.",
+      "No unsupported outcomes, metrics, confidential content, or target-employer-specific positioning is presented as fact."
+    ],
+    "relatesTo": [
+      "PORT-011"
+    ]
+  },
+  {
+    "id": "PORT-013",
+    "githubIssue": 13,
+    "acceptanceCriteria": [
+      "One primary nav item opens the How this was made experience.",
+      "Requirements grid exposes description, acceptance criteria, status, related work, and GitHub issue.",
+      "Unit, integration, Playwright, performance, and security evidence are visible with honest run status.",
+      "Existing CI evidence remains linked and traceable."
+    ],
+    "relatesTo": [
+      "PORT-011",
+      "PORT-015"
+    ]
+  },
+  {
+    "id": "PORT-014",
+    "githubIssue": 14,
+    "acceptanceCriteria": [
+      "30/60/90-day plan is explicitly illustrative and organization-adaptable.",
+      "Original visuals communicate AI-first, human-led delivery and governance.",
+      "Demonstrations identify fictional/synthetic data and are not presented as Brandon’s achieved business outcomes.",
+      "Motion respects reduced-motion preferences."
+    ],
+    "relatesTo": [
+      "PORT-011"
+    ]
+  },
+  {
+    "id": "PORT-015",
+    "githubIssue": 15,
+    "acceptanceCriteria": [
+      "Each case includes ID, category, priority, preconditions, steps, expected result, and execution status.",
+      "All eight requested categories have concrete scenarios.",
+      "Cases are downloadable from How this was made in CSV and Markdown formats.",
+      "Unexecuted cases are clearly marked Not run; no manual execution is implied."
+    ],
+    "relatesTo": [
+      "PORT-013"
+    ]
+  },
+  {
+    "id": "PORT-016",
+    "githubIssue": 16,
+    "acceptanceCriteria": [
+      "Career evidence is limited to substantiated experience; avoid unsupported quantitative impact.",
+      "Executive briefing is concise and clear about evidence versus perspective.",
+      "AI maturity, build/buy/defer, governance, change adoption, and value scorecard demos use fictional scenarios where needed.",
+      "Blog/insight content reflects the AI-first, human-led thesis."
+    ],
+    "relatesTo": [
+      "PORT-011",
+      "PORT-014"
+    ]
+  },
+  {
+    "id": "PORT-017",
+    "githubIssue": 17,
+    "acceptanceCriteria": [
+      "The portrait is sourced from the connected LinkedIn profile in RobinReach.",
+      "The image loads from the deployed portfolio and has meaningful alternative text.",
+      "The original people, practice, and AI visual remains visible alongside the portrait.",
+      "The CI browser test verifies the portrait is visible."
+    ],
+    "relatesTo": [
+      "PORT-011"
+    ]
+  },
+  {
+    "id": "PORT-018",
+    "githubIssue": 18,
+    "acceptanceCriteria": [
+      "The wordmark identifies Brandon Houle and Technology Leader.",
+      "Visual hierarchy is professional, readable, and suitable for hiring leaders and recruiters.",
+      "Color, spacing, typography, geometry, and motion are restrained; avoid generic AI-generated visual tropes and sales-page styling.",
+      "Existing copy, links, diagrams, demonstrations, and sections remain intact.",
+      "Mobile, keyboard focus, and reduced-motion behavior remain usable."
+    ],
+    "relatesTo": [
+      "PORT-011",
+      "PORT-017"
+    ]
+  },
+  {
+    "id": "PORT-019",
+    "githubIssue": 19,
+    "acceptanceCriteria": [
+      "The wordmark reads Brandon Houle, then Technology Leader / Innovator on the next line, and contact information includes brandonhoule.com and brandonhoule@gmail.com.",
+      "The canonical resume source and exact unmodified portfolio copy are identified.",
+      "Three factual career case studies are published, with unsupported outcomes and metrics explicitly withheld.",
+      "The homepage includes dated authored field notes with schema.org BlogPosting data.",
+      "Every commit reachable from the checked-out production branch is listed with date, subject, abbreviated hash, and exact GitHub commit link; local-only checkpoint refs, email addresses, and CI logs are not exposed.",
+      "Semantic SEO/GEO metadata, canonical URL, structured Person/WebSite/Article data, sitemap.xml, robots.txt, and llms.txt describe only visible supported content.",
+      "Visual styling uses a deliberate editorial printed-logbook direction with varied text-led sections and avoids dense repeated cards, gradient backgrounds, and promotional copy.",
+      "Mobile layout, keyboard focus, reduced motion, and existing portfolio/process routes remain usable."
+    ],
+    "relatesTo": [
+      "PORT-011",
+      "PORT-016",
+      "PORT-018"
+    ]
+  }
 ]

@@ -3,11 +3,23 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadCatalog } from '../src/catalog.mjs';
 import { renderRequirements, renderEvidence, manualCases } from '../src/html.mjs';
+import { readCommitHistory, renderCommitList } from '../src/history.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const out = path.join(root, 'dist');
 fs.rmSync(out, { recursive: true, force: true });
 fs.mkdirSync(out, { recursive: true });
-for (const file of ['index.html', 'site.css']) fs.copyFileSync(path.join(root, 'public', file), path.join(out, file));
+for (const file of ['site.css']) fs.copyFileSync(path.join(root, 'public', file), path.join(out, file));
+let home = fs.readFileSync(path.join(root, 'public', 'index.html'), 'utf8');
+for (const [marker, file] of [['<!--CASE_STUDIES-->', 'case-studies.htmlfrag'], ['<!--FIELD_NOTES-->', 'field-notes.htmlfrag'], ['<!--COMMIT_LOG-->', 'commit-log.htmlfrag']]) {
+  home = home.replace(marker, fs.readFileSync(path.join(root, 'public', file), 'utf8'));
+}
+const commits = readCommitHistory(root);
+home = home.replace('<!--COMMIT_ITEMS-->', renderCommitList(commits));
+fs.writeFileSync(path.join(out, 'index.html'), home);
+fs.writeFileSync(path.join(out, 'commits.json'), JSON.stringify(commits, null, 2));
+fs.copyFileSync(path.join(root, 'public', 'robots.txt'), path.join(out, 'robots.txt'));
+fs.copyFileSync(path.join(root, 'public', 'sitemap.xml'), path.join(out, 'sitemap.xml'));
+fs.copyFileSync(path.join(root, 'public', 'llms.txt'), path.join(out, 'llms.txt'));
 fs.mkdirSync(path.join(out, 'downloads'), { recursive: true });
 const resume = path.join(root, 'public', 'downloads', 'Brandon-Houle-AI-Enablement-Resume.pdf');
 if (fs.existsSync(resume)) fs.copyFileSync(resume, path.join(out, 'downloads', path.basename(resume)));

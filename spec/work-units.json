@@ -2,7 +2,7 @@
   "version": "0.7.1",
   "meta": {
     "version": "1.0.0",
-    "lastUpdated": "2026-11-23T20:43:31.752Z"
+    "lastUpdated": "2026-11-23T21:08:57.589Z"
   },
   "workUnits": {
     "FOUND-001": {
@@ -680,7 +680,8 @@
         "PORT-015",
         "PORT-016",
         "PORT-017",
-        "PORT-018"
+        "PORT-018",
+        "PORT-019"
       ],
       "architectureNotes": [
         {
@@ -1221,6 +1222,127 @@
       "attachments": [
         "spec/attachments/PORT-018/ast-research-leadership-site.md"
       ]
+    },
+    "PORT-019": {
+      "id": "PORT-019",
+      "title": "Editorial portfolio, case studies, blog, and commit log",
+      "type": "story",
+      "status": "done",
+      "createdAt": "2026-11-23T20:51:14.219Z",
+      "updatedAt": "2026-11-23T21:08:57.589Z",
+      "description": "Apply Brandon's Black Magic 'Stop Shipping AI Slop' tutorial direction: editorial printed engineering logbook, a two-line name/role wordmark, contact details, expanded resume-grounded case studies, blog/field notes, complete sourced commit history, and truthful SEO/GEO. Remove block-heavy repeated cards. Preserve existing experience, demos, resume, and process material; add factual detail only and clearly mark unverified outcomes.",
+      "epic": "leadership-portfolio",
+      "parent": "PORT-011",
+      "userStory": {
+        "role": "job seeker and technology leader",
+        "action": "show factual leadership work in a distinctive editorial logbook with case studies, notes, and verifiable development history",
+        "benefit": "hiring leaders can inspect his experience and judgment without marketing language or generic AI visual styling"
+      },
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-23T20:51:14.591Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-23T21:01:30.131Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-23T21:01:30.426Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-23T21:01:30.730Z"
+        },
+        {
+          "state": "done",
+          "timestamp": "2026-11-23T21:02:03.622Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-23T21:06:22.708Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-23T21:06:23.010Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-23T21:06:23.308Z"
+        },
+        {
+          "state": "done",
+          "timestamp": "2026-11-23T21:08:57.589Z"
+        }
+      ],
+      "rules": [
+        {
+          "id": 0,
+          "text": "Career evidence stays grounded in the canonical AI Enablement base resume or explicitly provided source; never invent outcomes or metrics.",
+          "deleted": false,
+          "createdAt": "2026-11-23T20:51:49.184Z"
+        },
+        {
+          "id": 1,
+          "text": "The public history lists every commit present in checked-out Git history with abbreviated SHA, authored date, subject, and a GitHub commit URL; it excludes author emails and CI logs.",
+          "deleted": false,
+          "createdAt": "2026-11-23T20:51:58.550Z"
+        },
+        {
+          "id": 2,
+          "text": "The two-line wordmark displays Brandon Houle first and Technology Leader/Innovator second; the site presents brandonhoule.com and mailto:brandonhoule@gmail.com.",
+          "deleted": false,
+          "createdAt": "2026-11-23T20:51:58.647Z"
+        },
+        {
+          "id": 3,
+          "text": "The visual treatment follows a specific editorial printed-logbook direction, using distinctive display typography, asymmetry, hairline rules, varied text-led sections, and no repeated card-grid template or promotional buzzwords.",
+          "deleted": false,
+          "createdAt": "2026-11-23T20:51:58.736Z"
+        },
+        {
+          "id": 4,
+          "text": "Blog posts are authored, dated, indexable, and describe only supported experience or clearly framed personal perspectives; SEO/GEO markup matches visible facts and content.",
+          "deleted": false,
+          "createdAt": "2026-11-23T20:51:58.826Z"
+        }
+      ],
+      "nextRuleId": 5,
+      "examples": [
+        {
+          "id": 0,
+          "text": "The home page shows three factual cases for AI enablement, quality engineering, and performance engineering, with no unsupported outcome metrics.",
+          "deleted": false,
+          "createdAt": "2026-11-23T20:51:49.277Z"
+        },
+        {
+          "id": 1,
+          "text": "A visitor reads dated field notes on workflow-first AI, named human accountability, and evidence-led measurement.",
+          "deleted": false,
+          "createdAt": "2026-11-23T20:51:58.917Z"
+        },
+        {
+          "id": 2,
+          "text": "A visitor can inspect every repository commit and open its exact revision on GitHub.",
+          "deleted": false,
+          "createdAt": "2026-11-23T20:51:59.011Z"
+        }
+      ],
+      "nextExampleId": 3,
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "GitHub issue: https://github.com/brandonhoule1/portfolio/issues/19. Design reference: Black Magic tutorial Stop Shipping AI Slop (id dc12ec82-9a85-4935-99a9-443b3e615aa4). Canonical resume: Resume Tailoring/Brandon Houle - AI Enablement Base Resume.pdf; copied into the portfolio in commit 992ad717.",
+          "deleted": false,
+          "createdAt": "2026-11-23T20:51:59.110Z"
+        }
+      ],
+      "nextNoteId": 1,
+      "attachments": [
+        "spec/attachments/PORT-019/ast-research-logbook.md"
+      ],
+      "estimate": 8
     }
   },
   "states": {
@@ -1250,11 +1372,12 @@
       "PORT-016",
       "PORT-011",
       "PORT-017",
-      "PORT-018"
+      "PORT-018",
+      "PORT-019"
     ],
     "blocked": []
   },
   "prefixCounters": {
-    "PORT": 18
+    "PORT": 19
   }
 }
