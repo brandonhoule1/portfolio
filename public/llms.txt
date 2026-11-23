@@ -4,16 +4,19 @@
 
 Canonical site: https://brandonhoule.com/
 Contact: brandonhoule@gmail.com
-LinkedIn: https://www.linkedin.com/in/brandonhoule/
+LinkedIn: https://www.linkedin.com/in/brandon-houle
 
 ## Main sections
 
-- Leadership and working principles: https://brandonhoule.com/#leadership
+- Leadership and working principles: https://brandonhoule.com/leadership.html
 - First 90 days: https://brandonhoule.com/#plan
 - Resume-grounded case studies: https://brandonhoule.com/#case-studies
-- Field notes: https://brandonhoule.com/#field-notes
-- Repository commit history: https://brandonhoule.com/#commits
-- Portfolio requirements and quality evidence: https://brandonhoule.com/how-this-was-made.html
-- Canonical AI Enablement resume: https://brandonhoule.com/downloads/Brandon-Houle-AI-Enablement-Resume.pdf
+- Online resume: https://brandonhoule.com/resume.html
+- Download resume: https://brandonhoule.com/downloads/Brandon-Houle-Resume.pdf
+- Field Notes: https://brandonhoule.com/field-notes.html
+- Blog: https://brandonhoule.com/blog.html
+- Requirements, test evidence, manual cases, and development record: https://brandonhoule.com/how-this-should-be-made.html
+
+AI is for routine work, so people have more room to do what they do best: think.
 
 Career case notes describe responsibilities from the public AI Enablement base resume. Outcomes and metrics are not asserted unless a source explicitly supports them. Demonstrations labeled illustrative or synthetic are examples, not claimed client results.

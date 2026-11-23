@@ -2,7 +2,7 @@
   "version": "0.7.1",
   "meta": {
     "version": "1.0.0",
-    "lastUpdated": "2026-11-23T21:08:57.589Z"
+    "lastUpdated": "2026-11-23T21:59:55.362Z"
   },
   "workUnits": {
     "FOUND-001": {
@@ -681,7 +681,8 @@
         "PORT-016",
         "PORT-017",
         "PORT-018",
-        "PORT-019"
+        "PORT-019",
+        "PORT-020"
       ],
       "architectureNotes": [
         {
@@ -1343,6 +1344,111 @@
         "spec/attachments/PORT-019/ast-research-logbook.md"
       ],
       "estimate": 8
+    },
+    "PORT-020": {
+      "id": "PORT-020",
+      "title": "Restructure portfolio pages and correct the public resume",
+      "type": "story",
+      "status": "done",
+      "createdAt": "2026-11-23T21:26:37.802Z",
+      "updatedAt": "2026-11-23T21:59:55.362Z",
+      "description": "Implement user direction from GitHub issue #20: unclutter the homepage; give leadership, first-90-days, and case studies priority; create separate field-notes, blog, and online-resume pages; correct the downloadable resume contact details while keeping the canonical source untouched; consolidate requirements, quality/test evidence, and development history in How this should be made; improve the footer and align SEO/GEO metadata.",
+      "epic": "leadership-portfolio",
+      "parent": "PORT-011",
+      "userStory": {
+        "role": "a hiring leader visiting the portfolio",
+        "action": "review Brandon's leadership, career evidence, and resume through a calm, easy-to-navigate site",
+        "benefit": "I can decide whether his experience fits the role without sorting through implementation details"
+      },
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-23T21:26:51.285Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-23T21:30:33.415Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-23T21:58:04.528Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-23T21:58:27.896Z"
+        },
+        {
+          "state": "done",
+          "timestamp": "2026-11-23T21:59:55.362Z"
+        }
+      ],
+      "rules": [
+        {
+          "id": 0,
+          "text": "The home page foregrounds leadership, the adaptable first-90-days plan, and three factual case studies; the resume download is a clear CTA.",
+          "deleted": false,
+          "createdAt": "2026-11-23T21:27:00.500Z"
+        },
+        {
+          "id": 1,
+          "text": "Field Notes, Blog, and the online resume each have distinct, directly addressable pages and accurate canonical metadata.",
+          "deleted": false,
+          "createdAt": "2026-11-23T21:27:00.592Z"
+        },
+        {
+          "id": 2,
+          "text": "The derived public resume uses brandonhoule@gmail.com, brandonhoule.com, and the supplied LinkedIn address; the canonical source PDF remains unchanged.",
+          "deleted": false,
+          "createdAt": "2026-11-23T21:27:00.687Z"
+        },
+        {
+          "id": 3,
+          "text": "How this should be made contains the requirements, quality results, manual cases, and complete development record; the home page does not contain the development record.",
+          "deleted": false,
+          "createdAt": "2026-11-23T21:27:00.790Z"
+        }
+      ],
+      "nextRuleId": 4,
+      "examples": [
+        {
+          "id": 0,
+          "text": "A visitor opens the homepage, reads the message that AI handles routine work so people can think, and follows the Download resume CTA.",
+          "deleted": false,
+          "createdAt": "2026-11-23T21:27:00.882Z"
+        },
+        {
+          "id": 1,
+          "text": "A visitor opens Field Notes and Blog separately, then opens the online resume and sees the corrected contact links.",
+          "deleted": false,
+          "createdAt": "2026-11-23T21:27:00.980Z"
+        },
+        {
+          "id": 2,
+          "text": "A visitor selects How this should be made and finds requirements, tests, and the commit history together.",
+          "deleted": false,
+          "createdAt": "2026-11-23T21:27:01.103Z"
+        },
+        {
+          "id": 3,
+          "text": "A visitor uses the footer to open the resume, LinkedIn profile, contact email, and build notes.",
+          "deleted": false,
+          "createdAt": "2026-11-23T21:27:01.193Z"
+        }
+      ],
+      "nextExampleId": 4,
+      "estimate": 8,
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "Implementation: Generate direct-addressable HTML pages from static site sources. Keep the source resume PDF immutable; produce a corrected public derivative and accessible web resume. Use one shared header/footer template, canonical URLs, sitemap, llms.txt, and a Cloudflare Pages redirect for the old process-page slug.",
+          "deleted": false,
+          "createdAt": "2026-11-23T21:30:02.836Z"
+        }
+      ],
+      "nextNoteId": 1,
+      "attachments": [
+        "spec/attachments/PORT-020/ast-research-page-generation.md"
+      ]
     }
   },
   "states": {
@@ -1373,11 +1479,12 @@
       "PORT-011",
       "PORT-017",
       "PORT-018",
-      "PORT-019"
+      "PORT-019",
+      "PORT-020"
     ],
     "blocked": []
   },
   "prefixCounters": {
-    "PORT": 19
+    "PORT": 20
   }
 }

@@ -12,7 +12,7 @@ Requirements: Node.js 22 or newer.
 
 The quality command runs unit tests, the build-backed integration tests, source and dependency security checks, Playwright GUI checks, and one single-pass browser performance observation. It writes a sanitized report to public/evidence.json and builds the public site in dist/.
 
-The homepage's repository log is built from local Git history. Git-based build environments must include the full commit history; the GitHub Actions checkout uses `fetch-depth: 0` for this reason. Commit subjects are HTML-escaped before publication. The site does not include commit author email addresses or CI logs.
+The production branch history appears in the “How this should be made” area. Builds retrieve public repository history and fall back to the checked-out Git history. Commit subjects are HTML-escaped before publication; author email addresses and CI logs are excluded.
 
 ## Deployment
 

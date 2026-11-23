@@ -4,13 +4,13 @@ import { test, expect } from '@playwright/test';
 test('requirements page exposes public status, criteria, and GitHub issue', async ({ page }) => {
   // @step Given the public catalog contains a reviewed requirement PORT-002
   // @step When a hiring leader opens the requirements page
-  await page.goto('/how-this-was-made.html');
-  await expect(page.getByRole('heading', { name: 'How this was made', exact: true })).toBeVisible();
+  await page.goto('/how-this-should-be-made.html');
+  await expect(page.getByRole('heading', { name: 'How this should be made', exact: true })).toBeVisible();
   await expect(page.locator('#PORT-002 .id')).toHaveText('PORT-002');
   await expect(page.locator('#PORT-002 .status')).toBeVisible();
   await expect(page.getByText('Only explicitly public requirements appear here. Internal setup records and raw CI logs remain out of the public catalog.')).toBeVisible();
   // @step Then the page shows PORT-002 status, description, acceptance criteria, and related requirements
-  await expect(page.getByRole('link', { name: 'GitHub issue #2' })).toHaveAttribute('href', 'https://github.com/brandonhoule1/portfolio/issues/2');
+  await expect(page.getByRole('link', { name: 'GitHub issue #2', exact: true })).toHaveAttribute('href', 'https://github.com/brandonhoule1/portfolio/issues/2');
   // @step Given the repository contains public PORT requirements and internal foundation work
   // @step When a visitor opens the requirements page
   // FSPEC scenario: Internal work is excluded from the public catalog.
@@ -18,50 +18,52 @@ test('requirements page exposes public status, criteria, and GitHub issue', asyn
   await expect(page.getByText('FOUND-001', { exact: true })).toHaveCount(0);
 });
 // FSPEC scenario: Visitors inspect latest sanitized quality and test results.
-test('quality evidence page states the reporting limits', async ({ page }) => {
+test('How this should be made shows the quality evidence and reporting limits', async ({ page }) => {
   // @step Given the latest quality runner has completed
   // @step When a visitor opens the quality evidence page
-  await page.goto('/evidence.html');
+  await page.goto('/how-this-should-be-made.html#quality-evidence');
   // @step Then the page shows check outcomes and summaries without exposing raw logs or traces
-  await expect(page.getByRole('heading', { name: 'Quality evidence' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'What has been checked' })).toBeVisible();
   await expect(page.getByRole('rowheader', { name: 'Single-pass performance' })).toBeVisible();
   await expect(page.getByText(/not load tests or statistical benchmarks/)).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Security suggestions' })).toBeVisible();
   await expect(page.getByText(/Keep direct and transitive dependencies current/)).toBeVisible();
-  await expect(page.locator('table tbody tr')).toHaveCount(5);
-  await expect(page.locator('table tbody .pill')).toHaveCount(5);
+  await expect(page.locator('#quality-evidence table tbody tr')).toHaveCount(5);
+  const statuses = await page.locator('#quality-evidence table tbody tr td:nth-child(2)').allTextContents();
+  expect(statuses).toHaveLength(5);
+  expect(statuses.every(status => ['passed', 'pending', 'failed'].includes(status.trim()))).toBe(true);
 });
 
-test('leadership profile centers the resume-backed story and first 90 days', async ({ page }) => {
-  // @step Given the portfolio has been built with the canonical AI Enablement resume
-  // @step When a visitor opens the home page
+test('homepage foregrounds leadership, first 90 days, and case studies', async ({ page }) => {
+  // Feature: spec/features/restructure-portfolio-pages-and-correct-the-public-resume.feature
+  // @step Given the portfolio homepage is available
   await page.goto('/');
-  // @step Then the profile, downloadable resume, career evidence, and illustrative first-90-days plan are available
-  await expect(page.getByRole('heading', { name: /Engineering, quality, performance, and AI/ })).toBeVisible();
-  await expect(page.getByRole('link', { name: /Download AI Enablement base resume/ })).toHaveAttribute('href', '/downloads/Brandon-Houle-AI-Enablement-Resume.pdf');
+  // @step When a hiring leader reviews the leadership profile
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(/AI is for routine work/);
+  // @step Then the page presents leadership, first-90-days, and case-study sections, the message that AI handles routine work so people can think, and a clear resume download CTA
+  await expect(page.getByRole('heading', { name: 'Leadership' })).toBeVisible();
   await expect(page.getByRole('heading', { name: /First 90 days/ })).toBeVisible();
-  await expect(page.getByText(/illustrative, organization-adaptable plan/)).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Executive' })).toHaveAttribute('href', '#showcase');
-  await expect(page.getByText('CAREER RECORD', { exact: true })).toBeVisible();
-  await expect(page.getByRole('heading', { name: /AI readiness, in context/ })).toBeVisible();
-  await expect(page.getByText('Ten-minute leadership review')).toBeVisible();
-  // @step Given the portfolio includes synthetic organization examples
-  // @step When a visitor reads the leadership demonstrations
-  // @step Then synthetic examples and adaptable plans are labeled and are not attributed as achieved client outcomes
-  await expect(page.getByText(/Illustrative scenario · synthetic/)).toBeVisible();
-  await expect(page.getByText(/These summaries reflect responsibilities described in my resume/)).toBeVisible();
-  await expect(page.getByRole('link', { name: 'How this was made' }).first()).toHaveAttribute('href', '/how-this-was-made.html');
+  await expect(page.locator('.case-entry')).toHaveCount(3);
+  await expect(page.locator('#leadership').getByRole('link', { name: 'Download resume' })).toHaveAttribute('href', '/downloads/Brandon-Houle-Resume.pdf');
+  await expect(page.getByRole('link', { name: 'View online resume' })).toHaveAttribute('href', '/resume.html');
+  await expect(page.locator('#field-notes, #commits, #showcase')).toHaveCount(0);
+  await expect(page.getByText(/illustrative starting point/)).toBeVisible();
 });
 
-test('unified process page offers a complete downloadable manual test pack', async ({ page }) => {
+test('How this should be made offers a complete downloadable manual test pack', async ({ page }) => {
+  // Feature: spec/features/restructure-portfolio-pages-and-correct-the-public-resume.feature
+  // @step Given requirements, test evidence, manual cases, and commit history are published
+  // @step When a visitor opens How this should be made
+  // @step Then all portfolio development material is together there and absent from the homepage
   // @step Given the portfolio has requirements and sanitized check results
-  // @step When a visitor opens How this was made
+  // @step When a visitor opens How this should be made
   // @step Then the requirements grid, quality evidence, and manual test cases appear in one destination
-  await page.goto('/how-this-was-made.html');
-  await expect(page.getByRole('heading', { name: 'How this was made', exact: true })).toBeVisible();
+  await page.goto('/how-this-should-be-made.html');
+  await expect(page.getByRole('heading', { name: 'How this should be made', exact: true })).toBeVisible();
   await expect(page.locator('#PORT-015')).toBeVisible();
   await expect(page.getByRole('link', { name: /Download manual test cases · Markdown/ })).toHaveAttribute('href', '/manual-test-cases.md');
   await expect(page.getByRole('link', { name: /Download CSV/ })).toHaveAttribute('href', '/manual-test-cases.csv');
+  await expect(page.getByRole('heading', { name: 'Development record.' })).toBeVisible();
   // @step Given manual cases cover positive, negative, data, integration, edge, usability, performance, and security paths
   // @step When a visitor selects either test case download
   // @step Then the file contains case identifiers, status, preconditions, steps, and expected results
@@ -72,10 +74,10 @@ test('unified process page offers a complete downloadable manual test pack', asy
   await expect(page.locator('table').last().locator('tbody tr')).toHaveCount(16);
 });
 
-test('homepage uses the connected LinkedIn portrait beside the leadership diagram', async ({ page }) => {
+test('leadership page preserves the connected LinkedIn portrait and leadership diagram', async ({ page }) => {
   // @step Given the connected LinkedIn profile photo is included in the site build
   // @step When a visitor opens the homepage
-  await page.goto('/');
+  await page.goto('/leadership.html');
   // @step Then Brandon's portrait has meaningful alternative text and the original leadership diagram remains visible
   const portrait = page.locator('#linkedin-portrait');
   await expect(portrait).toBeVisible();
@@ -88,26 +90,30 @@ test('professional wordmark and restrained design retain all portfolio content',
   // @step When a recruiter opens the homepage
   await page.goto('/');
   // @step Then the wordmark identifies Brandon Houle as a Technology Leader and the existing sections remain available
-  await expect(page.locator('.brand-name')).toHaveText('Brandon Houle');
-  await expect(page.locator('.brand-role')).toHaveText('Technology Leader / Innovator');
-  await expect(page.getByRole('heading', { name: /Engineering, quality, performance, and AI/ })).toBeVisible();
+  await expect(page.locator('header .brand-name')).toHaveText('Brandon Houle');
+  await expect(page.locator('header .brand-role')).toHaveText('Technology Leader / Innovator');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('think');
   await expect(page.getByRole('heading', { name: /First 90 days/ })).toBeVisible();
-  await expect(page.getByRole('heading', { name: /Selected responsibilities across the engineering lifecycle/ })).toBeVisible();
-  await expect(page.getByRole('heading', { name: /Frameworks, examples, and decision notes/ })).toBeVisible();
-  await expect(page.locator('.showcase-grid details')).toHaveCount(6);
+  await expect(page.getByRole('heading', { name: 'Leadership' })).toBeVisible();
+  await expect(page.locator('.case-entry')).toHaveCount(3);
+  await expect(page.locator('#field-notes, #commits, #showcase')).toHaveCount(0);
+  await expect(page.locator('header').getByRole('link', { name: 'Field Notes' })).toHaveAttribute('href', '/field-notes.html');
+  await expect(page.locator('header').getByRole('link', { name: 'Blog' })).toHaveAttribute('href', '/blog.html');
+  await expect(page.locator('header').getByRole('link', { name: 'Resume' })).toHaveAttribute('href', '/resume.html');
 });
 
-test('restyled How this was made page retains requirements and quality material', async ({ page }) => {
+test('How this should be made retains requirements, quality, manual cases, and development record', async ({ page }) => {
   // @step Given the portfolio has public requirements, quality evidence, and manual cases
-  // @step When a visitor opens How this was made
-  await page.goto('/how-this-was-made.html');
+  // @step When a visitor opens How this should be made
+  await page.goto('/how-this-should-be-made.html');
   // @step Then the requirements grid, quality evidence, and manual case downloads remain available
-  await expect(page.locator('.brand-name')).toHaveText('Brandon Houle');
-  await expect(page.locator('.brand-role')).toHaveText('Technology Leader / Innovator');
-  await expect(page.locator('.grid[aria-label="Public requirements"] .card')).toHaveCount(18);
+  await expect(page.locator('header .brand-name')).toHaveText('Brandon Houle');
+  await expect(page.locator('header .brand-role')).toHaveText('Technology Leader / Innovator');
+  await expect(page.locator('.grid[aria-label="Public requirements"] .card')).toHaveCount(19);
   await expect(page.getByRole('heading', { name: /What has been checked/ })).toBeVisible();
   await expect(page.getByRole('link', { name: /Download manual test cases/ })).toBeVisible();
   await expect(page.getByRole('link', { name: /Download CSV/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Development record.' })).toBeVisible();
 });
 
 test('editorial logbook profile shows the requested identity and contact details', async ({ page }) => {
@@ -115,14 +121,14 @@ test('editorial logbook profile shows the requested identity and contact details
   // @step When a hiring leader opens the homepage
   await page.goto('/');
   // @step Then Brandon's two-line role mark, website, and email are visible
-  await expect(page.locator('.brand-name')).toHaveText('Brandon Houle');
-  await expect(page.locator('.brand-role')).toHaveText('Technology Leader / Innovator');
+  await expect(page.locator('header .brand-name')).toHaveText('Brandon Houle');
+  await expect(page.locator('header .brand-role')).toHaveText('Technology Leader / Innovator');
   await expect(page.getByRole('link', { name: 'brandonhoule.com' })).toHaveAttribute('href', 'https://brandonhoule.com');
-  await expect(page.locator('aside.contact-line').getByRole('link', { name: 'brandonhoule@gmail.com' })).toHaveAttribute('href', 'mailto:brandonhoule@gmail.com');
+  await expect(page.locator('.site-footer').getByRole('link', { name: 'brandonhoule@gmail.com' })).toHaveAttribute('href', 'mailto:brandonhoule@gmail.com');
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://brandonhoule.com/');
   await expect(page.locator('.case-entry')).toHaveCount(3);
-  await expect(page.locator('.note-entry')).toHaveCount(3);
-  await expect(page.locator('.hero-art .core')).toBeVisible();
+  await expect(page.locator('.note-entry')).toHaveCount(0);
+  await expect(page.locator('.profile-portrait img')).toBeVisible();
 });
 
 test('editorial styling uses display typography and unboxed case notes', async ({ page }) => {
@@ -137,26 +143,63 @@ test('editorial styling uses display typography and unboxed case notes', async (
   await expect(page.locator('.case-entry').first()).toHaveCSS('border-top-style', 'solid');
 });
 
-test('career notes and field notes preserve evidence boundaries and structured article data', async ({ page }) => {
-  // @step Given the portfolio includes only resume-grounded career evidence
-  // @step When a visitor reads the case studies and field notes
-  await page.goto('/#case-studies');
-  // @step Then three case notes and dated, authored articles distinguish evidence from perspective
-  await expect(page.locator('.case-entry')).toHaveCount(3);
-  await expect(page.getByText(/No adoption, productivity, or quality result is claimed/)).toBeVisible();
+test('field notes and blog have separate pages with authored posts', async ({ page }) => {
+  // Feature: spec/features/restructure-portfolio-pages-and-correct-the-public-resume.feature
+  // @step Given the site navigation is available
+  await page.goto('/field-notes.html');
+  // @step When a hiring leader opens Field Notes, Blog, and the online resume
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://brandonhoule.com/field-notes.html');
   await expect(page.locator('.note-entry[itemtype="https://schema.org/BlogPosting"]')).toHaveCount(3);
   await expect(page.locator('.note-entry meta[itemprop="author"]')).toHaveCount(3);
   await expect(page.locator('.note-entry time[datetime="2026-11-23"]')).toHaveCount(3);
-  await expect(page.getByRole('heading', { name: 'Working notes on technology and delivery.' })).toBeVisible();
-  await page.setViewportSize({ width: 390, height: 844 });
-  const mobile = await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
-  expect(mobile).toBe(true);
+  await page.goto('/blog.html');
+  // @step Then each page has distinct content and the resume shows brandonhoule@gmail.com, brandonhoule.com, and linkedin.com/in/brandon-houle
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://brandonhoule.com/blog.html');
+  await expect(page.locator('.blog-entry[itemtype="https://schema.org/BlogPosting"]')).toHaveCount(3);
+  await page.goto('/resume.html');
+  await expect(page.locator('.resume-contact').getByRole('link', { name: 'brandonhoule@gmail.com' })).toHaveAttribute('href', 'mailto:brandonhoule@gmail.com');
+  await expect(page.locator('.resume-contact').getByRole('link', { name: 'brandonhoule.com' })).toHaveAttribute('href', 'https://brandonhoule.com');
+  await expect(page.locator('.resume-contact').getByRole('link', { name: 'linkedin.com/in/brandon-houle' })).toHaveAttribute('href', 'https://www.linkedin.com/in/brandon-houle');
+  await expect(page.getByRole('heading', { name: /Manager, Applied Automation and AgentOps/ })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Download resume PDF' })).toHaveAttribute('href', '/downloads/Brandon-Houle-Resume.pdf');
+});
+
+test('leadership examples remain available on their own page', async ({ page }) => {
+  await page.goto('/leadership.html');
+  await expect(page.getByRole('heading', { name: /Frameworks, examples, and decision notes/ })).toBeVisible();
+  await expect(page.locator('.showcase-grid details')).toHaveCount(6);
+  await expect(page.getByText(/Illustrative scenario · synthetic/)).toBeVisible();
+});
+
+test('resume page displays the corrected public contact details', async ({ page }) => {
+  await page.goto('/resume.html');
+  const contact = page.locator('.resume-contact');
+  await expect(contact).not.toContainText('candidatesnet.com');
+  await expect(contact).toContainText('brandonhoule@gmail.com');
+  await expect(contact).toContainText('brandonhoule.com');
+  await expect(contact).toContainText('linkedin.com/in/brandon-houle');
+});
+
+test('footer gives direct access to profile, writing, contact, and build notes', async ({ page }) => {
+  // Feature: spec/features/restructure-portfolio-pages-and-correct-the-public-resume.feature
+  // @step Given a visitor has reached the end of any portfolio page
+  await page.goto('/');
+  const footer = page.locator('.site-footer');
+  await expect(footer).toBeVisible();
+  // @step When the visitor scans the site footer
+  // @step Then the footer offers useful links to the resume, LinkedIn, email, portfolio sections, and How this should be made
+  await expect(footer.getByRole('link', { name: 'Online resume' })).toHaveAttribute('href', '/resume.html');
+  await expect(footer.getByRole('link', { name: 'Download resume' })).toHaveAttribute('href', '/downloads/Brandon-Houle-Resume.pdf');
+  await expect(footer.getByRole('link', { name: 'LinkedIn' })).toHaveAttribute('href', 'https://www.linkedin.com/in/brandon-houle');
+  await expect(footer.getByRole('link', { name: 'How this should be made' })).toHaveAttribute('href', '/how-this-should-be-made.html');
+  await expect(footer.getByRole('link', { name: 'Field Notes' })).toHaveAttribute('href', '/field-notes.html');
+  await expect(footer.getByRole('link', { name: 'Blog' })).toHaveAttribute('href', '/blog.html');
 });
 
 test('development record lists every available revision with exact GitHub links', async ({ page }) => {
   // @step Given the build has access to the checked-out repository history
   // @step When a visitor opens the development record
-  await page.goto('/#commits');
+  await page.goto('/how-this-should-be-made.html#commits');
   // @step Then every available commit shows its date, subject, and exact GitHub revision link
   const commits = await page.evaluate(async () => (await fetch('/commits.json')).json());
   const rows = page.locator('#commit-list li');

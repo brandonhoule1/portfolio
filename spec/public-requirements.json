@@ -190,18 +190,38 @@
     "githubIssue": 19,
     "acceptanceCriteria": [
       "The wordmark reads Brandon Houle, then Technology Leader / Innovator on the next line, and contact information includes brandonhoule.com and brandonhoule@gmail.com.",
-      "The canonical resume source and exact unmodified portfolio copy are identified.",
+      "The canonical resume source is preserved; the public resume copy and its contact-header updates are identified.",
       "Three factual career case studies are published, with unsupported outcomes and metrics explicitly withheld.",
-      "The homepage includes dated authored field notes with schema.org BlogPosting data.",
+      "Dated authored field notes use schema.org BlogPosting data and are accessible from a dedicated page.",
       "Every commit reachable from the checked-out production branch is listed with date, subject, abbreviated hash, and exact GitHub commit link; local-only checkpoint refs, email addresses, and CI logs are not exposed.",
       "Semantic SEO/GEO metadata, canonical URL, structured Person/WebSite/Article data, sitemap.xml, robots.txt, and llms.txt describe only visible supported content.",
       "Visual styling uses a deliberate editorial printed-logbook direction with varied text-led sections and avoids dense repeated cards, gradient backgrounds, and promotional copy.",
-      "Mobile layout, keyboard focus, reduced motion, and existing portfolio/process routes remain usable."
+      "Mobile layout, keyboard focus, reduced motion, and existing portfolio routes remain usable."
     ],
     "relatesTo": [
       "PORT-011",
       "PORT-016",
       "PORT-018"
+    ]
+  },
+  {
+    "id": "PORT-020",
+    "githubIssue": 20,
+    "acceptanceCriteria": [
+      "The homepage is uncluttered and foregrounds leadership, the first-90-days plan, and three factual case studies, with a clear resume-download CTA.",
+      "Field Notes, Blog, and the online resume have distinct, directly addressable, indexable pages with accurate canonical metadata.",
+      "The online resume and public downloadable PDF show brandonhoule@gmail.com, brandonhoule.com, and linkedin.com/in/brandon-houle; the canonical source PDF remains unchanged.",
+      "How this should be made contains requirements, automated test results, manual test cases, quality evidence, and the complete development record; those build details are not shown on the homepage.",
+      "The portfolio communicates that AI is for routine work so people have more room to think.",
+      "The footer provides useful navigation, profile, contact, resume, and process links.",
+      "Sitemap, llms.txt, redirects, structured data, and browser tests reflect the current page structure."
+    ],
+    "relatesTo": [
+      "PORT-011",
+      "PORT-012",
+      "PORT-013",
+      "PORT-016",
+      "PORT-019"
     ]
   }
 ]
