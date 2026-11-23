@@ -21,6 +21,32 @@ export function readCommitHistory(cwd) {
   }
 }
 
+export async function readPublishedHistory(cwd, fetchImpl = fetch) {
+  try {
+    const commits = [];
+    for (let page = 1; ; page += 1) {
+      const response = await fetchImpl(`https://api.github.com/repos/brandonhoule1/portfolio/commits?per_page=100&page=${page}`, {
+        headers: { accept: 'application/vnd.github+json', 'user-agent': 'houleb-portfolio-build' },
+        signal: AbortSignal.timeout(5000)
+      });
+      if (!response.ok) throw new Error(`GitHub API returned ${response.status}`);
+      const batch = await response.json();
+      if (!Array.isArray(batch)) throw new Error('GitHub API returned an unexpected response');
+      for (const entry of batch) {
+        const sha = entry?.sha;
+        const date = entry?.commit?.author?.date?.slice(0, 10);
+        const subject = entry?.commit?.message?.split(/\r?\n/, 1)[0] ?? '';
+        if (/^[a-f0-9]{40}$/i.test(sha ?? '') && /^\d{4}-\d{2}-\d{2}$/.test(date ?? '')) {
+          commits.push({ sha, shortSha: sha.slice(0, 7), date, subject: subject.slice(0, 240) });
+        }
+      }
+      if (batch.length < 100) return commits;
+    }
+  } catch {
+    return readCommitHistory(cwd);
+  }
+}
+
 export function renderCommitList(commits) {
   return commits.map(commit => `<li><time datetime="${commit.date}">${commit.date}</time><a href="https://github.com/brandonhoule1/portfolio/commit/${commit.sha}">${escapeHtml(commit.subject)}</a><code>${commit.shortSha}</code></li>`).join('\n');
 }

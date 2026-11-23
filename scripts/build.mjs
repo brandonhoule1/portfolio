@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadCatalog } from '../src/catalog.mjs';
 import { renderRequirements, renderEvidence, manualCases } from '../src/html.mjs';
-import { readCommitHistory, renderCommitList } from '../src/history.mjs';
+import { readPublishedHistory, renderCommitList } from '../src/history.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const out = path.join(root, 'dist');
 fs.rmSync(out, { recursive: true, force: true });
@@ -13,7 +13,7 @@ let home = fs.readFileSync(path.join(root, 'public', 'index.html'), 'utf8');
 for (const [marker, file] of [['<!--CASE_STUDIES-->', 'case-studies.htmlfrag'], ['<!--FIELD_NOTES-->', 'field-notes.htmlfrag'], ['<!--COMMIT_LOG-->', 'commit-log.htmlfrag']]) {
   home = home.replace(marker, fs.readFileSync(path.join(root, 'public', file), 'utf8'));
 }
-const commits = readCommitHistory(root);
+const commits = await readPublishedHistory(root);
 home = home.replace('<!--COMMIT_ITEMS-->', renderCommitList(commits));
 fs.writeFileSync(path.join(out, 'index.html'), home);
 fs.writeFileSync(path.join(out, 'commits.json'), JSON.stringify(commits, null, 2));
