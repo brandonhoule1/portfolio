@@ -29,6 +29,5 @@ test('quality evidence page states the reporting limits', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Security suggestions' })).toBeVisible();
   await expect(page.getByText(/Keep direct and transitive dependencies current/)).toBeVisible();
   await expect(page.locator('table tbody tr')).toHaveCount(5);
-  await expect(page.getByText('passed', { exact: true })).toHaveCount(5);
-  expect(await page.locator('time').innerText()).not.toBe('Not yet run');
+  await expect(page.locator('table tbody .pill')).toHaveCount(5);
 });

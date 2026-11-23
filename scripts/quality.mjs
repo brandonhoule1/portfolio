@@ -23,6 +23,23 @@ function run(name, script, summary) {
 fs.rmSync('dist', { recursive: true, force: true });
 fs.rmSync('test-results', { recursive: true, force: true });
 fs.mkdirSync('test-results', { recursive: true });
+// Give first-build browser tests the complete page shape without implying that
+// checks have passed before they run. The final build replaces this seed.
+fs.writeFileSync('public/evidence.json', JSON.stringify({
+  generatedAt: null,
+  revision: process.env.GITHUB_SHA ?? 'local',
+  checks: {
+    'Unit tests': { status: 'pending', summary: 'This check has not run yet.' },
+    'Integration tests': { status: 'pending', summary: 'This check has not run yet.' },
+    'Playwright GUI tests': { status: 'pending', summary: 'This check has not run yet.' },
+    'Single-pass performance': { status: 'pending', summary: 'This check has not run yet.' },
+    'Security review': { status: 'pending', summary: 'This check has not run yet.' }
+  },
+  securitySuggestions: [
+    'Keep direct and transitive dependencies current; review npm audit details before upgrading.',
+    'Use the CI browser report and source scan to review regressions before deployment.'
+  ]
+}, null, 2));
 const unit = run('Unit tests', 'test:unit', 'Deterministic Node unit suite passed.');
 const source = run('Source security review', 'security:source', 'Static source pattern review passed.');
 const deps = run('Dependency security review', 'security:deps', 'Dependency audit found no high or critical advisories.');
