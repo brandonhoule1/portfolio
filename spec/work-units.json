@@ -1,0 +1,640 @@
+{
+  "version": "0.7.1",
+  "meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-11-23T18:14:24.236Z"
+  },
+  "workUnits": {
+    "FOUND-001": {
+      "id": "FOUND-001",
+      "title": "Conduct Foundation Event Storm for Foundation",
+      "status": "backlog",
+      "createdAt": "2026-11-23T17:37:37.379Z",
+      "updatedAt": "2026-11-23T17:37:37.379Z",
+      "stateHistory": [
+        {
+          "state": "backlog",
+          "timestamp": "2026-11-23T17:37:37.379Z"
+        }
+      ],
+      "description": "Complete the foundation by capturing domain architecture through Foundation Event Storm.\n\nUse these commands to populate foundation.json eventStorm field:\n- fspec add-foundation-bounded-context <name>\n- fspec remove-foundation-bounded-context <name> [--cascade]\n- fspec add-aggregate-to-foundation <context> <aggregate>\n- fspec remove-aggregate-from-foundation <context> <aggregate>\n- fspec add-domain-event-to-foundation <context> <event>\n- fspec remove-domain-event-from-foundation <context> <event>\n- fspec add-command-to-foundation <context> <command>\n- fspec remove-command-from-foundation <context> <command>\n- fspec show-foundation-event-storm\n\nWhy this matters:\n- Establishes bounded contexts for domain-driven design\n- Enables tag ontology generation from domain model\n- Provides foundation for architectural documentation\n- Supports EXMAP-004 tag discovery workflow\n\nSee spec/AGENTS.md \"Foundation Event Storm\" section for detailed guidance.",
+      "type": "task"
+    },
+    "PORT-001": {
+      "id": "PORT-001",
+      "title": "Public engineering evidence pipeline",
+      "type": "story",
+      "status": "backlog",
+      "createdAt": "2026-11-23T17:38:24.356Z",
+      "updatedAt": "2026-11-23T17:46:21.189Z",
+      "description": "Parent requirement preserving Brandon's request: run unit, integration, and Playwright GUI tests in CI; publish approved requirements with descriptions, acceptance criteria, relationships, and statuses; publish test evidence; run single-pass non-load performance checks and provide security suggestions; create GitHub issues for actionable findings and iterate on them in this Codex project. The repository began empty. Children define independently verifiable user-facing outcomes.",
+      "epic": "engineering-evidence",
+      "children": [
+        "PORT-002",
+        "PORT-003",
+        "PORT-004",
+        "PORT-005",
+        "PORT-006",
+        "PORT-007",
+        "PORT-008",
+        "PORT-009",
+        "PORT-010"
+      ],
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "GitHub issue: https://github.com/brandonhoule1/portfolio/issues/1. The issue tracks progress and is linked from the public requirement catalog.",
+          "deleted": false,
+          "createdAt": "2026-11-23T17:46:21.189Z"
+        }
+      ],
+      "nextNoteId": 1
+    },
+    "PORT-002": {
+      "id": "PORT-002",
+      "title": "Traceable public requirements catalog",
+      "type": "story",
+      "status": "validating",
+      "createdAt": "2026-11-23T17:39:03.378Z",
+      "updatedAt": "2026-11-23T18:14:20.704Z",
+      "description": "Visitors can inspect the explicitly public requirement subset derived from FSPEC, including status, description, acceptance criteria, and related work units. Internal/non-public work units are excluded.",
+      "epic": "engineering-evidence",
+      "parent": "PORT-001",
+      "relatesTo": [
+        "PORT-006"
+      ],
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-23T17:41:08.418Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-23T17:43:32.484Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-23T18:11:33.804Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-23T18:14:20.704Z"
+        }
+      ],
+      "userStory": {
+        "role": "hiring leader",
+        "action": "inspect approved requirements and their status, description, acceptance criteria, and relationships",
+        "benefit": "understand the development approach without relying on a Jira-style workflow"
+      },
+      "rules": [
+        {
+          "id": 0,
+          "text": "Only requirements explicitly marked for public display are published; internal setup work is excluded.",
+          "deleted": false,
+          "createdAt": "2026-11-23T17:41:09.949Z"
+        },
+        {
+          "id": 1,
+          "text": "Each published requirement shows its current FSPEC status, description, acceptance criteria, and related requirements.",
+          "deleted": false,
+          "createdAt": "2026-11-23T17:41:10.691Z"
+        }
+      ],
+      "nextRuleId": 2,
+      "examples": [
+        {
+          "id": 0,
+          "text": "A hiring leader opening the requirements page sees PORT-002 with its current status and acceptance criteria, while FOUND-001 remains private.",
+          "deleted": false,
+          "createdAt": "2026-11-23T17:41:11.444Z"
+        },
+        {
+          "id": 1,
+          "text": "When PORT-002 relates to PORT-006, the requirements page links both IDs without rendering unrelated setup records.",
+          "deleted": false,
+          "createdAt": "2026-11-23T17:41:12.179Z"
+        }
+      ],
+      "nextExampleId": 2,
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "Implementation: Publish only reviewed, explicitly public requirements and linked Gherkin criteria; omit internal work units.",
+          "deleted": false,
+          "createdAt": "2026-11-23T17:42:22.848Z"
+        },
+        {
+          "id": 1,
+          "text": "GitHub issue: https://github.com/brandonhoule1/portfolio/issues/2. The issue tracks progress and is linked from the public requirement catalog.",
+          "deleted": false,
+          "createdAt": "2026-11-23T17:46:21.955Z"
+        }
+      ],
+      "nextNoteId": 2,
+      "attachments": [
+        "spec/attachments/PORT-002/ast-research-no-existing-source.md"
+      ],
+      "estimate": 3
+    },
+    "PORT-003": {
+      "id": "PORT-003",
+      "title": "Unit test suite in CI",
+      "type": "story",
+      "status": "validating",
+      "createdAt": "2026-11-23T17:39:04.155Z",
+      "updatedAt": "2026-11-23T18:13:59.869Z",
+      "description": "A deterministic unit suite runs for pull requests and production branch commits. Failures make the quality check fail and produce a machine-readable result.",
+      "epic": "engineering-evidence",
+      "parent": "PORT-001",
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "GitHub issue: https://github.com/brandonhoule1/portfolio/issues/3. The issue tracks progress and is linked from the public requirement catalog.",
+          "deleted": false,
+          "createdAt": "2026-11-23T17:46:22.716Z"
+        },
+        {
+          "id": 1,
+          "text": "See issue #2. Implementation is in npm scripts and GitHub Actions; failure must remain a failed quality check.",
+          "deleted": true,
+          "createdAt": "2026-11-23T18:00:36.732Z",
+          "deletedAt": "2026-11-23T18:03:20.825Z"
+        }
+      ],
+      "nextNoteId": 2,
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-23T18:00:22.198Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-23T18:11:34.746Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-23T18:11:35.654Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-23T18:13:59.869Z"
+        }
+      ],
+      "rules": [
+        {
+          "id": 0,
+          "text": "Unit checks are deterministic and run for pull requests and production branch updates.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:00:35.229Z"
+        }
+      ],
+      "nextRuleId": 1,
+      "examples": [
+        {
+          "id": 0,
+          "text": "When a unit check fails, the quality workflow fails and retains machine-readable results.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:00:35.978Z"
+        }
+      ],
+      "nextExampleId": 1,
+      "userStory": {
+        "role": "portfolio maintainer",
+        "action": "run fast deterministic unit checks before merging",
+        "benefit": "catch regressions early and prevent failed quality from publishing"
+      },
+      "attachments": [
+        "spec/attachments/PORT-003/ast-research-unit-test-assertions.md"
+      ],
+      "estimate": 2
+    },
+    "PORT-004": {
+      "id": "PORT-004",
+      "title": "Integration test suite in CI",
+      "type": "story",
+      "status": "validating",
+      "createdAt": "2026-11-23T17:39:04.920Z",
+      "updatedAt": "2026-11-23T18:14:21.619Z",
+      "description": "An integration suite exercises requirement projection and quality-report generation from the real FSPEC data. Failures make the quality check fail and produce a machine-readable result.",
+      "epic": "engineering-evidence",
+      "parent": "PORT-001",
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "GitHub issue: https://github.com/brandonhoule1/portfolio/issues/4. The issue tracks progress and is linked from the public requirement catalog.",
+          "deleted": false,
+          "createdAt": "2026-11-23T17:46:23.473Z"
+        },
+        {
+          "id": 1,
+          "text": "See issue #3. Implementation is in npm scripts and GitHub Actions; failure must remain a failed quality check.",
+          "deleted": true,
+          "createdAt": "2026-11-23T18:00:39.720Z",
+          "deletedAt": "2026-11-23T18:03:22.338Z"
+        },
+        {
+          "id": 2,
+          "text": "GitHub issue: https://github.com/brandonhoule1/portfolio/issues/3. Implementation is in npm scripts and GitHub Actions; failed checks block release.",
+          "deleted": true,
+          "createdAt": "2026-11-23T18:01:06.283Z",
+          "deletedAt": "2026-11-23T18:03:21.574Z"
+        }
+      ],
+      "nextNoteId": 3,
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-23T18:01:04.001Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-23T18:11:36.502Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-23T18:11:37.381Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-23T18:14:21.619Z"
+        }
+      ],
+      "rules": [
+        {
+          "id": 0,
+          "text": "Integration checks exercise FSPEC data through public projection and evidence generation.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:01:04.743Z"
+        }
+      ],
+      "nextRuleId": 1,
+      "examples": [
+        {
+          "id": 0,
+          "text": "A public-only catalog and associated check summary are generated from the repository work units.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:01:05.521Z"
+        }
+      ],
+      "nextExampleId": 1,
+      "userStory": {
+        "role": "portfolio maintainer",
+        "action": "verify that repository requirements and check results project into the built site",
+        "benefit": "catch data-to-site regressions before publication"
+      },
+      "attachments": [
+        "spec/attachments/PORT-004/ast-research-requirement-projection.md"
+      ],
+      "estimate": 3
+    },
+    "PORT-005": {
+      "id": "PORT-005",
+      "title": "Playwright GUI tests in CI",
+      "type": "story",
+      "status": "validating",
+      "createdAt": "2026-11-23T17:39:05.661Z",
+      "updatedAt": "2026-11-23T18:14:22.463Z",
+      "description": "Playwright browser tests build and serve the site, then verify the public requirements and quality pages. Failures make the quality check fail and preserve the HTML report as an Actions artifact.",
+      "epic": "engineering-evidence",
+      "parent": "PORT-001",
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "GitHub issue: https://github.com/brandonhoule1/portfolio/issues/5. The issue tracks progress and is linked from the public requirement catalog.",
+          "deleted": false,
+          "createdAt": "2026-11-23T17:46:24.214Z"
+        },
+        {
+          "id": 1,
+          "text": "See issue #4. Implementation is in npm scripts and GitHub Actions; failure must remain a failed quality check.",
+          "deleted": true,
+          "createdAt": "2026-11-23T18:00:42.717Z",
+          "deletedAt": "2026-11-23T18:03:23.833Z"
+        },
+        {
+          "id": 2,
+          "text": "GitHub issue: https://github.com/brandonhoule1/portfolio/issues/4. Implementation is in npm scripts and GitHub Actions; failed checks block release.",
+          "deleted": true,
+          "createdAt": "2026-11-23T18:01:09.972Z",
+          "deletedAt": "2026-11-23T18:03:23.103Z"
+        }
+      ],
+      "nextNoteId": 3,
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-23T18:01:07.753Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-23T18:11:38.281Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-23T18:11:39.232Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-23T18:14:22.463Z"
+        }
+      ],
+      "rules": [
+        {
+          "id": 0,
+          "text": "Browser checks verify requirements and quality evidence in Chromium before deployment.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:01:08.484Z"
+        }
+      ],
+      "nextRuleId": 1,
+      "examples": [
+        {
+          "id": 0,
+          "text": "A visitor sees requirement status and the evidence summary after the static site is served.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:01:09.221Z"
+        }
+      ],
+      "nextExampleId": 1,
+      "userStory": {
+        "role": "portfolio visitor",
+        "action": "inspect the requirements and quality evidence pages in a real browser",
+        "benefit": "confirm the public experience works as presented"
+      },
+      "attachments": [
+        "spec/attachments/PORT-005/ast-research-browser-navigation.md"
+      ],
+      "estimate": 3
+    },
+    "PORT-006": {
+      "id": "PORT-006",
+      "title": "Published quality and test evidence",
+      "type": "story",
+      "status": "backlog",
+      "createdAt": "2026-11-23T17:39:06.427Z",
+      "updatedAt": "2026-11-23T17:46:24.976Z",
+      "description": "The deployed site publishes a sanitized summary of the latest build's unit, integration, GUI, performance, and security checks, with timestamps, status, and evidence limits. No credentials, raw logs, or browser traces are published.",
+      "epic": "engineering-evidence",
+      "parent": "PORT-001",
+      "dependsOn": [
+        "PORT-003",
+        "PORT-004",
+        "PORT-005",
+        "PORT-007",
+        "PORT-008"
+      ],
+      "relatesTo": [
+        "PORT-002"
+      ],
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "GitHub issue: https://github.com/brandonhoule1/portfolio/issues/6. The issue tracks progress and is linked from the public requirement catalog.",
+          "deleted": false,
+          "createdAt": "2026-11-23T17:46:24.976Z"
+        }
+      ],
+      "nextNoteId": 1
+    },
+    "PORT-007": {
+      "id": "PORT-007",
+      "title": "Single-pass performance checks",
+      "type": "story",
+      "status": "validating",
+      "createdAt": "2026-11-23T17:39:07.173Z",
+      "updatedAt": "2026-11-23T18:14:23.316Z",
+      "description": "A non-load performance smoke run visits each selected public route once, records response and browser navigation timings, and reports measurements without concurrency, repeated sampling, or claims of benchmark precision.",
+      "epic": "engineering-evidence",
+      "parent": "PORT-001",
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "GitHub issue: https://github.com/brandonhoule1/portfolio/issues/7. The issue tracks progress and is linked from the public requirement catalog.",
+          "deleted": false,
+          "createdAt": "2026-11-23T17:46:25.713Z"
+        },
+        {
+          "id": 1,
+          "text": "See issue #6. Implementation is in npm scripts and GitHub Actions; failure must remain a failed quality check.",
+          "deleted": true,
+          "createdAt": "2026-11-23T18:00:45.722Z",
+          "deletedAt": "2026-11-23T18:03:25.345Z"
+        },
+        {
+          "id": 2,
+          "text": "GitHub issue: https://github.com/brandonhoule1/portfolio/issues/6. Implementation is in npm scripts and GitHub Actions; failed checks block release.",
+          "deleted": true,
+          "createdAt": "2026-11-23T18:01:13.698Z",
+          "deletedAt": "2026-11-23T18:03:24.612Z"
+        }
+      ],
+      "nextNoteId": 3,
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-23T18:01:11.457Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-23T18:11:40.142Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-23T18:11:41.016Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-23T18:14:23.316Z"
+        }
+      ],
+      "rules": [
+        {
+          "id": 0,
+          "text": "Performance checks make one page navigation per selected route and never generate concurrent load.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:01:12.188Z"
+        }
+      ],
+      "nextRuleId": 1,
+      "examples": [
+        {
+          "id": 0,
+          "text": "The run records HTTP status and browser navigation timing for the home route once.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:01:12.931Z"
+        }
+      ],
+      "nextExampleId": 1,
+      "userStory": {
+        "role": "portfolio maintainer",
+        "action": "measure one navigation through a selected route",
+        "benefit": "spot obvious delivery regressions without generating load"
+      },
+      "attachments": [
+        "spec/attachments/PORT-007/ast-research-single-navigation.md"
+      ],
+      "estimate": 2
+    },
+    "PORT-008": {
+      "id": "PORT-008",
+      "title": "Security review suggestions",
+      "type": "story",
+      "status": "validating",
+      "createdAt": "2026-11-23T17:39:07.915Z",
+      "updatedAt": "2026-11-23T18:14:24.236Z",
+      "description": "The pipeline runs dependency and source-level security checks and presents owner-reviewable suggestions, distinguishing verified scanner findings from general recommendations.",
+      "epic": "engineering-evidence",
+      "parent": "PORT-001",
+      "relatesTo": [
+        "PORT-009"
+      ],
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "GitHub issue: https://github.com/brandonhoule1/portfolio/issues/8. The issue tracks progress and is linked from the public requirement catalog.",
+          "deleted": false,
+          "createdAt": "2026-11-23T17:46:26.458Z"
+        },
+        {
+          "id": 1,
+          "text": "See issue #7. Implementation is in npm scripts and GitHub Actions; failure must remain a failed quality check.",
+          "deleted": true,
+          "createdAt": "2026-11-23T18:00:48.717Z",
+          "deletedAt": "2026-11-23T18:03:26.856Z"
+        },
+        {
+          "id": 2,
+          "text": "GitHub issue: https://github.com/brandonhoule1/portfolio/issues/7. Implementation is in npm scripts and GitHub Actions; failed checks block release.",
+          "deleted": true,
+          "createdAt": "2026-11-23T18:01:17.497Z",
+          "deletedAt": "2026-11-23T18:03:26.112Z"
+        }
+      ],
+      "nextNoteId": 3,
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-23T18:01:15.234Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-23T18:11:41.905Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-23T18:11:42.792Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-23T18:14:24.236Z"
+        }
+      ],
+      "rules": [
+        {
+          "id": 0,
+          "text": "Automated dependency and source checks produce actionable, sanitized guidance.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:01:15.963Z"
+        }
+      ],
+      "nextRuleId": 1,
+      "examples": [
+        {
+          "id": 0,
+          "text": "The dependency audit has zero high or critical findings and the source review finds no prohibited patterns.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:01:16.728Z"
+        }
+      ],
+      "nextExampleId": 1,
+      "userStory": {
+        "role": "portfolio maintainer",
+        "action": "review dependency and source security signals with practical suggestions",
+        "benefit": "reduce preventable risk without publishing sensitive details"
+      },
+      "attachments": [
+        "spec/attachments/PORT-008/ast-research-security-process.md"
+      ],
+      "estimate": 3
+    },
+    "PORT-009": {
+      "id": "PORT-009",
+      "title": "Finding to GitHub issue loop",
+      "type": "story",
+      "status": "backlog",
+      "createdAt": "2026-11-23T17:39:08.700Z",
+      "updatedAt": "2026-11-23T17:46:27.204Z",
+      "description": "Each accepted actionable finding has a GitHub issue linked to its requirement or evidence. Issue work is iterated in this Codex project and status changes are reflected in the public requirement view when the item is tagged public.",
+      "epic": "engineering-evidence",
+      "parent": "PORT-001",
+      "dependsOn": [
+        "PORT-006"
+      ],
+      "relatesTo": [
+        "PORT-008"
+      ],
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "GitHub issue: https://github.com/brandonhoule1/portfolio/issues/9. The issue tracks progress and is linked from the public requirement catalog.",
+          "deleted": false,
+          "createdAt": "2026-11-23T17:46:27.204Z"
+        }
+      ],
+      "nextNoteId": 1
+    },
+    "PORT-010": {
+      "id": "PORT-010",
+      "title": "Quality-gated Cloudflare Pages deployment",
+      "type": "story",
+      "status": "backlog",
+      "createdAt": "2026-11-23T17:39:09.508Z",
+      "updatedAt": "2026-11-23T17:46:27.960Z",
+      "description": "Pull requests and production-branch commits run required quality checks. Cloudflare Pages publishes a build only when the same unit, integration, Playwright, single-pass performance, and security report generation commands succeed.",
+      "epic": "engineering-evidence",
+      "parent": "PORT-001",
+      "dependsOn": [
+        "PORT-003",
+        "PORT-004",
+        "PORT-005",
+        "PORT-006",
+        "PORT-007",
+        "PORT-008"
+      ],
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "GitHub issue: https://github.com/brandonhoule1/portfolio/issues/10. The issue tracks progress and is linked from the public requirement catalog.",
+          "deleted": false,
+          "createdAt": "2026-11-23T17:46:27.960Z"
+        }
+      ],
+      "nextNoteId": 1
+    }
+  },
+  "states": {
+    "backlog": [
+      "FOUND-001",
+      "PORT-001",
+      "PORT-006",
+      "PORT-009",
+      "PORT-010"
+    ],
+    "specifying": [],
+    "testing": [],
+    "implementing": [],
+    "validating": [
+      "PORT-003",
+      "PORT-002",
+      "PORT-004",
+      "PORT-005",
+      "PORT-007",
+      "PORT-008"
+    ],
+    "done": [],
+    "blocked": []
+  },
+  "prefixCounters": {
+    "PORT": 10
+  }
+}

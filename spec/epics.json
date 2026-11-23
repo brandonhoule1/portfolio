@@ -1,0 +1,22 @@
+{
+  "epics": {
+    "engineering-evidence": {
+      "id": "engineering-evidence",
+      "title": "Public Engineering Evidence Pipeline",
+      "createdAt": "2026-11-23T17:37:37.659Z",
+      "description": "Traceable requirements, automated quality checks, published evidence, and issue-driven iteration for the leadership portfolio.",
+      "workUnits": [
+        "PORT-001",
+        "PORT-002",
+        "PORT-003",
+        "PORT-004",
+        "PORT-005",
+        "PORT-006",
+        "PORT-007",
+        "PORT-008",
+        "PORT-009",
+        "PORT-010"
+      ]
+    }
+  }
+}

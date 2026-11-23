@@ -1,0 +1,74 @@
+{
+  "scenarios": [
+    {
+      "name": "Visitors inspect status, description, and acceptance criteria",
+      "testMappings": [
+        {
+          "file": "tests/e2e/site.spec.mjs",
+          "lines": "1-31",
+          "implMappings": [
+            {
+              "file": "src/html.mjs",
+              "lines": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Internal work is excluded from the public catalog",
+      "testMappings": [
+        {
+          "file": "tests/e2e/site.spec.mjs",
+          "lines": "1-31",
+          "implMappings": [
+            {
+              "file": "src/catalog.mjs",
+              "lines": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "totalScenarios": 2,
+    "coveredScenarios": 2,
+    "coveragePercent": 100,
+    "testFiles": [
+      "tests/e2e/site.spec.mjs"
+    ],
+    "implFiles": [
+      "src/html.mjs",
+      "src/catalog.mjs"
+    ],
+    "totalLinesCovered": 87
+  }
+}

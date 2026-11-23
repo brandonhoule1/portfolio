@@ -1,0 +1,88 @@
+{
+  "categories": [
+    {
+      "name": "Phase Tags",
+      "description": "Phase identification tags",
+      "required": true,
+      "tags": []
+    },
+    {
+      "name": "Component Tags",
+      "description": "Architectural component tags",
+      "required": true,
+      "tags": [
+        {
+          "name": "@ci",
+          "description": "CI pipelines and automated quality checks."
+        },
+        {
+          "name": "@ui",
+          "description": "Static portfolio web interface and public pages."
+        }
+      ]
+    },
+    {
+      "name": "Feature Group Tags",
+      "description": "Functional area tags",
+      "required": true,
+      "tags": [
+        {
+          "name": "@port-002",
+          "description": "Requirement traceability tag for PORT-002."
+        },
+        {
+          "name": "@quality",
+          "description": "Quality evidence, test execution, and deployment gating."
+        },
+        {
+          "name": "@requirements",
+          "description": "Public requirements and acceptance criteria experience."
+        }
+      ]
+    },
+    {
+      "name": "Technical Tags",
+      "description": "Technical concern tags",
+      "required": false,
+      "tags": []
+    },
+    {
+      "name": "Platform Tags",
+      "description": "Platform-specific tags",
+      "required": false,
+      "tags": []
+    },
+    {
+      "name": "Priority Tags",
+      "description": "Implementation priority tags",
+      "required": false,
+      "tags": []
+    },
+    {
+      "name": "Status Tags",
+      "description": "Development status tags",
+      "required": false,
+      "tags": [
+        {
+          "name": "@public",
+          "description": "Requirement is reviewed and approved for public display."
+        }
+      ]
+    },
+    {
+      "name": "Testing Tags",
+      "description": "Test-related tags",
+      "required": false,
+      "tags": []
+    },
+    {
+      "name": "Automation Tags",
+      "description": "Automation integration tags",
+      "required": false,
+      "tags": []
+    }
+  ],
+  "statistics": {
+    "lastUpdated": "2026-11-23T18:02:15.737Z"
+  }
+}

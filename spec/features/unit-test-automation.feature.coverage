@@ -1,0 +1,74 @@
+{
+  "scenarios": [
+    {
+      "name": "Public catalog projection preserves source status",
+      "testMappings": [
+        {
+          "file": "tests/unit/catalog.test.mjs",
+          "lines": "1-24",
+          "implMappings": [
+            {
+              "file": "src/catalog.mjs",
+              "lines": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "HTML output escapes markup",
+      "testMappings": [
+        {
+          "file": "tests/unit/catalog.test.mjs",
+          "lines": "1-24",
+          "implMappings": [
+            {
+              "file": "src/html.mjs",
+              "lines": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "totalScenarios": 2,
+    "coveredScenarios": 2,
+    "coveragePercent": 100,
+    "testFiles": [
+      "tests/unit/catalog.test.mjs"
+    ],
+    "implFiles": [
+      "src/catalog.mjs",
+      "src/html.mjs"
+    ],
+    "totalLinesCovered": 73
+  }
+}

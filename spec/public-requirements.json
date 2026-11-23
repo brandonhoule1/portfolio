@@ -1,0 +1,83 @@
+[
+  {
+    "id": "PORT-002",
+    "githubIssue": 2,
+    "acceptanceCriteria": [
+      "Public cards show status, description, acceptance criteria, and related links.",
+      "Only explicitly marked public PORT requirements appear.",
+      "Internal foundation and setup records are omitted."
+    ]
+  },
+  {
+    "id": "PORT-003",
+    "githubIssue": 3,
+    "acceptanceCriteria": [
+      "Unit tests run on pull requests and production branch updates.",
+      "A failure fails the CI quality check.",
+      "Machine-readable results are retained as CI evidence."
+    ]
+  },
+  {
+    "id": "PORT-004",
+    "githubIssue": 4,
+    "acceptanceCriteria": [
+      "Integration tests validate public/private filtering and relationship links.",
+      "Integration tests validate report generation from check results.",
+      "Failures block the quality check and are retained as machine-readable evidence."
+    ]
+  },
+  {
+    "id": "PORT-005",
+    "githubIssue": 5,
+    "acceptanceCriteria": [
+      "Playwright GUI checks cover the requirements and evidence pages.",
+      "A failing browser check fails the quality job.",
+      "HTML report and traces are retained as private GitHub Actions artifacts."
+    ]
+  },
+  {
+    "id": "PORT-006",
+    "githubIssue": 6,
+    "acceptanceCriteria": [
+      "Summary shows timestamp and outcome per check type.",
+      "Public output contains sanitized status and concise evidence limits only.",
+      "Credentials, raw logs, traces, and detailed exploit guidance are not published."
+    ]
+  },
+  {
+    "id": "PORT-007",
+    "githubIssue": 7,
+    "acceptanceCriteria": [
+      "Each selected route is visited once per check run.",
+      "Record response status and available navigation timings.",
+      "Label results as single-run observations, not statistical benchmarks."
+    ]
+  },
+  {
+    "id": "PORT-008",
+    "githubIssue": 8,
+    "acceptanceCriteria": [
+      "Run automated dependency and source checks in CI.",
+      "Report sanitized outcome and actionable suggestions.",
+      "Keep detailed vulnerability evidence private until reviewed."
+    ]
+  },
+  {
+    "id": "PORT-009",
+    "githubIssue": 9,
+    "acceptanceCriteria": [
+      "Issues link the relevant PORT requirement and CI evidence.",
+      "Accepted issues have a clear description, acceptance criteria, and status.",
+      "Publicly display only findings explicitly approved for public status."
+    ]
+  },
+  {
+    "id": "PORT-010",
+    "githubIssue": 10,
+    "acceptanceCriteria": [
+      "Unit, integration, Playwright, single-pass performance, and security commands gate deployment.",
+      "A failed required command prevents the deployment build from publishing.",
+      "Deployed evidence corresponds to the same commit that passed the gate."
+    ]
+  }
+]

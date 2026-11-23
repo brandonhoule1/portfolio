@@ -1,0 +1,14 @@
+{
+  "prefixes": {
+    "FOUND": {
+      "prefix": "FOUND",
+      "description": "Foundation Event Storm tasks",
+      "createdAt": "2026-11-23T17:37:37.374Z"
+    },
+    "PORT": {
+      "prefix": "PORT",
+      "description": "Portfolio requirements and engineering quality",
+      "createdAt": "2026-11-23T17:37:37.563Z"
+    }
+  }
+}

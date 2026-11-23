@@ -1,0 +1,15 @@
+{
+  "agent": "codex",
+  "tools": {
+    "test": {
+      "command": "npm run ci:quality"
+    },
+    "qualityCheck": {
+      "commands": [
+        "fspec check",
+        "npm run security:source",
+        "npm run security:deps"
+      ]
+    }
+  }
+}

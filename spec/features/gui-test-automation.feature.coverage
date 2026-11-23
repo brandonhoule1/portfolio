@@ -1,0 +1,44 @@
+{
+  "scenarios": [
+    {
+      "name": "Visitors can inspect the requirements and check results",
+      "testMappings": [
+        {
+          "file": "tests/e2e/site.spec.mjs",
+          "lines": "1-31",
+          "implMappings": [
+            {
+              "file": "src/html.mjs",
+              "lines": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "totalScenarios": 1,
+    "coveredScenarios": 1,
+    "coveragePercent": 100,
+    "testFiles": [
+      "tests/e2e/site.spec.mjs"
+    ],
+    "implFiles": [
+      "src/html.mjs"
+    ],
+    "totalLinesCovered": 43
+  }
+}
