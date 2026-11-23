@@ -27,7 +27,7 @@ fs.mkdirSync('test-results', { recursive: true });
 // checks have passed before they run. The final build replaces this seed.
 fs.writeFileSync('public/evidence.json', JSON.stringify({
   generatedAt: null,
-  revision: process.env.GITHUB_SHA ?? 'local',
+  revision: process.env.CF_PAGES_COMMIT_SHA ?? process.env.GITHUB_SHA ?? 'local',
   checks: {
     'Unit tests': { status: 'pending', summary: 'This check has not run yet.' },
     'Integration tests': { status: 'pending', summary: 'This check has not run yet.' },
@@ -65,7 +65,7 @@ const suggestions = [
 ];
 const report = {
   generatedAt: new Date().toISOString(),
-  revision: process.env.GITHUB_SHA ?? 'local',
+  revision: process.env.CF_PAGES_COMMIT_SHA ?? process.env.GITHUB_SHA ?? 'local',
   checks: {
     'Unit tests': checks['Unit tests'],
     'Integration tests': checks['Integration tests'] ?? { status: 'skipped', summary: 'Not run.' },
