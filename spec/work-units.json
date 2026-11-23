@@ -2,7 +2,7 @@
   "version": "0.7.1",
   "meta": {
     "version": "1.0.0",
-    "lastUpdated": "2026-11-23T20:29:32.692Z"
+    "lastUpdated": "2026-11-23T20:43:31.752Z"
   },
   "workUnits": {
     "FOUND-001": {
@@ -679,7 +679,8 @@
         "PORT-014",
         "PORT-015",
         "PORT-016",
-        "PORT-017"
+        "PORT-017",
+        "PORT-018"
       ],
       "architectureNotes": [
         {
@@ -1152,6 +1153,74 @@
         }
       ],
       "nextExampleId": 1
+    },
+    "PORT-018": {
+      "id": "PORT-018",
+      "title": "Professional portfolio visual redesign",
+      "type": "story",
+      "status": "done",
+      "createdAt": "2026-11-23T20:36:27.852Z",
+      "updatedAt": "2026-11-23T20:43:31.752Z",
+      "description": "Redesign only the visual presentation of the existing portfolio as a restrained, job-search-focused professional profile for a technology leader current in AI. Preserve all existing content and sections. Use a typographic Brandon Houle / Technology Leader wordmark and avoid generic AI-generated visual tropes.",
+      "epic": "leadership-portfolio",
+      "parent": "PORT-011",
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-23T20:36:51.450Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-23T20:43:19.338Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-23T20:43:19.616Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-23T20:43:31.468Z"
+        },
+        {
+          "state": "done",
+          "timestamp": "2026-11-23T20:43:31.752Z"
+        }
+      ],
+      "userStory": {
+        "role": "job seeker and technology leader",
+        "action": "present my experience and AI knowledge in a professional, readable profile",
+        "benefit": "hiring leaders can assess my fit without sales-page distractions"
+      },
+      "rules": [
+        {
+          "id": 0,
+          "text": "A visual redesign changes styles and identity treatment only; preserve all existing section copy, links, and portfolio material.",
+          "deleted": false,
+          "createdAt": "2026-11-23T20:36:52.951Z"
+        }
+      ],
+      "nextRuleId": 1,
+      "examples": [
+        {
+          "id": 0,
+          "text": "A recruiter sees a clear Brandon Houle / Technology Leader wordmark, restrained type and color, and the same resume, leadership plan, career stories, demos, and process content.",
+          "deleted": false,
+          "createdAt": "2026-11-23T20:36:53.692Z"
+        }
+      ],
+      "nextExampleId": 1,
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "Issue: https://github.com/brandonhoule1/portfolio/issues/18",
+          "deleted": false,
+          "createdAt": "2026-11-23T20:36:54.442Z"
+        }
+      ],
+      "nextNoteId": 1,
+      "attachments": [
+        "spec/attachments/PORT-018/ast-research-leadership-site.md"
+      ]
     }
   },
   "states": {
@@ -1180,11 +1249,12 @@
       "PORT-015",
       "PORT-016",
       "PORT-011",
-      "PORT-017"
+      "PORT-017",
+      "PORT-018"
     ],
     "blocked": []
   },
   "prefixCounters": {
-    "PORT": 17
+    "PORT": 18
   }
 }

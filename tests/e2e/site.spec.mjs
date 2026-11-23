@@ -82,3 +82,30 @@ test('homepage uses the connected LinkedIn portrait beside the leadership diagra
   await expect(portrait).toHaveAttribute('alt', "Brandon Houle, technology and AI enablement leader");
   await expect(page.locator('.hero-art .core')).toBeVisible();
 });
+
+test('professional wordmark and restrained design retain all portfolio content', async ({ page }) => {
+  // @step Given the portfolio has the established resume, leadership, and career content
+  // @step When a recruiter opens the homepage
+  await page.goto('/');
+  // @step Then the wordmark identifies Brandon Houle as a Technology Leader and the existing sections remain available
+  await expect(page.locator('.brand-name')).toHaveText('Brandon Houle');
+  await expect(page.locator('.brand-role')).toHaveText('Technology Leader');
+  await expect(page.getByRole('heading', { name: /Who is Brandon Houle/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /First 90 days/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Experience across the engineering lifecycle/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Explore the decisions behind the work/ })).toBeVisible();
+  await expect(page.locator('.showcase-grid details')).toHaveCount(6);
+});
+
+test('restyled How this was made page retains requirements and quality material', async ({ page }) => {
+  // @step Given the portfolio has public requirements, quality evidence, and manual cases
+  // @step When a visitor opens How this was made
+  await page.goto('/how-this-was-made.html');
+  // @step Then the requirements grid, quality evidence, and manual case downloads remain available
+  await expect(page.locator('.brand-name')).toHaveText('Brandon Houle');
+  await expect(page.locator('.brand-role')).toHaveText('Technology Leader');
+  await expect(page.locator('.grid[aria-label="Public requirements"] .card')).toHaveCount(17);
+  await expect(page.getByRole('heading', { name: /What has been checked/ })).toBeVisible();
+  await expect(page.getByRole('link', { name: /Download manual test cases/ })).toBeVisible();
+  await expect(page.getByRole('link', { name: /Download CSV/ })).toBeVisible();
+});
