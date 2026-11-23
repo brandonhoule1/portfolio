@@ -8,7 +8,7 @@ import { renderRequirements } from '../../src/html.mjs';
 test('repository requirements become a linked, status-bearing public catalog', () => {
   // @step Given the FSPEC repository contains explicitly public portfolio requirements and internal setup records
   const catalog = loadCatalog();
-  assert.equal(catalog.length, 9);
+  assert.equal(catalog.length, 15);
   assert.ok(catalog.every(item => item.status && item.description && item.acceptanceCriteria.length));
   assert.ok(catalog.find(item => item.id === 'PORT-002').relatesTo.includes('PORT-006'));
   // @step When the static catalog and evidence report are built
@@ -22,6 +22,10 @@ test('build emits requirements and evidence pages', () => {
   // @step Given source and dependencies are checked during the quality run
   assert.ok(fs.existsSync('dist/requirements.html'));
   assert.ok(fs.existsSync('dist/evidence.html'));
+  assert.ok(fs.existsSync('dist/how-this-was-made.html'));
+  assert.ok(fs.existsSync('dist/manual-test-cases.csv'));
+  assert.ok(fs.existsSync('dist/manual-test-cases.md'));
+  assert.ok(fs.existsSync('dist/downloads/Brandon-Houle-AI-Enablement-Resume.pdf'));
   // @step When security results are published
   assert.ok(JSON.parse(fs.readFileSync('dist/evidence.json', 'utf8')).checks);
   // @step Then the site shows every expected quality category and general owner-reviewable suggestions

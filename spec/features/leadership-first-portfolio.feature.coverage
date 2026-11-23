@@ -1,0 +1,96 @@
+{
+  "scenarios": [
+    {
+      "name": "Visitor opens the profile and sees the actual resume and adaptable 90-day plan",
+      "testMappings": [
+        {
+          "file": "tests/e2e/site.spec.mjs",
+          "lines": "35-43",
+          "implMappings": [
+            {
+              "file": "public/index.html",
+              "lines": [
+                5,
+                7
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Visitor finds requirements and quality evidence in one destination",
+      "testMappings": [
+        {
+          "file": "tests/e2e/site.spec.mjs",
+          "lines": "56-64",
+          "implMappings": [
+            {
+              "file": "src/html.mjs",
+              "lines": [
+                5,
+                6,
+                7,
+                8
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Visitor downloads complete manual test cases",
+      "testMappings": [
+        {
+          "file": "tests/e2e/site.spec.mjs",
+          "lines": "65-72",
+          "implMappings": [
+            {
+              "file": "scripts/build.mjs",
+              "lines": [
+                31,
+                32,
+                33,
+                34,
+                35,
+                36
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Illustrative scenarios are distinguished from career evidence",
+      "testMappings": [
+        {
+          "file": "tests/e2e/site.spec.mjs",
+          "lines": "48-52",
+          "implMappings": [
+            {
+              "file": "public/index.html",
+              "lines": [
+                9,
+                10
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "totalScenarios": 4,
+    "coveredScenarios": 4,
+    "coveragePercent": 100,
+    "testFiles": [
+      "tests/e2e/site.spec.mjs"
+    ],
+    "implFiles": [
+      "public/index.html",
+      "src/html.mjs",
+      "scripts/build.mjs"
+    ],
+    "totalLinesCovered": 45
+  }
+}

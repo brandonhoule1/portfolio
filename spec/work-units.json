@@ -2,7 +2,7 @@
   "version": "0.7.1",
   "meta": {
     "version": "1.0.0",
-    "lastUpdated": "2026-11-23T18:25:45.535Z"
+    "lastUpdated": "2026-11-23T19:02:43.922Z"
   },
   "workUnits": {
     "FOUND-001": {
@@ -663,6 +663,420 @@
         "spec/attachments/PORT-010/ast-research-quality-report.md"
       ],
       "estimate": 2
+    },
+    "PORT-011": {
+      "id": "PORT-011",
+      "title": "Leadership-first portfolio experience",
+      "type": "story",
+      "status": "done",
+      "createdAt": "2026-11-23T18:48:37.032Z",
+      "updatedAt": "2026-11-23T19:02:43.922Z",
+      "description": "Recenter the site on who Brandon Houle is as a technology and AI enablement leader. Keep requirements and quality evidence within one How this was made destination. Include the actual AI Enablement base resume, a 30/60/90 plan, original animated leadership diagrams, resume-grounded case studies, clearly labeled synthetic interactive demonstrations, an executive briefing and insights, plus downloadable manual test cases.",
+      "epic": "leadership-portfolio",
+      "children": [
+        "PORT-012",
+        "PORT-013",
+        "PORT-014",
+        "PORT-015",
+        "PORT-016"
+      ],
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "Issue: https://github.com/brandonhoule1/portfolio/issues/11",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:53:23.588Z"
+        }
+      ],
+      "nextNoteId": 1,
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-23T18:59:04.415Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-23T19:00:55.470Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-23T19:02:42.121Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-23T19:02:43.001Z"
+        },
+        {
+          "state": "done",
+          "timestamp": "2026-11-23T19:02:43.922Z"
+        }
+      ],
+      "userStory": {
+        "role": "hiring leader",
+        "action": "understand Brandon’s leadership story and inspect career evidence",
+        "benefit": "assess fit and see how his approach works"
+      },
+      "rules": [
+        {
+          "id": 0,
+          "text": "The portfolio places the profile and resume before implementation detail.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:59:22.363Z"
+        }
+      ],
+      "nextRuleId": 1,
+      "examples": [
+        {
+          "id": 0,
+          "text": "A visitor follows the single How this was made link to requirements, quality results, and manual tests.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:59:23.089Z"
+        }
+      ],
+      "nextExampleId": 1,
+      "attachments": [
+        "spec/attachments/PORT-011/ast-research-leadership-site.md"
+      ]
+    },
+    "PORT-012": {
+      "id": "PORT-012",
+      "title": "Resume-backed Brandon profile",
+      "type": "story",
+      "status": "done",
+      "createdAt": "2026-11-23T18:48:37.061Z",
+      "updatedAt": "2026-11-23T19:01:25.737Z",
+      "description": "Make the home experience an executive-first Who is Brandon profile grounded in the actual AI Enablement resume, career facts, and a downloadable original resume PDF.",
+      "epic": "leadership-portfolio",
+      "parent": "PORT-011",
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "Issue: https://github.com/brandonhoule1/portfolio/issues/12",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:53:33.364Z"
+        }
+      ],
+      "nextNoteId": 1,
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-23T18:59:05.160Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-23T19:00:56.384Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-23T19:01:08.691Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-23T19:01:24.817Z"
+        },
+        {
+          "state": "done",
+          "timestamp": "2026-11-23T19:01:25.737Z"
+        }
+      ],
+      "userStory": {
+        "role": "recruiter",
+        "action": "review Brandon’s career and download his actual resume",
+        "benefit": "evaluate his experience using source-backed evidence"
+      },
+      "rules": [
+        {
+          "id": 0,
+          "text": "The published resume must be the canonical AI Enablement base resume without edits.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:59:24.975Z"
+        }
+      ],
+      "nextRuleId": 1,
+      "examples": [
+        {
+          "id": 0,
+          "text": "A visitor downloads a readable PDF whose source is the canonical base resume.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:59:25.726Z"
+        }
+      ],
+      "nextExampleId": 1,
+      "attachments": [
+        "spec/attachments/PORT-012/ast-research-leadership-site.md"
+      ]
+    },
+    "PORT-013": {
+      "id": "PORT-013",
+      "title": "Unified How this was made area",
+      "type": "story",
+      "status": "done",
+      "createdAt": "2026-11-23T18:48:37.091Z",
+      "updatedAt": "2026-11-23T19:01:27.752Z",
+      "description": "Use one navigation destination for the requirements grid, acceptance criteria/status/relationships/GitHub links, and latest quality evidence.",
+      "epic": "leadership-portfolio",
+      "parent": "PORT-011",
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "Issue: https://github.com/brandonhoule1/portfolio/issues/13",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:53:34.082Z"
+        }
+      ],
+      "nextNoteId": 1,
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-23T18:59:05.902Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-23T19:00:57.278Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-23T19:01:09.585Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-23T19:01:26.830Z"
+        },
+        {
+          "state": "done",
+          "timestamp": "2026-11-23T19:01:27.752Z"
+        }
+      ],
+      "userStory": {
+        "role": "portfolio visitor",
+        "action": "inspect requirements, automated quality, and manual cases in one area",
+        "benefit": "understand what was built and how it is checked"
+      },
+      "rules": [
+        {
+          "id": 0,
+          "text": "How this was made is the single primary navigation destination for requirements and quality.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:59:27.230Z"
+        }
+      ],
+      "nextRuleId": 1,
+      "examples": [
+        {
+          "id": 0,
+          "text": "The page shows requirement cards with criteria and issue links, check results, and manual test downloads.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:59:27.972Z"
+        }
+      ],
+      "nextExampleId": 1,
+      "attachments": [
+        "spec/attachments/PORT-013/ast-research-leadership-site.md"
+      ]
+    },
+    "PORT-014": {
+      "id": "PORT-014",
+      "title": "Leadership demonstrations and visuals",
+      "type": "story",
+      "status": "done",
+      "createdAt": "2026-11-23T18:48:37.121Z",
+      "updatedAt": "2026-11-23T19:01:29.770Z",
+      "description": "Present a portfolio-specific 30/60/90 plan, animated original diagrams, audience perspectives, and executive leadership demonstrations, labeling fictional data and prototypes clearly.",
+      "epic": "leadership-portfolio",
+      "parent": "PORT-011",
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "Issue: https://github.com/brandonhoule1/portfolio/issues/14",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:53:34.815Z"
+        }
+      ],
+      "nextNoteId": 1,
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-23T18:59:06.639Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-23T19:00:58.183Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-23T19:01:10.507Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-23T19:01:28.830Z"
+        },
+        {
+          "state": "done",
+          "timestamp": "2026-11-23T19:01:29.770Z"
+        }
+      ],
+      "userStory": {
+        "role": "executive",
+        "action": "explore an adaptable first-90-days plan and leadership demonstrations",
+        "benefit": "understand how strategy becomes responsible delivery"
+      },
+      "rules": [
+        {
+          "id": 0,
+          "text": "Illustrative plans and synthetic demos are clearly labeled and use reduced motion when requested.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:59:29.466Z"
+        }
+      ],
+      "nextRuleId": 1,
+      "examples": [
+        {
+          "id": 0,
+          "text": "A visitor opens a maturity or decision brief and can distinguish its scenario from career evidence.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:59:30.208Z"
+        }
+      ],
+      "nextExampleId": 1,
+      "attachments": [
+        "spec/attachments/PORT-014/ast-research-leadership-site.md"
+      ]
+    },
+    "PORT-015": {
+      "id": "PORT-015",
+      "title": "Downloadable manual test case pack",
+      "type": "story",
+      "status": "done",
+      "createdAt": "2026-11-23T18:48:37.151Z",
+      "updatedAt": "2026-11-23T19:01:31.786Z",
+      "description": "Publish a readable and downloadable test case file set covering positive, negative, data, integration, edge, usability, performance, and security scenarios.",
+      "epic": "leadership-portfolio",
+      "parent": "PORT-011",
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "Issue: https://github.com/brandonhoule1/portfolio/issues/15",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:53:35.555Z"
+        }
+      ],
+      "nextNoteId": 1,
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-23T18:59:07.368Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-23T19:00:59.083Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-23T19:01:11.414Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-23T19:01:30.842Z"
+        },
+        {
+          "state": "done",
+          "timestamp": "2026-11-23T19:01:31.786Z"
+        }
+      ],
+      "userStory": {
+        "role": "portfolio visitor",
+        "action": "read and download the manual test cases",
+        "benefit": "review what a human should verify and expected behavior"
+      },
+      "rules": [
+        {
+          "id": 0,
+          "text": "Every case includes category, priority, preconditions, steps, expected result, and status.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:59:31.686Z"
+        }
+      ],
+      "nextRuleId": 1,
+      "examples": [
+        {
+          "id": 0,
+          "text": "A visitor downloads Markdown or CSV and sees all eight requested categories with Not run status.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:59:32.416Z"
+        }
+      ],
+      "nextExampleId": 1,
+      "attachments": [
+        "spec/attachments/PORT-015/ast-research-leadership-site.md"
+      ]
+    },
+    "PORT-016": {
+      "id": "PORT-016",
+      "title": "Career proof, executive briefing, and insights",
+      "type": "story",
+      "status": "done",
+      "createdAt": "2026-11-23T18:48:37.185Z",
+      "updatedAt": "2026-11-23T19:01:33.759Z",
+      "description": "Add three resume-grounded case studies, an executive briefing, and the three AI-first insights proposed in the referenced conversation, without unsupported outcome claims.",
+      "epic": "leadership-portfolio",
+      "parent": "PORT-011",
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "Issue: https://github.com/brandonhoule1/portfolio/issues/16",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:53:36.294Z"
+        }
+      ],
+      "nextNoteId": 1,
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-23T18:59:08.108Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-23T19:00:59.979Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-23T19:01:12.339Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-23T19:01:32.855Z"
+        },
+        {
+          "state": "done",
+          "timestamp": "2026-11-23T19:01:33.759Z"
+        }
+      ],
+      "userStory": {
+        "role": "executive",
+        "action": "review career evidence, leadership briefings, and operating insights",
+        "benefit": "understand Brandon’s perspective without confusing it with claimed results"
+      },
+      "rules": [
+        {
+          "id": 0,
+          "text": "Career summaries are resume-grounded; fictional demos do not claim achieved client impact.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:59:33.945Z"
+        }
+      ],
+      "nextRuleId": 1,
+      "examples": [
+        {
+          "id": 0,
+          "text": "A visitor can inspect career evidence and leadership decision material with source and scenario labels.",
+          "deleted": false,
+          "createdAt": "2026-11-23T18:59:34.673Z"
+        }
+      ],
+      "nextExampleId": 1,
+      "attachments": [
+        "spec/attachments/PORT-016/ast-research-leadership-site.md"
+      ]
     }
   },
   "states": {
@@ -684,11 +1098,17 @@
       "PORT-005",
       "PORT-007",
       "PORT-008",
-      "PORT-006"
+      "PORT-006",
+      "PORT-012",
+      "PORT-013",
+      "PORT-014",
+      "PORT-015",
+      "PORT-016",
+      "PORT-011"
     ],
     "blocked": []
   },
   "prefixCounters": {
-    "PORT": 10
+    "PORT": 16
   }
 }
