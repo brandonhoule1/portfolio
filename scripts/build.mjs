@@ -34,13 +34,36 @@ fs.writeFileSync(path.join(out, 'blog', 'index.html'), applySiteShell(blogIndex,
 for (const entry of fs.readdirSync(blogRoot, { withFileTypes: true })) {
   if (entry.isDirectory()) fs.cpSync(path.join(blogRoot, entry.name), path.join(out, 'blog', entry.name), { recursive: true });
 }
+const independentOut = path.join(out, 'independent');
+fs.mkdirSync(independentOut, { recursive: true });
+const independentPage = fs.readFileSync(path.join(root, 'public', 'independent', 'index.html'), 'utf8');
+fs.writeFileSync(path.join(independentOut, 'index.html'), applySiteShell(independentPage, 'independent'));
+fs.copyFileSync(path.join(root, 'public', 'independent', 'independent.css'), path.join(independentOut, 'independent.css'));
 fs.writeFileSync(path.join(out, 'commits.json'), JSON.stringify(commits, null, 2));
 fs.copyFileSync(path.join(root, 'public', 'robots.txt'), path.join(out, 'robots.txt'));
 fs.copyFileSync(path.join(root, 'public', 'sitemap.xml'), path.join(out, 'sitemap.xml'));
 fs.copyFileSync(path.join(root, 'public', 'llms.txt'), path.join(out, 'llms.txt'));
+const independentUrl = 'https://brandonhoule.com/independent/';
+const sitemapPath = path.join(out, 'sitemap.xml');
+let sitemap = fs.readFileSync(sitemapPath, 'utf8');
+if (!sitemap.includes(independentUrl)) {
+  sitemap = sitemap.replace('</urlset>', '  <url><loc>' + independentUrl + '</loc></url>\n</urlset>');
+  fs.writeFileSync(sitemapPath, sitemap);
+}
+const llmsPath = path.join(out, 'llms.txt');
+let llms = fs.readFileSync(llmsPath, 'utf8');
+const independentEntry = '- Independent studies: https://brandonhoule.com/independent/';
+if (!llms.includes(independentEntry)) {
+  if (llms.includes('## Main sections')) llms = llms.replace(/## Main sections\r?\n/, match => match + independentEntry + '\n');
+  else llms += '\n' + independentEntry + '\n';
+  fs.writeFileSync(llmsPath, llms);
+}
 fs.mkdirSync(path.join(out, 'downloads'), { recursive: true });
 const resume = path.join(root, 'public', 'downloads', 'Brandon-Houle-Resume.pdf');
 if (fs.existsSync(resume)) fs.copyFileSync(resume, path.join(out, 'downloads', path.basename(resume)));
+for (const file of ['source-review-brief-template.md', 'duolingo-ai-review-sample.md']) {
+  fs.copyFileSync(path.join(root, 'public', 'downloads', file), path.join(out, 'downloads', file));
+}
 fs.mkdirSync(path.join(out, 'images'), { recursive: true });
 const portrait = path.join(root, 'public', 'images', 'brandon-houle-linkedin.jpg');
 if (fs.existsSync(portrait)) fs.copyFileSync(portrait, path.join(out, 'images', path.basename(portrait)));
@@ -81,3 +104,5 @@ fs.writeFileSync(path.join(out, '_redirects'), [
   '/blog.html /blog/ 301',
   '/contact.html /contact/ 301'
 ].join('\n') + '\n');
+
+

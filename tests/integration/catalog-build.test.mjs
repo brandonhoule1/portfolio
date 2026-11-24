@@ -8,7 +8,7 @@ import { renderRequirements } from '../../src/html.mjs';
 test('repository requirements become a linked, status-bearing public catalog', () => {
   // @step Given the FSPEC repository contains explicitly public portfolio requirements and internal setup records
   const catalog = loadCatalog();
-  assert.equal(catalog.length, 19);
+  assert.equal(catalog.length, 20);
   assert.ok(catalog.every(item => item.status && item.description && item.acceptanceCriteria.length));
   assert.ok(catalog.find(item => item.id === 'PORT-002').relatesTo.includes('PORT-006'));
   // @step When the static catalog and evidence report are built
@@ -73,3 +73,4 @@ test('build emits requirements and evidence pages', () => {
   assert.deepEqual(Object.keys(evidence.checks), ['Unit tests', 'Integration tests', 'Playwright GUI tests', 'Single-pass performance', 'Security review']);
   assert.ok(evidence.securitySuggestions.length);
 });
+

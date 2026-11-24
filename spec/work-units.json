@@ -2,7 +2,7 @@
   "version": "0.7.1",
   "meta": {
     "version": "1.0.0",
-    "lastUpdated": "2026-11-24T01:14:13.181Z"
+    "lastUpdated": "2026-11-24T20:33:46.496Z"
   },
   "workUnits": {
     "FOUND-001": {
@@ -1450,7 +1450,8 @@
         "spec/attachments/PORT-020/ast-research-page-generation.md"
       ],
       "children": [
-        "PORT-021"
+        "PORT-021",
+        "PORT-022"
       ]
     },
     "PORT-021": {
@@ -1566,6 +1567,97 @@
         }
       ],
       "nextExampleId": 4
+    },
+    "PORT-022": {
+      "id": "PORT-022",
+      "title": "Independent AI exploration page",
+      "type": "story",
+      "status": "implementing",
+      "createdAt": "2026-11-24T20:09:40.165Z",
+      "updatedAt": "2026-11-24T20:33:46.496Z",
+      "description": "Add a dedicated, clearly separated personal-project page built from public-source analysis and labeled demos, with no employer or workplace examples.",
+      "epic": "leadership-portfolio",
+      "parent": "PORT-020",
+      "userStory": {
+        "role": "visitor",
+        "action": "explore independent AI research and personal learning projects",
+        "benefit": "I can review concrete samples and understand their sources and limits"
+      },
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-24T20:09:52.498Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-24T20:17:44.134Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-24T20:20:03.199Z"
+        }
+      ],
+      "rules": [
+        {
+          "id": 0,
+          "text": "Keep this page separate from employment case studies and use no employer, client, workplace, or internal work examples.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:09:53.17Z"
+        },
+        {
+          "id": 1,
+          "text": "Include a concise scope statement, a non-work case study, a dated public-company analysis linked to primary sources, a reusable sample artifact, an AI evaluation method, and a personal 90-day learning/build plan.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:09:53.843Z"
+        },
+        {
+          "id": 2,
+          "text": "Clearly label proposals, mockups, synthetic scenarios, and unmeasured exercises; do not invent personal experience, deployment, adoption, or results.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:09:54.522Z"
+        },
+        {
+          "id": 3,
+          "text": "Separate sourced company facts from interpretation, show source dates, and note when claims are forward-looking or time-sensitive.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:09:55.202Z"
+        }
+      ],
+      "nextRuleId": 4,
+      "examples": [
+        {
+          "id": 0,
+          "text": "A visitor reads a Duolingo public-source analysis with an as-of date and links to the company's SEC filing and shareholder letter; any strategic conclusion is labeled as analysis, not inside knowledge.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:09:55.902Z"
+        },
+        {
+          "id": 1,
+          "text": "A visitor can inspect and download a reusable source-review brief template and a sample based only on public material, while seeing that it is an independent exercise with no claimed business result.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:09:56.566Z"
+        },
+        {
+          "id": 2,
+          "text": "The 90-day plan describes personal research, a small learning prototype, and evaluation of quality and limitations; it makes no reference to an employer or a job's first 90 days.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:09:57.254Z"
+        }
+      ],
+      "nextExampleId": 3,
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "Implement a static /independent/ page using the site's shared HTML header/footer. Add one page-specific stylesheet and a markdown template/sample in public downloads. Extend the static build, sitemap, llms output, and shared navigation. Research citations come from primary company/SEC sources; content uses no workplace data and labels interpretation.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:17:08.655Z"
+        }
+      ],
+      "nextNoteId": 1,
+      "attachments": [
+        "spec/attachments/PORT-022/ast-research-site-navigation.md"
+      ],
+      "estimate": 5
     }
   },
   "states": {
@@ -1580,7 +1672,9 @@
     "testing": [
       "PORT-010"
     ],
-    "implementing": [],
+    "implementing": [
+      "PORT-022"
+    ],
     "validating": [],
     "done": [
       "PORT-002",
@@ -1604,6 +1698,6 @@
     "blocked": []
   },
   "prefixCounters": {
-    "PORT": 21
+    "PORT": 22
   }
 }

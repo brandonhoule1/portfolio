@@ -223,5 +223,22 @@
       "PORT-016",
       "PORT-019"
     ]
+  },
+  {
+    "id": "PORT-022",
+    "githubIssue": 21,
+    "acceptanceCriteria": [
+      "A dedicated Independent Studies page is reachable through shared site navigation.",
+      "The page states Brandon's independent research question about checking AI answers against public sources and explains the evidence-focused approach.",
+      "The page uses public sources or clearly labeled samples and contains no employer, client, workplace, or internal information.",
+      "The Duolingo analysis is dated, links to primary sources, separates disclosed facts from interpretation, and labels guidance as forward-looking.",
+      "A non-work, AI-assisted case study, a reusable source-review template, and a practical AI evaluation method are available.",
+      "A proposed 90-day personal learning/build plan is clearly distinguished from an employer onboarding plan.",
+      "The page does not claim deployment, adoption, learning outcomes, or business results that were not measured."
+    ],
+    "relatesTo": [
+      "PORT-020"
+    ]
   }
 ]
+

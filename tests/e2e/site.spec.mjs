@@ -109,7 +109,7 @@ test('How this should be made retains requirements, quality, manual cases, and d
   // @step Then the requirements grid, quality evidence, and manual case downloads remain available
   await expect(page.locator('header .brand-name')).toHaveText('Brandon Houle');
   await expect(page.locator('header .brand-role')).toHaveText('Technology Leader / Innovator');
-  await expect(page.locator('.grid[aria-label="Public requirements"] .card')).toHaveCount(19);
+  await expect(page.locator('.grid[aria-label="Public requirements"] .card')).toHaveCount(20);
   await expect(page.getByRole('heading', { name: /What has been checked/ })).toBeVisible();
   await expect(page.getByRole('link', { name: /Download manual test cases/ })).toBeVisible();
   await expect(page.getByRole('link', { name: /Download CSV/ })).toBeVisible();

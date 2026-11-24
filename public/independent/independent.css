@@ -1,0 +1,53 @@
+.independent-page { padding-bottom: 54px; }
+.independent-hero { padding: 68px 0 42px; border-bottom: 1px solid var(--rule); }
+.independent-kicker { margin: 0 0 13px; color: var(--accent); font-size: .875rem; font-weight: 700; letter-spacing: .1em; }
+.independent-hero h1 { max-width: 850px; margin: 0 0 20px; font-size: clamp(3rem, 6.5vw, 5.6rem); line-height: 1; }
+.independent-lede { max-width: 70ch; color: #4f4c43; font-size: 1.1rem; line-height: 1.65; }
+.independent-index { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 27px; }
+.independent-index a { color: var(--ink); font-size: .9rem; }
+.independent-section { display: grid; grid-template-columns: minmax(175px, .36fr) minmax(0, 1fr); gap: clamp(25px, 6vw, 74px); padding: 43px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 20px; }
+.independent-label span { color: var(--accent); font-size: .875rem; font-weight: 700; letter-spacing: .08em; }
+.independent-label h2 { margin: 8px 0 0; font-size: clamp(1.8rem, 3vw, 2.5rem); line-height: 1.12; }
+.independent-copy { max-width: 76ch; color: #39372f; font-size: 1rem; }
+.independent-copy h3 { margin: 22px 0 10px; font-size: clamp(1.4rem, 2.5vw, 1.9rem); line-height: 1.2; }
+.independent-copy h3:first-child { margin-top: 0; }
+.independent-status { color: var(--muted); font-size: .9rem; }
+.independent-boundary,.independent-limit { padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+.independent-facts { margin: 18px 0; padding: 0; list-style: none; }
+.independent-facts li { padding: 13px 0; border-top: 1px solid var(--line); }
+.independent-facts strong { color: var(--ink); }
+.independent-source-line { color: var(--muted); font-size: .9rem; }
+.independent-analysis-tag { margin: 24px 0 0; color: var(--accent); font-size: .875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.independent-sources { margin-top: 27px; padding-top: 12px; border-top: 1px solid var(--rule); }
+.independent-sources h3 { margin-top: 8px; }
+.independent-sources li { margin: 7px 0; }
+.independent-downloads { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 20px 0; }
+.independent-download { display: inline-flex; align-items: center; min-height: 42px; padding: 8px 13px; border: 1px solid var(--rule); color: var(--ink); font-size: .9rem; font-weight: 650; text-decoration: none; }
+.independent-download:hover { border-color: var(--accent); color: var(--accent); }
+.independent-details { max-width: 70ch; padding-top: 13px; border-top: 1px solid var(--line); }
+.independent-details summary { font-size: .95rem; }
+.independent-details li { margin: 7px 0; }
+.independent-steps { padding-left: 22px; }
+.independent-steps li { margin: 13px 0; padding-left: 4px; }
+.plan-stage { display: grid; grid-template-columns: 105px 1fr; gap: 18px; padding: 18px 0; border-top: 1px solid var(--line); }
+.plan-days { margin: 3px 0 0; color: var(--accent); font-size: .9rem; font-weight: 700; }
+.plan-stage h4 { margin: 0 0 5px; color: var(--ink); font-family: Georgia, "Times New Roman", serif; font-size: 1.3rem; font-weight: 400; }
+.plan-stage p:last-child { margin-bottom: 0; }
+.independent-closing { display: grid; grid-template-columns: minmax(175px, .36fr) minmax(0, 1fr); gap: clamp(25px, 6vw, 74px); padding: 38px 0 0; }
+.independent-closing>p:not(.independent-kicker) { max-width: 68ch; color: #4f4c43; font-family: Georgia, "Times New Roman", serif; font-size: 1.15rem; }
+.independent-closing .text-link { grid-column: 2; }
+@media (max-width: 760px) {
+  .independent-hero { padding-top: 42px; }
+  .independent-section,.independent-closing { grid-template-columns: 1fr; gap: 15px; padding: 32px 0; }
+  .independent-label h2 { margin-top: 4px; }
+  .independent-closing .text-link { grid-column: 1; }
+}
+@media (max-width: 480px) {
+  .independent-index { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 12px; }
+  .plan-stage { grid-template-columns: 1fr; gap: 3px; }
+  .independent-downloads { display: grid; grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .independent-page { scroll-behavior: auto; }
+}
+
