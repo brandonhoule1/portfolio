@@ -11,22 +11,28 @@ fs.rmSync(out, { recursive: true, force: true });
 fs.mkdirSync(out, { recursive: true });
 for (const file of ['site.css']) fs.copyFileSync(path.join(root, 'public', file), path.join(out, file));
 let home = fs.readFileSync(path.join(root, 'public', 'index.html'), 'utf8');
-for (const [marker, file] of [['<!--CASE_STUDIES-->', 'case-studies.htmlfrag']]) {
-  home = home.replace(marker, fs.readFileSync(path.join(root, 'public', file), 'utf8'));
-}
 const commits = await readPublishedHistory(root);
-home = applySiteShell(home, 'leadership');
+home = applySiteShell(home, '');
 fs.writeFileSync(path.join(out, 'index.html'), home);
 for (const [name, active, marker, fragment] of [
   ['leadership.html', 'leadership', null, null],
+  ['first-90-days.html', 'first-90-days', null, null],
+  ['case-studies.html', 'case-studies', '<!--CASE_STUDIES-->', 'case-studies.htmlfrag'],
   ['resume.html', 'resume', null, null],
-  ['field-notes.html', 'field-notes', '<!--FIELD_NOTES-->', 'field-notes.htmlfrag'],
-  ['blog.html', 'blog', '<!--BLOG_POSTS-->', 'blog-posts.htmlfrag']
 ]) {
   let page = fs.readFileSync(path.join(root, 'public', name), 'utf8');
   if (marker) page = page.replace(marker, fs.readFileSync(path.join(root, 'public', fragment), 'utf8'));
-  if (name === 'field-notes.html') page = page.replaceAll('https://brandonhoule.com/#note-', 'https://brandonhoule.com/field-notes.html#note-');
   fs.writeFileSync(path.join(out, name), applySiteShell(page, active));
+}
+const contactPage = fs.readFileSync(path.join(root, 'public', 'contact', 'index.html'), 'utf8');
+fs.mkdirSync(path.join(out, 'contact'), { recursive: true });
+fs.writeFileSync(path.join(out, 'contact', 'index.html'), applySiteShell(contactPage, 'contact'));
+const blogRoot = path.join(root, 'public', 'blog');
+const blogIndex = fs.readFileSync(path.join(blogRoot, 'index.html'), 'utf8');
+fs.mkdirSync(path.join(out, 'blog'), { recursive: true });
+fs.writeFileSync(path.join(out, 'blog', 'index.html'), applySiteShell(blogIndex, 'blog'));
+for (const entry of fs.readdirSync(blogRoot, { withFileTypes: true })) {
+  if (entry.isDirectory()) fs.cpSync(path.join(blogRoot, entry.name), path.join(out, 'blog', entry.name), { recursive: true });
 }
 fs.writeFileSync(path.join(out, 'commits.json'), JSON.stringify(commits, null, 2));
 fs.copyFileSync(path.join(root, 'public', 'robots.txt'), path.join(out, 'robots.txt'));
@@ -71,5 +77,7 @@ fs.writeFileSync(path.join(out, '_redirects'), [
   '/how-this-was-made.html /how-this-should-be-made.html 301',
   '/requirements.html /how-this-should-be-made.html#requirements 301',
   '/evidence.html /how-this-should-be-made.html#quality-evidence 301',
-  '/downloads/Brandon-Houle-AI-Enablement-Resume.pdf /downloads/Brandon-Houle-Resume.pdf 301'
+  '/downloads/Brandon-Houle-AI-Enablement-Resume.pdf /downloads/Brandon-Houle-Resume.pdf 301',
+  '/blog.html /blog/ 301',
+  '/contact.html /contact/ 301'
 ].join('\n') + '\n');

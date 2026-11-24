@@ -5,4 +5,7 @@ test-results/
 public/evidence.json
 .env*
 !.env.example
+.dev.vars*
+src/drafts/
+src/drafts/
 npm-debug.log*

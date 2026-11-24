@@ -2,7 +2,7 @@
   "version": "0.7.1",
   "meta": {
     "version": "1.0.0",
-    "lastUpdated": "2026-11-23T21:59:55.362Z"
+    "lastUpdated": "2026-11-24T01:14:13.181Z"
   },
   "workUnits": {
     "FOUND-001": {
@@ -1292,7 +1292,7 @@
         },
         {
           "id": 2,
-          "text": "The two-line wordmark displays Brandon Houle first and Technology Leader/Innovator second; the site presents brandonhoule.com and mailto:brandonhoule@gmail.com.",
+          "text": "The two-line wordmark displays Brandon Houle first and Technology Leader/Innovator second; the site presents brandonhoule.com and /contact/.",
           "deleted": false,
           "createdAt": "2026-11-23T20:51:58.647Z"
         },
@@ -1397,7 +1397,7 @@
         },
         {
           "id": 2,
-          "text": "The derived public resume uses brandonhoule@gmail.com, brandonhoule.com, and the supplied LinkedIn address; the canonical source PDF remains unchanged.",
+          "text": "The derived public resume uses Contact form, brandonhoule.com, and the supplied LinkedIn address; the canonical source PDF remains unchanged.",
           "deleted": false,
           "createdAt": "2026-11-23T21:27:00.687Z"
         },
@@ -1448,7 +1448,124 @@
       "nextNoteId": 1,
       "attachments": [
         "spec/attachments/PORT-020/ast-research-page-generation.md"
+      ],
+      "children": [
+        "PORT-021"
       ]
+    },
+    "PORT-021": {
+      "id": "PORT-021",
+      "title": "Refine people-centered portfolio pages",
+      "type": "story",
+      "status": "specifying",
+      "createdAt": "2026-11-24T01:13:52.170Z",
+      "updatedAt": "2026-11-24T02:11:01.551Z",
+      "description": "Locally iterate the homepage hierarchy and contact details. Remove Field Notes for now, move the first-90-days plan and the three user-provided interview-grounded case studies to separate pages, simplify Leadership, and remove the phone number from every public artifact. Preserve the factual caveats in the supplied case narratives.",
+      "epic": "leadership-portfolio",
+      "parent": "PORT-020",
+      "userStory": {
+        "role": "hiring leader reviewing a technology portfolio",
+        "action": "understand Brandon's people-centered AI operating approach, career evidence, and resume without wading through every detail at once",
+        "benefit": "I can decide quickly what to explore and trust that published claims and contact details are accurate"
+      },
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-24T01:14:13.181Z"
+        }
+      ],
+      "rules": [
+        {
+          "id": 0,
+          "text": "Keep the homepage sparse: one people-first AI operating-model headline, concise leadership copy, resume CTA, and links to deeper pages.",
+          "deleted": false,
+          "createdAt": "2026-11-24T01:14:38.009Z"
+        },
+        {
+          "id": 1,
+          "text": "Publish the 30/60/90 plan and the three existing case notes on separate directly addressable pages; the homepage links to them without repeating their full content.",
+          "deleted": false,
+          "createdAt": "2026-11-24T01:14:38.772Z"
+        },
+        {
+          "id": 2,
+          "text": "Remove Field Notes from navigation, build output, sitemap, and public metadata for now; keep the Blog page.",
+          "deleted": false,
+          "createdAt": "2026-11-24T01:14:39.580Z"
+        },
+        {
+          "id": 3,
+          "text": "Remove the phone number from all website pages and the downloadable website resume; leave the canonical source resume untouched.",
+          "deleted": false,
+          "createdAt": "2026-11-24T01:14:40.344Z"
+        },
+        {
+          "id": 4,
+          "text": "Move current case notes without changing factual claims until Brandon provides the prior interview/Q&A evidence; do not invent project outcomes.",
+          "deleted": true,
+          "createdAt": "2026-11-24T01:14:41.094Z",
+          "deletedAt": "2026-11-24T01:18:24.415Z"
+        },
+        {
+          "id": 5,
+          "text": "Brandon has supplied the three interview-grounded case narratives in this conversation. Use those narratives as the authoritative evidence for TrackIT self-service, AI-assisted quality engineering, and the acquisition command center; preserve stated uncertainty and estimates.",
+          "deleted": false,
+          "createdAt": "2026-11-24T01:18:24.512Z"
+        },
+        {
+          "id": 6,
+          "text": "Case-study facts come from the narratives Brandon pasted on 2026-11-24; preserve their labels for personal estimates, qualitative feedback, prototypes, demos, and measured or unmeasured outcomes.",
+          "deleted": false,
+          "createdAt": "2026-11-24T01:18:24.605Z"
+        },
+        {
+          "id": 7,
+          "text": "Remove Brandon's email address from public website pages, metadata, published resume files, and other generated artifacts; use a contact form that delivers only through a server-side mail provider configured with private environment variables.",
+          "deleted": false,
+          "createdAt": "2026-11-24T01:47:40.804Z"
+        }
+      ],
+      "nextRuleId": 8,
+      "questions": [
+        {
+          "id": 0,
+          "text": "@human: Where is the previously discussed interview/Q&A source for the detailed case studies? Brandon is locating it; do not rewrite case facts until it is available.",
+          "deleted": false,
+          "createdAt": "2026-11-24T01:14:41.863Z",
+          "selected": true,
+          "answered": true,
+          "answer": "Brandon has supplied the three interview-grounded case narratives in this conversation. Use those narratives as the authoritative evidence for TrackIT self-service, AI-assisted quality engineering, and the acquisition command center; preserve stated uncertainty and estimates."
+        }
+      ],
+      "nextQuestionId": 1,
+      "examples": [
+        {
+          "id": 0,
+          "text": "A hiring leader sees the people-first AI message, a resume download, and concise links on the homepage, then opens the 90-day plan or case studies to read details.",
+          "deleted": false,
+          "createdAt": "2026-11-24T01:14:42.614Z"
+        },
+        {
+          "id": 1,
+          "text": "Field Notes is absent from the public navigation and generated site; Blog remains reachable.",
+          "deleted": false,
+          "createdAt": "2026-11-24T01:14:43.361Z"
+        },
+        {
+          "id": 2,
+          "text": "The online resume and downloadable PDF show the requested email, site, and LinkedIn contact links, with no phone number.",
+          "deleted": true,
+          "createdAt": "2026-11-24T01:14:44.179Z",
+          "deletedAt": "2026-11-24T02:11:01.551Z"
+        },
+        {
+          "id": 3,
+          "text": "A visitor sees a contact form on the site, while the page source and downloadable resume contain no personal email address; actual delivery requires configured server-side credentials.",
+          "deleted": false,
+          "createdAt": "2026-11-24T01:47:40.911Z"
+        }
+      ],
+      "nextExampleId": 4
     }
   },
   "states": {
@@ -1457,7 +1574,9 @@
       "PORT-001",
       "PORT-009"
     ],
-    "specifying": [],
+    "specifying": [
+      "PORT-021"
+    ],
     "testing": [
       "PORT-010"
     ],
@@ -1485,6 +1604,6 @@
     "blocked": []
   },
   "prefixCounters": {
-    "PORT": 20
+    "PORT": 21
   }
 }

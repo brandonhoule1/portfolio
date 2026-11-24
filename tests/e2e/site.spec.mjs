@@ -39,15 +39,15 @@ test('homepage foregrounds leadership, first 90 days, and case studies', async (
   // @step Given the portfolio homepage is available
   await page.goto('/');
   // @step When a hiring leader reviews the leadership profile
-  await expect(page.getByRole('heading', { level: 1 })).toContainText(/AI is for routine work/);
-  // @step Then the page presents leadership, first-90-days, and case-study sections, the message that AI handles routine work so people can think, and a clear resume download CTA
-  await expect(page.getByRole('heading', { name: 'Leadership' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: /First 90 days/ })).toBeVisible();
-  await expect(page.locator('.case-entry')).toHaveCount(3);
-  await expect(page.locator('#leadership').getByRole('link', { name: 'Download resume' })).toHaveAttribute('href', '/downloads/Brandon-Houle-Resume.pdf');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(/AI can take on routine work/);
+  // @step Then the homepage shows the concise people-first message, resume CTA, and links to detail pages
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(/People need time to think/);
+  await expect(page.locator('#home').getByRole('link', { name: 'Download resume' })).toHaveAttribute('href', '/downloads/Brandon-Houle-Resume.pdf');
   await expect(page.getByRole('link', { name: 'View online resume' })).toHaveAttribute('href', '/resume.html');
-  await expect(page.locator('#field-notes, #commits, #showcase')).toHaveCount(0);
-  await expect(page.getByText(/illustrative starting point/)).toBeVisible();
+  await expect(page.locator('header').getByRole('link', { name: 'First 90 days' })).toHaveAttribute('href', '/first-90-days.html');
+  await expect(page.locator('header').getByRole('link', { name: 'Case studies' })).toHaveAttribute('href', '/case-studies.html');
+  await expect(page.getByText('Understand the system')).toHaveCount(0);
+  await expect(page.getByText('AI-Powered Acquisition Command Center')).toHaveCount(0);
 });
 
 test('How this should be made offers a complete downloadable manual test pack', async ({ page }) => {
@@ -93,12 +93,12 @@ test('professional wordmark and restrained design retain all portfolio content',
   await expect(page.locator('header .brand-name')).toHaveText('Brandon Houle');
   await expect(page.locator('header .brand-role')).toHaveText('Technology Leader / Innovator');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('think');
-  await expect(page.getByRole('heading', { name: /First 90 days/ })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Leadership' })).toBeVisible();
-  await expect(page.locator('.case-entry')).toHaveCount(3);
-  await expect(page.locator('#field-notes, #commits, #showcase')).toHaveCount(0);
-  await expect(page.locator('header').getByRole('link', { name: 'Field Notes' })).toHaveAttribute('href', '/field-notes.html');
-  await expect(page.locator('header').getByRole('link', { name: 'Blog' })).toHaveAttribute('href', '/blog.html');
+  await expect(page.locator('header').getByRole('link', { name: 'First 90 days' })).toHaveAttribute('href', '/first-90-days.html');
+  await expect(page.locator('header').getByRole('link', { name: 'Case studies' })).toHaveAttribute('href', '/case-studies.html');
+  await expect(page.locator('header').getByRole('link', { name: 'Blog' })).toHaveAttribute('href', '/blog/');
+  await expect(page.locator('header').getByRole('link', { name: 'Contact' })).toHaveAttribute('href', '/contact/');
+  await expect(page.locator('header').getByRole('link', { name: 'Field Notes' })).toHaveCount(0);
+  await expect(page.locator('.case-study')).toHaveCount(0);
   await expect(page.locator('header').getByRole('link', { name: 'Resume' })).toHaveAttribute('href', '/resume.html');
 });
 
@@ -120,13 +120,13 @@ test('editorial logbook profile shows the requested identity and contact details
   // @step Given the public profile identifies its subject and contact details
   // @step When a hiring leader opens the homepage
   await page.goto('/');
-  // @step Then Brandon's two-line role mark, website, and email are visible
+  // @step Then Brandon's two-line role mark, website, and contact form are visible
   await expect(page.locator('header .brand-name')).toHaveText('Brandon Houle');
   await expect(page.locator('header .brand-role')).toHaveText('Technology Leader / Innovator');
   await expect(page.getByRole('link', { name: 'brandonhoule.com' })).toHaveAttribute('href', 'https://brandonhoule.com');
-  await expect(page.locator('.site-footer').getByRole('link', { name: 'brandonhoule@gmail.com' })).toHaveAttribute('href', 'mailto:brandonhoule@gmail.com');
+  await expect(page.locator('.site-footer').getByRole('link', { name: 'Contact form' })).toHaveAttribute('href', '/contact/');
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://brandonhoule.com/');
-  await expect(page.locator('.case-entry')).toHaveCount(3);
+  await expect(page.locator('.case-study')).toHaveCount(0);
   await expect(page.locator('.note-entry')).toHaveCount(0);
   await expect(page.locator('.profile-portrait img')).toBeVisible();
 });
@@ -138,26 +138,27 @@ test('editorial styling uses display typography and unboxed case notes', async (
   // @step Then display typography, fine rules, and unboxed case studies define the visual hierarchy
   const headingFont = await page.locator('h1').first().evaluate(el => getComputedStyle(el).fontFamily);
   expect(headingFont).toContain('Georgia');
-  await expect(page.locator('.case-entry').first()).toHaveCSS('border-radius', '0px');
-  await expect(page.locator('.case-entry').first()).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
-  await expect(page.locator('.case-entry').first()).toHaveCSS('border-top-style', 'solid');
+  await page.goto('/case-studies.html');
+  await expect(page.locator('.case-study')).toHaveCount(3);
+  await expect(page.locator('.case-study').first()).toHaveCSS('border-radius', '0px');
+  await expect(page.locator('.case-study').first()).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+  await expect(page.locator('.case-study').first()).toHaveCSS('border-bottom-style', 'solid');
 });
 
-test('field notes and blog have separate pages with authored posts', async ({ page }) => {
+test('case studies and an empty blog have separate pages', async ({ page }) => {
   // Feature: spec/features/restructure-portfolio-pages-and-correct-the-public-resume.feature
   // @step Given the site navigation is available
-  await page.goto('/field-notes.html');
-  // @step When a hiring leader opens Field Notes, Blog, and the online resume
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://brandonhoule.com/field-notes.html');
-  await expect(page.locator('.note-entry[itemtype="https://schema.org/BlogPosting"]')).toHaveCount(3);
-  await expect(page.locator('.note-entry meta[itemprop="author"]')).toHaveCount(3);
-  await expect(page.locator('.note-entry time[datetime="2026-11-23"]')).toHaveCount(3);
-  await page.goto('/blog.html');
-  // @step Then each page has distinct content and the resume shows brandonhoule@gmail.com, brandonhoule.com, and linkedin.com/in/brandon-houle
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://brandonhoule.com/blog.html');
-  await expect(page.locator('.blog-entry[itemtype="https://schema.org/BlogPosting"]')).toHaveCount(3);
+  await page.goto('/case-studies.html');
+  // @step When a hiring leader opens case studies and the blog index
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://brandonhoule.com/case-studies.html');
+  await expect(page.locator('.case-study')).toHaveCount(3);
+  await page.goto('/blog/');
+  // @step Then the blog index has its own canonical URL and no unpublished sample posts
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://brandonhoule.com/blog/');
+  await expect(page.getByText('No articles published yet.')).toBeVisible();
+  await expect(page.locator('.blog-entry')).toHaveCount(0);
   await page.goto('/resume.html');
-  await expect(page.locator('.resume-contact').getByRole('link', { name: 'brandonhoule@gmail.com' })).toHaveAttribute('href', 'mailto:brandonhoule@gmail.com');
+  await expect(page.locator('.resume-contact').getByRole('link', { name: 'Contact form' })).toHaveAttribute('href', '/contact/');
   await expect(page.locator('.resume-contact').getByRole('link', { name: 'brandonhoule.com' })).toHaveAttribute('href', 'https://brandonhoule.com');
   await expect(page.locator('.resume-contact').getByRole('link', { name: 'linkedin.com/in/brandon-houle' })).toHaveAttribute('href', 'https://www.linkedin.com/in/brandon-houle');
   await expect(page.getByRole('heading', { name: /Manager, Applied Automation and AgentOps/ })).toBeVisible();
@@ -175,7 +176,7 @@ test('resume page displays the corrected public contact details', async ({ page 
   await page.goto('/resume.html');
   const contact = page.locator('.resume-contact');
   await expect(contact).not.toContainText('candidatesnet.com');
-  await expect(contact).toContainText('brandonhoule@gmail.com');
+  await expect(contact).toContainText('Contact form');
   await expect(contact).toContainText('brandonhoule.com');
   await expect(contact).toContainText('linkedin.com/in/brandon-houle');
 });
@@ -187,13 +188,14 @@ test('footer gives direct access to profile, writing, contact, and build notes',
   const footer = page.locator('.site-footer');
   await expect(footer).toBeVisible();
   // @step When the visitor scans the site footer
-  // @step Then the footer offers useful links to the resume, LinkedIn, email, portfolio sections, and How this should be made
+  // @step Then the footer offers useful links to the resume, LinkedIn, contact form, portfolio sections, and development record
   await expect(footer.getByRole('link', { name: 'Online resume' })).toHaveAttribute('href', '/resume.html');
   await expect(footer.getByRole('link', { name: 'Download resume' })).toHaveAttribute('href', '/downloads/Brandon-Houle-Resume.pdf');
   await expect(footer.getByRole('link', { name: 'LinkedIn' })).toHaveAttribute('href', 'https://www.linkedin.com/in/brandon-houle');
-  await expect(footer.getByRole('link', { name: 'How this should be made' })).toHaveAttribute('href', '/how-this-should-be-made.html');
-  await expect(footer.getByRole('link', { name: 'Field Notes' })).toHaveAttribute('href', '/field-notes.html');
-  await expect(footer.getByRole('link', { name: 'Blog' })).toHaveAttribute('href', '/blog.html');
+  await expect(footer.getByRole('link', { name: 'Development record' })).toHaveAttribute('href', '/how-this-should-be-made.html');
+  await expect(footer.getByRole('link', { name: 'Contact form' })).toHaveAttribute('href', '/contact/');
+  await expect(footer.getByRole('link', { name: 'Field Notes' })).toHaveCount(0);
+  await expect(footer.getByRole('link', { name: 'Blog' })).toHaveAttribute('href', '/blog/');
 });
 
 test('development record lists every available revision with exact GitHub links', async ({ page }) => {

@@ -219,3 +219,33 @@ code { font-size:.88em; }
 @media(prefers-reduced-motion:reduce) {
   *,*::before,*::after { scroll-behavior:auto !important; animation:none !important; transition:none !important; }
 }
+
+/* Standalone editorial pages */
+.page-main { padding-top: 52px; }
+.page-intro { padding: 20px 0 38px; }
+.page-intro h1 { max-width: 900px; margin: 0 0 18px; font-size: clamp(2.8rem,6vw,5rem); line-height: 1.03; }
+.case-index { display: flex; flex-wrap: wrap; gap: 10px 26px; padding: 20px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.case-index a { font-size: .86rem; }
+.case-study { padding: 43px 0 50px; border-bottom: 1px solid var(--rule); }
+.case-study h2 { margin: 8px 0 20px; }
+.entry-index { margin: 0 0 7px; }
+.entry-index span { display:block; margin-top: 6px; font-size:.62rem; }
+.case-facts { display:flex; flex-wrap:wrap; gap:8px 30px; margin: 0 0 23px; padding: 14px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); list-style:none; }
+.case-facts li { font-size:.82rem; }
+.case-facts strong { margin-right:7px; color:var(--muted); }
+.case-body { max-width: 76ch; }
+.case-body h3 { margin:27px 0 7px; font-size:1.35rem; }
+.case-body p,.case-body li { color:#454239; }
+.evidence-note { padding-left:14px; border-left:2px solid var(--accent); font-size:.87rem; }
+.pull-quote { font: italic 1.4rem Georgia,serif; color:var(--accent)!important; }
+.standalone-timeline { max-width: 900px; }
+@media(max-width:700px){.page-main{padding-top:30px}.case-facts{display:block}.case-facts li{margin:6px 0}}
+
+.blog-empty { max-width:72ch; padding:20px 0 56px; border-top:1px solid var(--line); color:var(--muted); font-family:Georgia,serif; font-size:1.15rem; }
+.contact-form { max-width:700px; padding:10px 0 65px; }
+.contact-form label { display:block; margin:18px 0 6px; color:var(--ink); font-size:.88rem; font-weight:650; }
+.contact-form input,.contact-form textarea { width:100%; padding:11px 12px; border:1px solid var(--rule); border-radius:0; background:#fffdf7; color:var(--ink); font:inherit; }
+.contact-form textarea { min-height:190px; resize:vertical; }
+.contact-form button { margin-top:20px; cursor:pointer; font:inherit; }
+.contact-status { min-height:1.7em; margin-top:14px; color:var(--muted); }
+.contact-honeypot { position:absolute; left:-10000px; width:1px; height:1px; overflow:hidden; }

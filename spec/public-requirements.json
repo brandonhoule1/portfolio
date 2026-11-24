@@ -189,7 +189,7 @@
     "id": "PORT-019",
     "githubIssue": 19,
     "acceptanceCriteria": [
-      "The wordmark reads Brandon Houle, then Technology Leader / Innovator on the next line, and contact information includes brandonhoule.com and brandonhoule@gmail.com.",
+      "The wordmark reads Brandon Houle, then Technology Leader / Innovator on the next line, and contact information includes brandonhoule.com and Contact form.",
       "The canonical resume source is preserved; the public resume copy and its contact-header updates are identified.",
       "Three factual career case studies are published, with unsupported outcomes and metrics explicitly withheld.",
       "Dated authored field notes use schema.org BlogPosting data and are accessible from a dedicated page.",
@@ -210,7 +210,7 @@
     "acceptanceCriteria": [
       "The homepage is uncluttered and foregrounds leadership, the first-90-days plan, and three factual case studies, with a clear resume-download CTA.",
       "Field Notes, Blog, and the online resume have distinct, directly addressable, indexable pages with accurate canonical metadata.",
-      "The online resume and public downloadable PDF show brandonhoule@gmail.com, brandonhoule.com, and linkedin.com/in/brandon-houle; the canonical source PDF remains unchanged.",
+      "The online resume and public downloadable PDF show Contact form, brandonhoule.com, and linkedin.com/in/brandon-houle; the canonical source PDF remains unchanged.",
       "How this should be made contains requirements, automated test results, manual test cases, quality evidence, and the complete development record; those build details are not shown on the homepage.",
       "The portfolio communicates that AI is for routine work so people have more room to think.",
       "The footer provides useful navigation, profile, contact, resume, and process links.",

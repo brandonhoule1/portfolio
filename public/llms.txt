@@ -1,22 +1,21 @@
 # Brandon Houle
 
-> Technology Leader / Innovator working across AI enablement, AgentOps, quality engineering, and performance engineering.
+> Technology Leader / Innovator building people-centered AI operating models across engineering, quality, and software delivery.
 
 Canonical site: https://brandonhoule.com/
-Contact: brandonhoule@gmail.com
+Contact form: https://brandonhoule.com/contact/
 LinkedIn: https://www.linkedin.com/in/brandon-houle
 
 ## Main sections
 
 - Leadership and working principles: https://brandonhoule.com/leadership.html
-- First 90 days: https://brandonhoule.com/#plan
-- Resume-grounded case studies: https://brandonhoule.com/#case-studies
+- First 90 days: https://brandonhoule.com/first-90-days.html
+- Interview-grounded case studies: https://brandonhoule.com/case-studies.html
 - Online resume: https://brandonhoule.com/resume.html
 - Download resume: https://brandonhoule.com/downloads/Brandon-Houle-Resume.pdf
-- Field Notes: https://brandonhoule.com/field-notes.html
-- Blog: https://brandonhoule.com/blog.html
+- Blog index: https://brandonhoule.com/blog/
 - Requirements, test evidence, manual cases, and development record: https://brandonhoule.com/how-this-should-be-made.html
 
-AI is for routine work, so people have more room to do what they do best: think.
+AI needs an operating model built around people. Give AI the routine work; give people more room to think, create, and make decisions.
 
-Career case notes describe responsibilities from the public AI Enablement base resume. Outcomes and metrics are not asserted unless a source explicitly supports them. Demonstrations labeled illustrative or synthetic are examples, not claimed client results.
+The case studies describe specific delivery work while labeling estimates, qualitative outcomes, and scope limits.

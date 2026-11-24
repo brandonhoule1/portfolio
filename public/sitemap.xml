@@ -2,8 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://brandonhoule.com/</loc></url>
   <url><loc>https://brandonhoule.com/leadership.html</loc></url>
+  <url><loc>https://brandonhoule.com/first-90-days.html</loc></url>
+  <url><loc>https://brandonhoule.com/case-studies.html</loc></url>
   <url><loc>https://brandonhoule.com/resume.html</loc></url>
-  <url><loc>https://brandonhoule.com/field-notes.html</loc></url>
-  <url><loc>https://brandonhoule.com/blog.html</loc></url>
+  <url><loc>https://brandonhoule.com/blog/</loc></url>
+  <url><loc>https://brandonhoule.com/contact/</loc></url>
   <url><loc>https://brandonhoule.com/how-this-should-be-made.html</loc></url>
 </urlset>
