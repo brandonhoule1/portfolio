@@ -33,7 +33,7 @@ Feature: Leadership-first portfolio experience
     When a visitor selects either test case download
     Then the file contains case identifiers, status, preconditions, steps, and expected results
 
-  Scenario: Illustrative scenarios are distinguished from career evidence
-    Given the portfolio includes synthetic organization examples
-    When a visitor reads the leadership demonstrations
-    Then synthetic examples and adaptable plans are labeled and are not attributed as achieved client outcomes
+  Scenario: Leadership judgment is distinct from the governance checklist
+    Given the Leadership page presents a public governance starter kit
+    When a hiring leader reads Brandon's broader leadership models
+    Then the page describes those models as judgment lenses without publishing step-by-step procedures

@@ -61,17 +61,22 @@
       ]
     },
     {
-      "name": "Illustrative scenarios are distinguished from career evidence",
+      "name": "Leadership judgment is distinct from the governance checklist",
       "testMappings": [
         {
           "file": "tests/e2e/site.spec.mjs",
-          "lines": "48-52",
+          "lines": "168-179",
           "implMappings": [
             {
-              "file": "public/index.html",
+              "file": "public/leadership.html",
               "lines": [
+                7,
+                8,
                 9,
-                10
+                10,
+                11,
+                12,
+                13
               ]
             }
           ]
@@ -89,8 +94,9 @@
     "implFiles": [
       "public/index.html",
       "src/html.mjs",
-      "scripts/build.mjs"
+      "scripts/build.mjs",
+      "public/leadership.html"
     ],
-    "totalLinesCovered": 45
+    "totalLinesCovered": 57
   }
 }

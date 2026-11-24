@@ -43,7 +43,7 @@ test('homepage foregrounds leadership, first 90 days, and case studies', async (
   // @step Then the homepage shows the concise people-first message, resume CTA, and links to detail pages
   await expect(page.getByRole('heading', { level: 1 })).toContainText(/People need time to think/);
   await expect(page.locator('#home').getByRole('link', { name: 'Download resume' })).toHaveAttribute('href', '/downloads/Brandon-Houle-Resume.pdf');
-  await expect(page.getByRole('link', { name: 'View online resume' })).toHaveAttribute('href', '/resume.html');
+  await expect(page.getByRole('link', { name: 'View the online resume' })).toHaveAttribute('href', '/resume.html');
   await expect(page.locator('header').getByRole('link', { name: 'First 90 days' })).toHaveAttribute('href', '/first-90-days.html');
   await expect(page.locator('header').getByRole('link', { name: 'Case studies' })).toHaveAttribute('href', '/case-studies.html');
   await expect(page.getByText('Understand the system')).toHaveCount(0);
@@ -165,11 +165,18 @@ test('case studies and an empty blog have separate pages', async ({ page }) => {
   await expect(page.getByRole('link', { name: 'Download resume PDF' })).toHaveAttribute('href', '/downloads/Brandon-Houle-Resume.pdf');
 });
 
-test('leadership examples remain available on their own page', async ({ page }) => {
+test('leadership page presents the governance starter kit and broader models', async ({ page }) => {
+  // Feature: spec/features/leadership-first-portfolio.feature
+  // @step Given the Leadership page presents a public governance starter kit
   await page.goto('/leadership.html');
-  await expect(page.getByRole('heading', { name: /Frameworks, examples, and decision notes/ })).toBeVisible();
-  await expect(page.locator('.showcase-grid details')).toHaveCount(6);
-  await expect(page.getByText(/Illustrative scenario · synthetic/)).toBeVisible();
+  // @step When a hiring leader reads Brandon's broader leadership models
+  await expect(page.getByRole('heading', { name: /Make responsibility clear before AI changes the work/ })).toBeVisible();
+  await expect(page.locator('.governance-stage')).toHaveCount(4);
+  await expect(page.getByRole('heading', { name: /OTHER LEADERSHIP MODELS|Ways I frame the work/ })).toBeVisible();
+  // @step Then the page describes those models as judgment lenses without publishing step-by-step procedures
+  await expect(page.getByRole('heading', { name: 'Business-first opportunity model' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Human–AI work design' })).toBeVisible();
+  await expect(page.locator('.model-list details')).toHaveCount(0);
 });
 
 test('resume page displays the corrected public contact details', async ({ page }) => {
