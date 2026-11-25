@@ -15,6 +15,8 @@ const commits = await readPublishedHistory(root);
 home = applySiteShell(home, '');
 fs.writeFileSync(path.join(out, 'index.html'), home);
 for (const [name, active, marker, fragment] of [
+  ['ai-enablement.html', 'ai-enablement', null, null],
+  ['how-i-think-about-ai.html', 'ai-enablement', null, null],
   ['leadership.html', 'leadership', null, null],
   ['first-90-days.html', 'first-90-days', null, null],
   ['case-studies.html', 'case-studies', '<!--CASE_STUDIES-->', 'case-studies.htmlfrag'],
