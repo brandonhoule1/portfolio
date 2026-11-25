@@ -51,6 +51,39 @@ test('homepage foregrounds leadership, first 90 days, and case studies', async (
   await expect(page.getByText('AI-Powered Acquisition Command Center')).toHaveCount(0);
 });
 
+test('homepage guides recruiters and hiring managers to relevant evidence', async ({ page }) => {
+  await page.goto('/');
+  const recruiterGuide = page.locator('.audience-guide-row').nth(0);
+  const hiringGuide = page.locator('.audience-guide-row').nth(1);
+  await expect(page.getByRole('heading', { name: 'Are you a recruiter?' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Are you a hiring manager?' })).toBeVisible();
+  await expect(recruiterGuide.getByRole('link', { name: /Explore my resume/ })).toHaveAttribute('href', '/resume.html');
+  await expect(recruiterGuide.getByRole('link', { name: 'Download resume' })).toHaveAttribute('href', '/downloads/Brandon-Houle-Resume.pdf');
+  await expect(recruiterGuide.getByRole('link', { name: 'Contact' })).toHaveAttribute('href', '/contact/');
+  await expect(hiringGuide.getByRole('link', { name: /Explore my AI perspective/ })).toHaveAttribute('href', '/how-i-think-about-ai.html');
+  await expect(hiringGuide.getByRole('link', { name: 'Case studies' })).toHaveAttribute('href', '/case-studies.html');
+  await expect(hiringGuide.getByRole('link', { name: 'First 90 days' })).toHaveAttribute('href', '/first-90-days.html');
+  await expect(recruiterGuide.getByRole('link', { name: /Explore my resume/ })).toHaveClass(/button/);
+  await expect(hiringGuide.getByRole('link', { name: /Explore my AI perspective/ })).toHaveClass(/button/);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(recruiterGuide.getByRole('link', { name: /Explore my resume/ })).toBeVisible();
+  await expect(hiringGuide.getByRole('link', { name: /Explore my AI perspective/ })).toBeVisible();
+});
+
+test('AI leadership perspective shows the conceptual model and three role priorities', async ({ page }) => {
+  await page.goto('/how-i-think-about-ai.html');
+  await expect(page.getByRole('heading', { name: 'From human friction to shared value.' })).toBeVisible();
+  await expect(page.locator('.ai-model-flow li')).toHaveCount(5);
+  await expect(page.locator('.ai-model-flow')).toContainText('Human authority');
+  await expect(page.locator('.ai-model-flow')).toContainText('Outcomes and capacity');
+  const roles = page.locator('#role-lenses .role-priority');
+  await expect(roles).toHaveCount(3);
+  await expect(roles.nth(0)).toContainText('AI enablement');
+  await expect(roles.nth(0)).toContainText('Why it matters');
+  await expect(roles.nth(1)).toContainText('quality evidence');
+  await expect(roles.nth(2)).toContainText('operating cost');
+});
+
 test('How this should be made offers a complete downloadable manual test pack', async ({ page }) => {
   // Feature: spec/features/restructure-portfolio-pages-and-correct-the-public-resume.feature
   // @step Given requirements, test evidence, manual cases, and commit history are published
