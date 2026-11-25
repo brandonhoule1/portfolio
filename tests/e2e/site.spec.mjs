@@ -39,9 +39,10 @@ test('homepage foregrounds leadership, first 90 days, and case studies', async (
   // @step Given the portfolio homepage is available
   await page.goto('/');
   // @step When a hiring leader reviews the leadership profile
-  await expect(page.getByRole('heading', { level: 1 })).toContainText(/AI can take on routine work/);
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(/AI for routine work/);
   // @step Then the homepage shows the concise people-first message, resume CTA, and links to detail pages
-  await expect(page.getByRole('heading', { level: 1 })).toContainText(/People need time to think/);
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(/People for what makes us human/);
+  await expect(page.locator('#home')).toContainText('judgment, feeling, thinking, creativity, and decisions');
   await expect(page.locator('#home').getByRole('link', { name: 'Download resume' })).toHaveAttribute('href', '/downloads/Brandon-Houle-Resume.pdf');
   await expect(page.getByRole('link', { name: 'View the online resume' })).toHaveAttribute('href', '/resume.html');
   await expect(page.locator('header').getByRole('link', { name: 'First 90 days' })).toHaveAttribute('href', '/first-90-days.html');
@@ -92,7 +93,7 @@ test('professional wordmark and restrained design retain all portfolio content',
   // @step Then the wordmark identifies Brandon Houle as a Technology Leader and the existing sections remain available
   await expect(page.locator('header .brand-name')).toHaveText('Brandon Houle');
   await expect(page.locator('header .brand-role')).toHaveText('Technology Leader / Innovator');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('think');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('People for what makes us human');
   await expect(page.locator('header').getByRole('link', { name: 'First 90 days' })).toHaveAttribute('href', '/first-90-days.html');
   await expect(page.locator('header').getByRole('link', { name: 'Case studies' })).toHaveAttribute('href', '/case-studies.html');
   await expect(page.locator('header').getByRole('link', { name: 'Blog' })).toHaveAttribute('href', '/blog/');
@@ -199,7 +200,7 @@ test('footer gives direct access to profile, writing, contact, and build notes',
   await expect(footer.getByRole('link', { name: 'Online resume' })).toHaveAttribute('href', '/resume.html');
   await expect(footer.getByRole('link', { name: 'Download resume' })).toHaveAttribute('href', '/downloads/Brandon-Houle-Resume.pdf');
   await expect(footer.getByRole('link', { name: 'LinkedIn' })).toHaveAttribute('href', 'https://www.linkedin.com/in/brandon-houle');
-  await expect(footer.getByRole('link', { name: 'Development record' })).toHaveAttribute('href', '/how-this-should-be-made.html');
+  await expect(footer.getByRole('link', { name: 'How this should be made' })).toHaveAttribute('href', '/how-this-should-be-made.html');
   await expect(footer.getByRole('link', { name: 'Contact form' })).toHaveAttribute('href', '/contact/');
   await expect(footer.getByRole('link', { name: 'Field Notes' })).toHaveCount(0);
   await expect(footer.getByRole('link', { name: 'Blog' })).toHaveAttribute('href', '/blog/');

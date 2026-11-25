@@ -42,7 +42,8 @@ test('build emits requirements and evidence pages', () => {
   assert.match(home, /Technology Leader \/ Innovator/);
   assert.match(home, /case-studies/);
   assert.doesNotMatch(home, /field-notes/i);
-  assert.match(home, /AI can take on routine work\. People need time to think\./);
+  assert.match(home, /AI for routine work\.<br><em>People for what makes us human\.<\/em>/);
+  assert.match(home, /judgment, feeling, thinking, creativity, and decisions/);
   assert.doesNotMatch(home, /AI-Powered Acquisition Command Center|Understand the system/);
   assert.doesNotMatch(home, /commit-list|Quality evidence/);
   assert.doesNotMatch(home, /<!--(?:CASE_STUDIES|FIELD_NOTES|BLOG_POSTS|SITE_HEADER|SITE_FOOTER)-->/);
