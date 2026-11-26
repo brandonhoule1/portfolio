@@ -10,7 +10,7 @@ test('contact page renders Turnstile and blocks submission without a challenge r
   await expect(page.locator('#contact-form')).toBeVisible();
   await expect(page.locator('.contact-challenge')).toBeAttached();
   await expect(challenge).toHaveCount(1);
-  await expect(challenge).toHaveAttribute('data-sitekey', '1x00000000000000000000AA');
+  await expect(challenge).toHaveAttribute('data-sitekey', process.env.TURNSTILE_SITE_KEY);
   await expect(page.locator('script[src="https://challenges.cloudflare.com/turnstile/v0/api.js"]')).toHaveCount(1);
 
   // @step When the visitor submits valid contact details and a message
