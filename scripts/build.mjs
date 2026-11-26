@@ -44,6 +44,9 @@ if (turnstileSiteKey) {
 }
 fs.mkdirSync(path.join(out, 'contact'), { recursive: true });
 fs.writeFileSync(path.join(out, 'contact', 'index.html'), applySiteShell(contactPage, 'contact'));
+const recruiterPage = fs.readFileSync(path.join(root, 'public', 'recruiter', 'index.html'), 'utf8');
+fs.mkdirSync(path.join(out, 'recruiter'), { recursive: true });
+fs.writeFileSync(path.join(out, 'recruiter', 'index.html'), applySiteShell(recruiterPage, ''));
 const blogRoot = path.join(root, 'public', 'blog');
 const blogIndex = fs.readFileSync(path.join(blogRoot, 'index.html'), 'utf8');
 fs.mkdirSync(path.join(out, 'blog'), { recursive: true });

@@ -57,17 +57,37 @@ test('homepage guides recruiters and hiring managers to relevant evidence', asyn
   const hiringGuide = page.locator('.audience-guide-row').nth(1);
   await expect(page.getByRole('heading', { name: 'Are you a recruiter?' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Are you a hiring manager?' })).toBeVisible();
-  await expect(recruiterGuide.getByRole('link', { name: /Explore my resume/ })).toHaveAttribute('href', '/resume.html');
-  await expect(recruiterGuide.getByRole('link', { name: 'Download resume' })).toHaveAttribute('href', '/downloads/Brandon-Houle-Resume.pdf');
-  await expect(recruiterGuide.getByRole('link', { name: 'Contact' })).toHaveAttribute('href', '/contact/');
+  await expect(recruiterGuide.getByRole('link', { name: /Start the recruiter guide/ })).toHaveAttribute('href', '/recruiter/');
   await expect(hiringGuide.getByRole('link', { name: /Explore my AI perspective/ })).toHaveAttribute('href', '/how-i-think-about-ai.html');
   await expect(hiringGuide.getByRole('link', { name: 'Case studies' })).toHaveAttribute('href', '/case-studies.html');
   await expect(hiringGuide.getByRole('link', { name: 'First 90 days' })).toHaveAttribute('href', '/first-90-days.html');
-  await expect(recruiterGuide.getByRole('link', { name: /Explore my resume/ })).toHaveClass(/button/);
+  await expect(recruiterGuide.getByRole('link', { name: /Start the recruiter guide/ })).toHaveClass(/button/);
   await expect(hiringGuide.getByRole('link', { name: /Explore my AI perspective/ })).toHaveClass(/button/);
   await page.setViewportSize({ width: 390, height: 844 });
-  await expect(recruiterGuide.getByRole('link', { name: /Explore my resume/ })).toBeVisible();
+  await expect(recruiterGuide.getByRole('link', { name: /Start the recruiter guide/ })).toBeVisible();
   await expect(hiringGuide.getByRole('link', { name: /Explore my AI perspective/ })).toBeVisible();
+});
+
+test('recruiter follows a linear single-page path from role fit to contact', async ({ page }) => {
+  // Feature: spec/features/make-portfolio-evidence-easier-for-recruiters-to-scan.feature
+  // @step Given a recruiter opens the homepage
+  // @step When they choose the recruiter guide
+  // @step Then they see a single-page guide with role fit, resume, selected evidence, leadership approach, and contact in that order
+  // @step And each section before contact has a clear next link within the guide
+  // @step And they can download the resume and open the contact form from the guide
+  await page.goto('/');
+  await page.getByRole('link', { name: /Start the recruiter guide/ }).click();
+  await expect(page).toHaveURL(/\/recruiter\/$/);
+  const stepIds = await page.locator('.recruiter-step').evaluateAll(steps => steps.map(step => step.id));
+  expect(stepIds).toEqual(['role-fit', 'resume', 'evidence', 'approach', 'contact']);
+  await expect(page.locator('#resume').getByRole('link', { name: 'Download resume' })).toHaveAttribute('href', '/downloads/Brandon-Houle-Resume.pdf');
+  await expect(page.locator('#resume').getByRole('link', { name: 'View the online resume' })).toHaveAttribute('href', '/resume.html');
+  await expect(page.locator('#evidence').getByRole('link', { name: /Read all three case studies/ })).toHaveAttribute('href', '/case-studies.html');
+  await expect(page.locator('#approach').getByRole('link', { name: 'How I think about AI' })).toHaveAttribute('href', '/how-i-think-about-ai.html');
+  await expect(page.locator('#contact').getByRole('link', { name: /Contact Brandon/ })).toHaveAttribute('href', '/contact/');
+  for (const [index, nextId] of ['resume', 'evidence', 'approach', 'contact'].entries()) {
+    await expect(page.locator('.recruiter-step').nth(index).locator('.recruiter-next')).toHaveAttribute('href', `#${nextId}`);
+  }
 });
 
 test('AI leadership perspective shows the conceptual model and three role priorities', async ({ page }) => {

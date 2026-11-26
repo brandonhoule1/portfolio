@@ -30,6 +30,7 @@ test('build emits requirements and evidence pages', () => {
   assert.ok(fs.existsSync('dist/first-90-days.html'));
   assert.ok(fs.existsSync('dist/resume.html'));
   assert.ok(fs.existsSync('dist/leadership.html'));
+  assert.ok(fs.existsSync('dist/recruiter/index.html'));
   assert.ok(fs.existsSync('dist/manual-test-cases.csv'));
   assert.ok(fs.existsSync('dist/manual-test-cases.md'));
   assert.ok(fs.existsSync('dist/downloads/Brandon-Houle-Resume.pdf'));

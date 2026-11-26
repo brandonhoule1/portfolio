@@ -8,6 +8,9 @@ LinkedIn: https://www.linkedin.com/in/brandon-houle
 
 ## Main sections
 
+- Guided recruiter overview: https://brandonhoule.com/recruiter/
+- Blog index: https://brandonhoule.com/blog/
+
 - Leadership and working principles: https://brandonhoule.com/leadership.html
 - AI enablement and adoption approach: https://brandonhoule.com/ai-enablement.html
 - How I think about AI: https://brandonhoule.com/how-i-think-about-ai.html
@@ -15,12 +18,6 @@ LinkedIn: https://www.linkedin.com/in/brandon-houle
 - Interview-grounded case studies: https://brandonhoule.com/case-studies.html
 - Online resume: https://brandonhoule.com/resume.html
 - Download resume: https://brandonhoule.com/downloads/Brandon-Houle-Resume.pdf
-- Blog index: https://brandonhoule.com/blog/
-- AI enablement as an operating-model challenge: https://brandonhoule.com/blog/ai-enablement-operating-model/
-- Practical AI governance for engineering teams: https://brandonhoule.com/blog/enterprise-ai-governance-starter/
-- AI-assisted quality engineering: https://brandonhoule.com/blog/ai-assisted-quality-engineering/
-- Employee self-service across enterprise systems: https://brandonhoule.com/blog/employee-self-service-enterprise-systems/
-- AI delivery under an acquisition Day One deadline: https://brandonhoule.com/blog/ai-delivery-acquisition-day-one/
 - Requirements, test evidence, manual cases, and development record: https://brandonhoule.com/how-this-should-be-made.html
 
 AI for routine work. People for judgment, feeling, thinking, creativity, and decisions. The operating model should make these responsibilities clear, build on useful existing capabilities, and measure what actually changes.

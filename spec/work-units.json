@@ -1910,12 +1910,12 @@
     },
     "PORT-027": {
       "id": "PORT-027",
-      "title": "Make portfolio evidence easier for recruiters to scan",
+      "title": "Linear recruiter guide and evidence scan",
       "type": "story",
       "status": "specifying",
       "createdAt": "2026-11-25T01:46:44.543Z",
-      "updatedAt": "2026-11-25T01:48:25.426Z",
-      "description": "Help a recruiter quickly understand Brandon's role, scope, supported outcomes, and how to contact him. Add concise, evidence-grounded summaries to all three case studies, surface the existing contact form from the homepage without displacing the resume CTA, and verify the online resume matches the downloadable PDF. Preserve all uncertainty labels and qualitative-only outcomes. Do not invent metrics or alter the canonical resume source.",
+      "updatedAt": "2026-11-26T13:44:52.449Z",
+      "description": "Create a prominent homepage recruiter CTA that opens a single-page, linear guide. The guide presents five ordered sections: role fit, resume, selected work, AI enablement leadership approach, and contact. Give each section a clear next step within the page, preserve direct links to the downloadable and online resume, the three completed case studies, and the contact form. Keep claims grounded in the canonical resume and case studies; preserve estimates and qualitative caveats. Keep the hiring-manager route separate. Deliver locally for review before tests, commit, or deployment.",
       "epic": "leadership-portfolio",
       "parent": "PORT-020",
       "userStory": {
@@ -1933,8 +1933,9 @@
         {
           "id": 0,
           "text": "Keep the homepage's AI Enablement & Adoption Leader positioning and resume download as the primary action; add contact access as a quiet text link to the existing form.",
-          "deleted": false,
-          "createdAt": "2026-11-25T01:47:31.953Z"
+          "deleted": true,
+          "createdAt": "2026-11-25T01:47:31.953Z",
+          "deletedAt": "2026-11-26T13:44:52.243Z"
         },
         {
           "id": 1,
@@ -1953,9 +1954,15 @@
           "text": "The online resume and downloadable website PDF must agree on material role titles, dates, education, skills, and contact links; do not alter the canonical source resume.",
           "deleted": false,
           "createdAt": "2026-11-25T01:47:34.586Z"
+        },
+        {
+          "id": 4,
+          "text": "The homepage recruiter CTA opens one linear single-page guide; each section leads to the next in this order: role fit, resume, selected evidence, leadership approach, and contact.",
+          "deleted": false,
+          "createdAt": "2026-11-26T13:44:52.342Z"
         }
       ],
-      "nextRuleId": 4,
+      "nextRuleId": 5,
       "examples": [
         {
           "id": 0,
@@ -1986,9 +1993,15 @@
           "text": "When the online resume and PDF are compared, their factual content and public contact paths agree; the canonical source resume remains unchanged.",
           "deleted": false,
           "createdAt": "2026-11-25T01:47:38.720Z"
+        },
+        {
+          "id": 5,
+          "text": "A recruiter follows the homepage CTA through one page in order from role fit to resume to case-study evidence to proposed AI enablement approach to contact; each step offers a clear next action.",
+          "deleted": false,
+          "createdAt": "2026-11-26T13:44:52.449Z"
         }
       ],
-      "nextExampleId": 5,
+      "nextExampleId": 6,
       "estimate": 5
     },
     "PORT-028": {

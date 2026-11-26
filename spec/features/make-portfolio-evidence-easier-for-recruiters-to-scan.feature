@@ -3,7 +3,7 @@
 @PORT-027
 Feature: Make portfolio evidence easier for recruiters to scan
   """
-  Extend existing static homepage, case-study source fragment, and site stylesheet; use shared contact form route. Keep summaries as small text rows consistent with current case-facts styling. Compare the published website resume PDF to the online resume without changing the canonical resume source.
+  Add a recruiter guide as one linear page, linked from the homepage and shared footer. Order its sections as role fit, resume, selected evidence, AI enablement leadership approach, and contact. Use in-page next links and the shared site shell. Compare the published website resume PDF to the online resume without changing the canonical resume source.
   """
 
   # ========================================
@@ -11,13 +11,13 @@ Feature: Make portfolio evidence easier for recruiters to scan
   # ========================================
   #
   # BUSINESS RULES:
-  #   1. Keep the homepage's AI Enablement & Adoption Leader positioning and resume download as the primary action; add contact access as a quiet text link to the existing form.
+  #   1. The homepage's recruiter call to action opens one linear guide with the ordered sections role fit, resume, selected evidence, leadership approach, and contact.
   #   2. At-a-glance case-study details must summarize each documented project accurately, including role, team/delivery scope where known, and strongest supported outcome.
   #   3. Preserve caveats for personal estimates, qualitative observations, manual execution, and unmeasured broader adoption; do not invent quantified impact.
   #   4. The online resume and downloadable website PDF must agree on material role titles, dates, education, skills, and contact links; do not alter the canonical source resume.
   #
   # EXAMPLES:
-  #   1. A recruiter on the homepage sees AI Enablement & Adoption Leader, can download the resume, and can open the contact form without searching the footer.
+  #   1. A recruiter follows the homepage CTA through one page in order from role fit to resume, evidence, approach, and contact.
   #   2. A recruiter scanning the acquisition case sees the three-month delivery, five developers plus a technical lead, Day 1 delivery, and dashboard recovery before Day 2, with the audience estimate labeled personal.
   #   3. A recruiter scanning the quality engineering case sees shared practice adopted by direct reports, Playwright used manually, and broader adoption explicitly unmeasured.
   #   4. A recruiter scanning the self-service case sees the four-developer-and-technical-lead team, production delivery, and qualitative outcome language without a fabricated savings or adoption percentage.
@@ -31,9 +31,10 @@ Feature: Make portfolio evidence easier for recruiters to scan
 
   Scenario: Recruiter finds the resume and contact path from the homepage
     Given a recruiter opens the homepage
-    When they review the primary positioning and calls to action
-    Then they see AI Enablement and Adoption Leader positioning and the resume download
-    And they can open the contact form directly from the homepage
+    When they choose the recruiter guide
+    Then they see a single-page guide with role fit, resume, selected evidence, leadership approach, and contact in that order
+    And each section before contact has a clear next link within the guide
+    And they can download the resume and open the contact form from the guide
 
   Scenario: Recruiter scans the acquisition case at a glance
     Given a recruiter opens the case studies page
