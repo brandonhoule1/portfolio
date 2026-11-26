@@ -26,6 +26,9 @@ In the Cloudflare dashboard, open the Pages project for `houlebportfolio`, then 
 | `GMAIL_OAUTH_CLIENT_SECRET` | Google OAuth client secret |
 | `GMAIL_OAUTH_REFRESH_TOKEN` | Offline refresh token granted to the sending Gmail account |
 | `CONTACT_TO` | Private destination inbox |
+| `TURNSTILE_SECRET_KEY` | Turnstile widget secret, encrypted |
+
+Create a Turnstile widget named **Portfolio contact form** in Cloudflare's Turnstile dashboard. The current widget allows `brandonhoule.com` and uses Managed mode. Set `TURNSTILE_SITE_KEY` as a plain-text Pages environment variable; it is public and injected into the contact page during the build. The Function accepts a token only when Cloudflare verifies it and its hostname matches the request host. The current widget does not allow `houlebportfolio.pages.dev`; contact submissions on that preview hostname will fail Turnstile verification until that hostname is added to the widget.
 
 Save the settings and redeploy the Pages project so the Function receives the bindings. These names are read only by `functions/api/contact.js`; they are not embedded in site HTML.
 
@@ -33,7 +36,7 @@ Save the settings and redeploy the Pages project so the Function receives the bi
 
 After the secrets are configured and deployed, submit the form once with a subject and message you can recognize. Confirm it arrives at the destination inbox and that Reply sends to the visitor address entered in the form. The form reports success only after Gmail accepts the send request. OAuth or Gmail failures return a generic error and do not expose provider details.
 
-The endpoint also checks the request origin, limits message sizes, validates fields, and uses a honeypot. These are basic spam controls, not a complete anti-abuse system; add rate limiting or a challenge such as Turnstile if abuse appears.
+The endpoint checks the request origin, limits message sizes, validates fields, uses a honeypot, and verifies each Turnstile token server-side before requesting Gmail delivery. Missing or invalid verification fails closed. The public site key is injected at build time; the secret key is an encrypted Pages Function secret. Configure both for production and redeploy so the challenge is active.
 
 ## Local development
 

@@ -53,6 +53,18 @@ function gmailMessage({ recipient, replyTo, subject, name, message }) {
 }
 
 const providerFailure = () => json({ message: 'The message could not be sent right now. Please try LinkedIn.' }, 502);
+const verificationFailure = () => json({ message: 'Please complete the bot check and try again.' }, 400);
+
+async function verifyTurnstile(token, secret, hostname) {
+  const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ secret, response: token })
+  });
+  if (!response.ok) return false;
+  const result = await response.json();
+  return result?.success === true && result.hostname === hostname;
+}
 
 export async function onRequestPost({ request, env }) {
   const origin = request.headers.get('Origin');
@@ -67,8 +79,12 @@ export async function onRequestPost({ request, env }) {
   const oauthClientSecret = String(env.GMAIL_OAUTH_CLIENT_SECRET || '').trim();
   const oauthRefreshToken = String(env.GMAIL_OAUTH_REFRESH_TOKEN || '').trim();
   const recipient = String(env.CONTACT_TO || '').trim();
+  const turnstileSecretKey = String(env.TURNSTILE_SECRET_KEY || '').trim();
   if (!oauthClientId || !oauthClientSecret || !oauthRefreshToken || !emailPattern.test(recipient)) {
     return json({ message: 'Contact delivery is not configured yet. Please use LinkedIn for now.' }, 503);
+  }
+  if (!turnstileSecretKey) {
+    return json({ message: 'Contact verification is not configured yet. Please use LinkedIn for now.' }, 503);
   }
 
   let form;
@@ -86,6 +102,16 @@ export async function onRequestPost({ request, env }) {
   const message = String(form.get('message') || '').trim();
   if (!name || name.length > 100 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(replyTo) || replyTo.length > 254 || !subject || subject.length > 120 || !message || message.length > 5000) {
     return json({ message: 'Check the required fields and try again.' }, 400);
+  }
+
+  const turnstileToken = String(form.get('cf-turnstile-response') || '').trim();
+  if (!turnstileToken || turnstileToken.length > 2048) return verificationFailure();
+
+  try {
+    const hostname = new URL(request.url).hostname;
+    if (!await verifyTurnstile(turnstileToken, turnstileSecretKey, hostname)) return verificationFailure();
+  } catch {
+    return json({ message: 'We could not verify the request. Please try again.' }, 503);
   }
 
   try {

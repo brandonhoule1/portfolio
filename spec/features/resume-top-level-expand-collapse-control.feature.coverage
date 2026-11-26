@@ -1,0 +1,60 @@
+{
+  "scenarios": [
+    {
+      "name": "Reader finds the controls before the resume content",
+      "testMappings": [
+        {
+          "file": "tests/e2e/resume-controls-position.spec.mjs",
+          "lines": "3-17",
+          "implMappings": [
+            {
+              "file": "public/resume.html",
+              "lines": [
+                3,
+                4
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Reader expands and collapses all resume details",
+      "testMappings": [
+        {
+          "file": "tests/e2e/resume-controls-position.spec.mjs",
+          "lines": "19-43",
+          "implMappings": [
+            {
+              "file": "public/resume.html",
+              "lines": [
+                38,
+                39,
+                40,
+                41,
+                42,
+                43,
+                44,
+                45,
+                46,
+                47
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "totalScenarios": 2,
+    "coveredScenarios": 2,
+    "coveragePercent": 100,
+    "testFiles": [
+      "tests/e2e/resume-controls-position.spec.mjs"
+    ],
+    "implFiles": [
+      "public/resume.html"
+    ],
+    "totalLinesCovered": 52
+  }
+}

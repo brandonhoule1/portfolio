@@ -36,3 +36,14 @@ Feature: Restructure portfolio pages and keep contact details private
     Given requirements, test evidence, manual cases, and commit history are published
     When a visitor opens the development record
     Then the portfolio build material is together there and not expanded on the homepage
+
+  Scenario: Valid contact message is sent through Gmail API
+    Given the Google OAuth client, refresh token, and private recipient are configured as encrypted Cloudflare values
+    When a visitor submits a valid contact message
+    Then the site sends the message through Gmail API and shows a success confirmation
+    And the visitor's address is the reply address while OAuth credentials and the recipient remain server-side
+
+  Scenario: Contact delivery fails safely when Google configuration is absent
+    Given one or more Google OAuth or recipient values are missing
+    When a visitor submits a valid contact message
+    Then the site shows a generic delivery configuration message and does not claim the message was sent

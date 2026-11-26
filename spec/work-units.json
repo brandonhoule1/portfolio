@@ -2,7 +2,7 @@
   "version": "0.7.1",
   "meta": {
     "version": "1.0.0",
-    "lastUpdated": "2026-11-24T20:33:46.496Z"
+    "lastUpdated": "2026-11-26T12:29:06.359Z"
   },
   "workUnits": {
     "FOUND-001": {
@@ -1349,9 +1349,9 @@
       "id": "PORT-020",
       "title": "Restructure portfolio pages and correct the public resume",
       "type": "story",
-      "status": "done",
+      "status": "testing",
       "createdAt": "2026-11-23T21:26:37.802Z",
-      "updatedAt": "2026-11-23T21:59:55.362Z",
+      "updatedAt": "2026-11-26T03:42:43.585Z",
       "description": "Implement user direction from GitHub issue #20: unclutter the homepage; give leadership, first-90-days, and case studies priority; create separate field-notes, blog, and online-resume pages; correct the downloadable resume contact details while keeping the canonical source untouched; consolidate requirements, quality/test evidence, and development history in How this should be made; improve the footer and align SEO/GEO metadata.",
       "epic": "leadership-portfolio",
       "parent": "PORT-011",
@@ -1380,6 +1380,14 @@
         {
           "state": "done",
           "timestamp": "2026-11-23T21:59:55.362Z"
+        },
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-26T03:42:02.377Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-26T03:42:43.585Z"
         }
       ],
       "rules": [
@@ -1406,9 +1414,21 @@
           "text": "How this should be made contains the requirements, quality results, manual cases, and complete development record; the home page does not contain the development record.",
           "deleted": false,
           "createdAt": "2026-11-23T21:27:00.790Z"
+        },
+        {
+          "id": 4,
+          "text": "Valid contact submissions use the Gmail API with the narrow gmail.send OAuth scope; the client secret, refresh token, and private recipient remain encrypted Cloudflare runtime values.",
+          "deleted": false,
+          "createdAt": "2026-11-26T03:42:30.673Z"
+        },
+        {
+          "id": 5,
+          "text": "The Function must not claim success when Google OAuth or Gmail delivery fails, and must not expose provider credentials or raw provider errors to visitors.",
+          "deleted": false,
+          "createdAt": "2026-11-26T03:42:30.785Z"
         }
       ],
-      "nextRuleId": 4,
+      "nextRuleId": 6,
       "examples": [
         {
           "id": 0,
@@ -1433,9 +1453,21 @@
           "text": "A visitor uses the footer to open the resume, LinkedIn profile, contact email, and build notes.",
           "deleted": false,
           "createdAt": "2026-11-23T21:27:01.193Z"
+        },
+        {
+          "id": 4,
+          "text": "A valid visitor message is OAuth-refreshed server-side and sent to Brandon's private Gmail inbox with the visitor address as Reply-To.",
+          "deleted": false,
+          "createdAt": "2026-11-26T03:42:30.890Z"
+        },
+        {
+          "id": 5,
+          "text": "Missing configuration or a Google API error returns a generic delivery failure and sends no success message.",
+          "deleted": false,
+          "createdAt": "2026-11-26T03:42:30.993Z"
         }
       ],
-      "nextExampleId": 4,
+      "nextExampleId": 6,
       "estimate": 8,
       "architectureNotes": [
         {
@@ -1451,7 +1483,8 @@
       ],
       "children": [
         "PORT-021",
-        "PORT-022"
+        "PORT-022",
+        "PORT-027"
       ]
     },
     "PORT-021": {
@@ -1460,7 +1493,7 @@
       "type": "story",
       "status": "specifying",
       "createdAt": "2026-11-24T01:13:52.170Z",
-      "updatedAt": "2026-11-24T02:11:01.551Z",
+      "updatedAt": "2026-11-25T12:52:59.615Z",
       "description": "Locally iterate the homepage hierarchy and contact details. Remove Field Notes for now, move the first-90-days plan and the three user-provided interview-grounded case studies to separate pages, simplify Leadership, and remove the phone number from every public artifact. Preserve the factual caveats in the supplied case narratives.",
       "epic": "leadership-portfolio",
       "parent": "PORT-020",
@@ -1479,8 +1512,9 @@
         {
           "id": 0,
           "text": "Keep the homepage sparse: one people-first AI operating-model headline, concise leadership copy, resume CTA, and links to deeper pages.",
-          "deleted": false,
-          "createdAt": "2026-11-24T01:14:38.009Z"
+          "deleted": true,
+          "createdAt": "2026-11-24T01:14:38.009Z",
+          "deletedAt": "2026-11-25T12:52:58.608Z"
         },
         {
           "id": 1,
@@ -1524,9 +1558,15 @@
           "text": "Remove Brandon's email address from public website pages, metadata, published resume files, and other generated artifacts; use a contact form that delivers only through a server-side mail provider configured with private environment variables.",
           "deleted": false,
           "createdAt": "2026-11-24T01:47:40.804Z"
+        },
+        {
+          "id": 8,
+          "text": "AI handles routine work; people bring judgment, feeling, thinking, creativity, relationships, and decisions. Shared site framing must reflect this distinction.",
+          "deleted": false,
+          "createdAt": "2026-11-25T12:52:59.615Z"
         }
       ],
-      "nextRuleId": 8,
+      "nextRuleId": 9,
       "questions": [
         {
           "id": 0,
@@ -1602,7 +1642,7 @@
           "id": 0,
           "text": "Keep this page separate from employment case studies and use no employer, client, workplace, or internal work examples.",
           "deleted": false,
-          "createdAt": "2026-11-24T20:09:53.17Z"
+          "createdAt": "2026-11-24T20:09:53.170Z"
         },
         {
           "id": 1,
@@ -1658,6 +1698,847 @@
         "spec/attachments/PORT-022/ast-research-site-navigation.md"
       ],
       "estimate": 5
+    },
+    "PORT-023": {
+      "id": "PORT-023",
+      "title": "Apply portfolio UX consistency recommendations",
+      "type": "task",
+      "status": "implementing",
+      "createdAt": "2026-11-24T20:42:38.438Z",
+      "updatedAt": "2026-11-24T20:42:50.243Z",
+      "description": "Update shared navigation and page labels, improve discovery of the development record, unify accent colors, add leadership-page section navigation, add article return links, reduce resume competency duplication, and label local evidence accurately. Preserve the current visible responsive navigation; do not add a hamburger menu. Keep existing uncommitted blog and independent-study work intact.",
+      "epic": "leadership-portfolio",
+      "children": [],
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-24T20:42:49.911Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-24T20:42:50.243Z"
+        }
+      ]
+    },
+    "PORT-024": {
+      "id": "PORT-024",
+      "title": "AI enablement positioning and playbook",
+      "type": "story",
+      "status": "testing",
+      "createdAt": "2026-11-24T20:55:15.556Z",
+      "updatedAt": "2026-11-24T20:59:27.487Z",
+      "description": "Make AI enablement and adoption manager fit immediately visible on the homepage, add a dedicated playbook grounded in Brandon's verified experience and clearly labeled sample measurement approach, and link the existing AI-assisted quality case study without inventing organization-wide outcomes.",
+      "epic": "leadership-portfolio",
+      "children": [],
+      "userStory": {
+        "role": "hiring leader evaluating an AI enablement manager candidate",
+        "action": "see the candidate's relevant adoption leadership experience and practical approach quickly",
+        "benefit": "assess role fit using clear evidence and honest limits"
+      },
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-24T20:55:23.069Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-24T20:59:27.487Z"
+        }
+      ],
+      "rules": [
+        {
+          "id": 0,
+          "text": "The homepage keeps the existing people-first headline, adds an explicit AI Enablement & Adoption Leader descriptor and brief supporting copy, and links to deeper evidence without repeating full case details.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:55:29.424Z"
+        },
+        {
+          "id": 1,
+          "text": "A dedicated AI enablement playbook distinguishes verified work from proposed methods and sample measures; it makes no unsupported enterprise-wide adoption or productivity claims.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:55:29.527Z"
+        }
+      ],
+      "nextRuleId": 2,
+      "examples": [
+        {
+          "id": 0,
+          "text": "A hiring reader sees the role fit on the homepage, opens the playbook for a practical adoption approach, and can follow through to the AI-assisted quality engineering case study.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:55:29.636Z"
+        },
+        {
+          "id": 1,
+          "text": "A sample measurement framework is labeled as an illustrative proposal, while the case-study claim is explicitly limited to direct-report team use and unmeasured broader experimentation.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:55:29.731Z"
+        }
+      ],
+      "nextExampleId": 2,
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "UI/UX: Preserve the compact people-first homepage and place detailed adoption content on a directly addressable linked page.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:58:29.970Z"
+        },
+        {
+          "id": 1,
+          "text": "Implementation: Render the static page through the existing shared HTML shell and copy it in the static build; update sitemap and llms.txt.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:58:30.061Z"
+        }
+      ],
+      "nextNoteId": 2,
+      "attachments": [
+        "spec/attachments/PORT-024/ast-research-build-route.md"
+      ]
+    },
+    "PORT-025": {
+      "id": "PORT-025",
+      "title": "Add role-specific leadership perspectives",
+      "type": "story",
+      "status": "specifying",
+      "createdAt": "2026-11-24T20:56:01.283Z",
+      "updatedAt": "2026-11-24T20:57:34.016Z",
+      "description": "Add one concise section on the existing Leadership page explaining how Brandon would think about three role lenses: AI enablement and developer experience; quality engineering; and AI solutions / enterprise technology ownership. Use the saved Cardinal Health Manager, AI Solutions Owner and Airbnb Manager, Engineering, Dev AI postings as market context, alongside existing verified portfolio evidence. Frame as proposed leadership perspective, not completed work or a detailed methodology. Preserve the people-centered principle, build on useful current practices, surface human judgment, and explain how outcomes and reclaimed employee time could be evaluated. Improve discoverability of already documented production follow-through in the acquisition case study only if the existing narrative supports it. No new navigation item, employer names, invented experience, quantitative claims, detailed implementation workflow, or changes to unrelated unfinished work. Deliver locally for Brandon's review before any requested testing or commit.",
+      "epic": "leadership-portfolio",
+      "children": [
+        "PORT-026"
+      ],
+      "userStory": {
+        "role": "portfolio visitor evaluating a leadership candidate",
+        "action": "understand how Brandon would think across AI enablement, quality engineering, and AI solutions leadership",
+        "benefit": "I can assess role-relevant judgment grounded in people-centered principles and verified experience"
+      },
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-24T20:56:19.286Z"
+        }
+      ],
+      "rules": [
+        {
+          "id": 0,
+          "text": "Keep the three role lenses concise and on the existing Leadership page; do not add a new navigation item or employer-specific page.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:56:29.182Z"
+        },
+        {
+          "id": 1,
+          "text": "Label future-facing content as how Brandon would approach the role; distinguish it from documented work and outcomes.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:56:29.939Z"
+        },
+        {
+          "id": 2,
+          "text": "Center the perspectives on reducing friction for people, building on useful existing capability, and keeping consequential judgment with accountable people.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:56:30.730Z"
+        },
+        {
+          "id": 3,
+          "text": "Discuss evaluating outcomes, operating costs, and how employees use reclaimed time as proposed leadership intent; do not imply a real dashboard, measured savings, or completed implementation.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:56:31.525Z"
+        },
+        {
+          "id": 4,
+          "text": "Use only supported portfolio facts; do not claim scaled developer infrastructure, formal Staff+ coaching, healthcare domain experience, or other unverified qualifications.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:56:32.355Z"
+        }
+      ],
+      "nextRuleId": 5,
+      "examples": [
+        {
+          "id": 0,
+          "text": "A visitor can scan a short AI enablement section and understand that the starting point is employee friction and useful existing practices, with developer experience and learning in view.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:56:33.125Z"
+        },
+        {
+          "id": 1,
+          "text": "A visitor can scan a quality engineering section and see AI framed as widening test considerations while people remain accountable for what evidence means and whether a release is ready.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:56:33.923Z"
+        },
+        {
+          "id": 2,
+          "text": "A visitor can scan an AI solutions leadership section and see attention to opportunity selection, incubation choices, delivery through sustainment, and honest outcome/cost learning without step-by-step instructions.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:56:34.712Z"
+        },
+        {
+          "id": 3,
+          "text": "When the acquisition case study is referenced, the documented Day 1 delivery and restoration before Day 2 remain factually qualified and are not inflated into measured savings or broad adoption claims.",
+          "deleted": false,
+          "createdAt": "2026-11-24T20:56:35.487Z"
+        }
+      ],
+      "nextExampleId": 4,
+      "estimate": 5
+    },
+    "PORT-026": {
+      "id": "PORT-026",
+      "title": "Implement role perspectives locally",
+      "type": "task",
+      "status": "done",
+      "createdAt": "2026-11-24T21:01:51.596Z",
+      "updatedAt": "2026-11-24T21:05:06.049Z",
+      "description": "Implement the PORT-025 role-specific leadership content in public/leadership.html and its visual styling in public/site.css. Preserve the main site navigation and current design system; keep the role lenses concise, proposed, people-centered, and evidence-bounded. Build the site for local review. Do not run tests or commit until the user approves.",
+      "epic": "leadership-portfolio",
+      "parent": "PORT-025",
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-24T21:01:59.037Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-24T21:02:02.164Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-24T21:05:01.551Z"
+        },
+        {
+          "state": "done",
+          "timestamp": "2026-11-24T21:05:06.049Z"
+        }
+      ]
+    },
+    "PORT-027": {
+      "id": "PORT-027",
+      "title": "Make portfolio evidence easier for recruiters to scan",
+      "type": "story",
+      "status": "specifying",
+      "createdAt": "2026-11-25T01:46:44.543Z",
+      "updatedAt": "2026-11-25T01:48:25.426Z",
+      "description": "Help a recruiter quickly understand Brandon's role, scope, supported outcomes, and how to contact him. Add concise, evidence-grounded summaries to all three case studies, surface the existing contact form from the homepage without displacing the resume CTA, and verify the online resume matches the downloadable PDF. Preserve all uncertainty labels and qualitative-only outcomes. Do not invent metrics or alter the canonical resume source.",
+      "epic": "leadership-portfolio",
+      "parent": "PORT-020",
+      "userStory": {
+        "role": "HR recruiter considering Brandon for a leadership role",
+        "action": "quickly understand his fit, scope, credible outcomes, and next contact step",
+        "benefit": "I can decide whether to have a conversation without reading the entire site first"
+      },
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-25T01:46:51.710Z"
+        }
+      ],
+      "rules": [
+        {
+          "id": 0,
+          "text": "Keep the homepage's AI Enablement & Adoption Leader positioning and resume download as the primary action; add contact access as a quiet text link to the existing form.",
+          "deleted": false,
+          "createdAt": "2026-11-25T01:47:31.953Z"
+        },
+        {
+          "id": 1,
+          "text": "At-a-glance case-study details must summarize each documented project accurately, including role, team/delivery scope where known, and strongest supported outcome.",
+          "deleted": false,
+          "createdAt": "2026-11-25T01:47:32.972Z"
+        },
+        {
+          "id": 2,
+          "text": "Preserve caveats for personal estimates, qualitative observations, manual execution, and unmeasured broader adoption; do not invent quantified impact.",
+          "deleted": false,
+          "createdAt": "2026-11-25T01:47:33.823Z"
+        },
+        {
+          "id": 3,
+          "text": "The online resume and downloadable website PDF must agree on material role titles, dates, education, skills, and contact links; do not alter the canonical source resume.",
+          "deleted": false,
+          "createdAt": "2026-11-25T01:47:34.586Z"
+        }
+      ],
+      "nextRuleId": 4,
+      "examples": [
+        {
+          "id": 0,
+          "text": "A recruiter on the homepage sees AI Enablement & Adoption Leader, can download the resume, and can open the contact form without searching the footer.",
+          "deleted": false,
+          "createdAt": "2026-11-25T01:47:35.435Z"
+        },
+        {
+          "id": 1,
+          "text": "A recruiter scanning the acquisition case sees the three-month delivery, five developers plus a technical lead, Day 1 delivery, and dashboard recovery before Day 2, with the audience estimate labeled personal.",
+          "deleted": false,
+          "createdAt": "2026-11-25T01:47:36.223Z"
+        },
+        {
+          "id": 2,
+          "text": "A recruiter scanning the quality engineering case sees shared practice adopted by direct reports, Playwright used manually, and broader adoption explicitly unmeasured.",
+          "deleted": false,
+          "createdAt": "2026-11-25T01:47:37.061Z"
+        },
+        {
+          "id": 3,
+          "text": "A recruiter scanning the self-service case sees the four-developer-and-technical-lead team, production delivery, and qualitative outcome language without a fabricated savings or adoption percentage.",
+          "deleted": false,
+          "createdAt": "2026-11-25T01:47:37.849Z"
+        },
+        {
+          "id": 4,
+          "text": "When the online resume and PDF are compared, their factual content and public contact paths agree; the canonical source resume remains unchanged.",
+          "deleted": false,
+          "createdAt": "2026-11-25T01:47:38.720Z"
+        }
+      ],
+      "nextExampleId": 5,
+      "estimate": 5
+    },
+    "PORT-028": {
+      "id": "PORT-028",
+      "title": "Implement recruiter scan improvements locally",
+      "type": "task",
+      "status": "done",
+      "createdAt": "2026-11-25T01:48:32.144Z",
+      "updatedAt": "2026-11-25T01:59:10.365Z",
+      "description": "Implement PORT-027: add concise evidence-qualified quick-scan summaries to each case study, add a quiet contact-form text link beside existing homepage actions, and compare the web resume with the downloadable website PDF. Preserve unsupported-metric caveats, do not alter the canonical source resume, build for local review, and defer test suites and commit until Brandon approves.",
+      "epic": "leadership-portfolio",
+      "children": [],
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-25T01:48:36.318Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-25T01:48:36.909Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-25T01:59:09.983Z"
+        },
+        {
+          "state": "done",
+          "timestamp": "2026-11-25T01:59:10.365Z"
+        }
+      ]
+    },
+    "PORT-030": {
+      "id": "PORT-030",
+      "title": "Clarify hiring-manager fit, scope, and decision ownership",
+      "type": "story",
+      "status": "specifying",
+      "createdAt": "2026-11-25T02:06:05.662Z",
+      "updatedAt": "2026-11-25T02:07:10.275Z",
+      "description": "Align the resume summary with the existing AI Enablement & Adoption primary positioning; provide a verified leadership-scope snapshot; make individual leadership decisions and role relevance easier to identify in all three case studies; and complete the clearly proposed enablement scorecard with operating cost and employee use of reclaimed time. Preserve factual boundaries and qualitative-only outcomes.",
+      "epic": "leadership-portfolio",
+      "children": [
+        "PORT-031"
+      ],
+      "userStory": {
+        "role": "hiring manager evaluating Brandon for an AI enablement or technology leadership role",
+        "action": "understand his leadership scope, personal decisions, and relevant outcomes",
+        "benefit": "I can judge role fit and initiate a focused conversation with confidence"
+      },
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-25T02:06:12.635Z"
+        }
+      ],
+      "rules": [
+        {
+          "id": 0,
+          "text": "Keep AI Enablement & Adoption as the primary role positioning already used on the homepage; describe quality engineering and enterprise solution delivery as supporting experience, not competing primary titles.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:06:27.439Z"
+        },
+        {
+          "id": 1,
+          "text": "State only verified leadership scope: current technical-lead/developer management and functional budgets; prior five-person QA team; project team sizes from the supplied case narratives. Do not invent a current team count or imply ownership of product priorities.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:06:28.376Z"
+        },
+        {
+          "id": 2,
+          "text": "For each case, distinguish Brandon's decisions and contributions from work owned by the technical lead, team, business, Infrastructure, or Information Security.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:06:29.367Z"
+        },
+        {
+          "id": 3,
+          "text": "Add concise role-relevance takeaways without marketing language or unsupported results; preserve personal estimates, qualitative observations, and unmeasured-adoption caveats.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:06:30.266Z"
+        },
+        {
+          "id": 4,
+          "text": "Keep the scorecard explicitly proposed and not historical; include operating costs and employee use of regained time, and distinguish capacity from realized financial savings.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:06:31.256Z"
+        },
+        {
+          "id": 5,
+          "text": "The downloadable resume must remain aligned with the online resume; the canonical source resume stays unchanged.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:06:32.266Z"
+        }
+      ],
+      "nextRuleId": 6,
+      "examples": [
+        {
+          "id": 0,
+          "text": "A hiring manager sees the online resume's AI enablement positioning and a concise leadership-scope statement, while product-priority ownership is attributed to the director.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:06:33.167Z"
+        },
+        {
+          "id": 1,
+          "text": "A hiring manager can identify Brandon's delivery and incident-response role in the acquisition project separately from the technical lead and developers, with the estimated audience still marked as personal.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:06:33.979Z"
+        },
+        {
+          "id": 2,
+          "text": "A hiring manager can see that Brandon created and embedded shared quality instructions, while the technical lead reviewed contributions and Playwright execution remained manual.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:06:34.856Z"
+        },
+        {
+          "id": 3,
+          "text": "A hiring manager can see Brandon's architecture and interface contributions to the employee portal while understanding that business requirements were set outside his team.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:06:35.730Z"
+        },
+        {
+          "id": 4,
+          "text": "The proposed scorecard lets a reader consider workflow outcomes, operating costs, and how people use time regained, without presenting any of these measures as historical results.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:06:36.685Z"
+        }
+      ],
+      "nextExampleId": 5,
+      "estimate": 5
+    },
+    "PORT-031": {
+      "id": "PORT-031",
+      "title": "Implement hiring-manager clarity updates locally",
+      "type": "task",
+      "status": "validating",
+      "createdAt": "2026-11-25T02:07:10.417Z",
+      "updatedAt": "2026-11-26T05:12:28.415Z",
+      "description": "Implement PORT-030 in the online resume, case studies, AI enablement scorecard, styles, and downloaded website resume. Keep the homepage's AI Enablement & Adoption positioning, use only verified leadership scope, attribute personal decisions accurately, and label proposed measures and evidence limits. Build locally for review; do not run tests or commit until Brandon approves.",
+      "epic": "leadership-portfolio",
+      "parent": "PORT-030",
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-25T02:07:14.350Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-25T02:07:14.843Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-26T05:12:28.415Z"
+        }
+      ]
+    },
+    "PORT-032": {
+      "id": "PORT-032",
+      "title": "Create a dedicated AI leadership perspective page",
+      "type": "story",
+      "status": "specifying",
+      "createdAt": "2026-11-25T02:18:15.843Z",
+      "updatedAt": "2026-11-25T02:43:28.004Z",
+      "description": "Create a detailed standalone page explaining Brandon's people-centered perspective on AI and how he would operate: build on useful existing work, identify human friction, assign appropriate boundaries to automation, connect context with accountable ownership, include human review and escalation for consequential work, assess readiness and risk, and measure costs, outcomes, and how reclaimed time is used. Keep it conceptual rather than publishing reusable prompts, proprietary system architecture, or step-by-step implementation procedures. Link it clearly from the AI Enablement page and include the route in site discovery metadata.",
+      "epic": "leadership-portfolio",
+      "children": [
+        "PORT-033",
+        "PORT-034"
+      ],
+      "userStory": {
+        "role": "portfolio visitor or hiring leader",
+        "action": "read a detailed standalone statement of how Brandon thinks about AI and leads its use",
+        "benefit": "I can assess his people-centered judgment, operating principles, and tradeoffs without being given his proprietary implementation procedures"
+      },
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-25T02:18:16.801Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-25T02:20:49.504Z"
+        },
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-25T02:37:03.004Z"
+        }
+      ],
+      "rules": [
+        {
+          "id": 0,
+          "text": "Frame prompts, reusable skills, agents, workflows, and multi-agent systems as concepts through a leadership lens, not as instructional tutorials.",
+          "deleted": true,
+          "createdAt": "2026-11-25T02:18:28.244Z",
+          "deletedAt": "2026-11-25T02:37:25.030Z"
+        },
+        {
+          "id": 1,
+          "text": "Center the perspective on reducing friction for people, building on useful existing work, preserving human judgment for consequential decisions, and weighing value against cost, coordination, and oversight.",
+          "deleted": true,
+          "createdAt": "2026-11-25T02:18:28.360Z",
+          "deletedAt": "2026-11-25T02:38:31.472Z"
+        },
+        {
+          "id": 2,
+          "text": "Do not publish reusable prompts, skill contents, agent designs, orchestration diagrams, exact approval flows, or step-by-step implementation details.",
+          "deleted": true,
+          "createdAt": "2026-11-25T02:18:28.478Z",
+          "deletedAt": "2026-11-25T02:38:31.371Z"
+        },
+        {
+          "id": 3,
+          "text": "Distinguish demonstrated experience from forward-looking leadership perspective; do not imply unverified outcomes.",
+          "deleted": true,
+          "createdAt": "2026-11-25T02:18:28.624Z",
+          "deletedAt": "2026-11-25T02:38:31.269Z"
+        },
+        {
+          "id": 4,
+          "text": "Create a detailed standalone page at a direct URL, linked clearly from the AI Enablement page and included in the site build and discovery metadata.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:37:25.743Z"
+        },
+        {
+          "id": 5,
+          "text": "Explain the people-centered operating perspective: start from real employee and customer friction, learn what existing systems and practices do well, and extend useful knowledge rather than replacing it by default.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:37:25.841Z"
+        },
+        {
+          "id": 6,
+          "text": "Describe AI concepts, context, delegation, oversight, improvement selection, adoption readiness, and measurement as leadership reasoning. Explain human accountability for consequential decisions and how regained capacity should be understood.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:37:25.950Z"
+        },
+        {
+          "id": 7,
+          "text": "Keep the page conceptual and evidence-honest. Do not publish reusable prompts, exact agent designs, detailed orchestration, employer-specific processes, or step-by-step operating procedures. Clearly distinguish verified experience from proposed approach.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:37:26.052Z"
+        },
+        {
+          "id": 8,
+          "text": "Show how the shared people-centered philosophy shapes questions for AI enablement, quality engineering, and enterprise AI solutions leadership, with each lens framed as a proposed approach rather than an unsupported accomplishment.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:43:27.896Z"
+        }
+      ],
+      "nextRuleId": 9,
+      "examples": [
+        {
+          "id": 0,
+          "text": "A visitor can scan short concept summaries and understand Brandon values bounded delegation, clear accountability, useful context, and measurable benefit to people and the organization.",
+          "deleted": true,
+          "createdAt": "2026-11-25T02:18:28.745Z",
+          "deletedAt": "2026-11-25T02:37:25.450Z"
+        },
+        {
+          "id": 1,
+          "text": "A visitor sees that multiple agents add coordination and cost, so their use depends on whether distinct responsibilities improve the outcome.",
+          "deleted": true,
+          "createdAt": "2026-11-25T02:18:28.871Z",
+          "deletedAt": "2026-11-25T02:38:31.685Z"
+        },
+        {
+          "id": 2,
+          "text": "The section lives on the existing AI Enablement page and follows the same shared site navigation and visual style without adding another navigation destination.",
+          "deleted": true,
+          "createdAt": "2026-11-25T02:18:28.997Z",
+          "deletedAt": "2026-11-25T02:38:31.575Z"
+        },
+        {
+          "id": 3,
+          "text": "A visitor can open the perspective page from AI Enablement and read a complete, well-structured explanation of how Brandon would approach AI in a people-centered organization.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:37:26.153Z"
+        },
+        {
+          "id": 4,
+          "text": "A visitor understands how useful current systems and team knowledge can inform change, while work is routed to appropriate context and accountable people at a high level.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:37:26.263Z"
+        },
+        {
+          "id": 5,
+          "text": "A visitor sees that human review, safeguards, adoption, cost, workflow outcomes, and use of reclaimed employee capacity belong in the leadership discussion, without seeing a deployment recipe or unsupported historical metrics.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:37:26.370Z"
+        },
+        {
+          "id": 6,
+          "text": "A hiring reader can compare Brandon's priorities across AI enablement, quality engineering, and AI solutions leadership while seeing the same attention to people, accountable judgment, useful outcomes, and honest evidence.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:43:28.004Z"
+        }
+      ],
+      "nextExampleId": 7,
+      "estimate": 3,
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "UI/UX: Add a concise responsive section to the existing AI Enablement page, using existing page components and no new route.",
+          "deleted": true,
+          "createdAt": "2026-11-25T02:20:24.776Z",
+          "deletedAt": "2026-11-25T02:38:31.803Z"
+        },
+        {
+          "id": 1,
+          "text": "UI/UX: Use a standalone responsive page with the shared site shell and editorial visual system; link it from AI Enablement and the footer without adding another main-navigation item.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:37:26.487Z"
+        },
+        {
+          "id": 2,
+          "text": "Implementation: Include the new HTML route in scripts/build.mjs, public/sitemap.xml, and public/llms.txt.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:37:26.607Z"
+        }
+      ],
+      "nextNoteId": 3,
+      "attachments": [
+        "spec/attachments/PORT-032/ast-research-ai-enablement-page-build.md"
+      ]
+    },
+    "PORT-033": {
+      "id": "PORT-033",
+      "title": "Implement AI leadership perspective locally",
+      "type": "task",
+      "status": "done",
+      "createdAt": "2026-11-25T02:21:06.115Z",
+      "updatedAt": "2026-11-25T02:22:56.247Z",
+      "description": "Add the approved high-level perspective to the existing AI Enablement page: short views of prompts, reusable skills, agents, workflows, and multi-agent systems, plus concise people-centered operating principles. Keep implementation mechanics and reusable procedures private. Preserve the existing route, shared shell, and responsive design. Build for local review; defer test suites and commit until Brandon approves.",
+      "epic": "leadership-portfolio",
+      "parent": "PORT-032",
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-25T02:21:11.784Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-25T02:21:12.192Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-25T02:22:55.903Z"
+        },
+        {
+          "state": "done",
+          "timestamp": "2026-11-25T02:22:56.247Z"
+        }
+      ]
+    },
+    "PORT-034": {
+      "id": "PORT-034",
+      "title": "Build standalone AI leadership perspective page",
+      "type": "task",
+      "status": "done",
+      "createdAt": "2026-11-25T02:38:31.906Z",
+      "updatedAt": "2026-11-25T02:45:42.026Z",
+      "description": "Move the AI leadership perspective off the AI Enablement page and build it as a detailed standalone page. Explain Brandon's people-first operating philosophy, building on current systems and staff knowledge, where AI concepts fit, contextual coordination, boundaries and approvals, safeguards, employee adoption, improvement intake and prioritization, and evidence/cost/reclaimed-capacity measures. Add contextual links, shared footer link, static build route, sitemap, and llms metadata. Keep detailed implementation designs private. Build locally; defer test suites and commit until Brandon approves.",
+      "epic": "leadership-portfolio",
+      "parent": "PORT-032",
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-25T02:38:32.033Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-25T02:38:32.406Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-25T02:43:28.755Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-25T02:45:41.665Z"
+        },
+        {
+          "state": "done",
+          "timestamp": "2026-11-25T02:45:42.026Z"
+        }
+      ],
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "UI/UX: Keep the perspective page editorial and scannable with in-page anchors and role-specific sections that adapt to narrow screens.",
+          "deleted": false,
+          "createdAt": "2026-11-25T02:43:28.103Z"
+        }
+      ],
+      "nextNoteId": 1
+    },
+    "PORT-035": {
+      "id": "PORT-035",
+      "title": "Protect contact form with Cloudflare Turnstile",
+      "type": "story",
+      "status": "validating",
+      "createdAt": "2026-11-26T05:22:16.331Z",
+      "updatedAt": "2026-11-26T12:28:56.746Z",
+      "description": "Require a valid Cloudflare Turnstile token before the portfolio contact handler sends email, while retaining the current honeypot and graceful user messaging.",
+      "epic": "engineering-evidence",
+      "children": [],
+      "userStory": {
+        "role": "visitor to Brandon's portfolio",
+        "action": "complete a bot check before sending a contact message",
+        "benefit": "automated spam is less likely to reach Brandon's inbox"
+      },
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-26T05:22:34.588Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-26T06:11:58.790Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-26T12:28:56.318Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-26T12:28:56.746Z"
+        }
+      ],
+      "rules": [
+        {
+          "id": 0,
+          "text": "The contact endpoint must require a non-empty Turnstile response and validate it with Cloudflare Siteverify before requesting Gmail delivery; verification fails closed if configuration is missing or invalid.",
+          "deleted": false,
+          "createdAt": "2026-11-26T05:22:41.739Z"
+        },
+        {
+          "id": 1,
+          "text": "The current honeypot remains active, and the public form explains verification or delivery errors without exposing secrets or provider details.",
+          "deleted": false,
+          "createdAt": "2026-11-26T05:22:42.995Z"
+        }
+      ],
+      "nextRuleId": 2,
+      "examples": [
+        {
+          "id": 0,
+          "text": "A visitor completes the Turnstile check and valid contact fields; the server verifies the token for the expected hostname, then sends the message through Gmail.",
+          "deleted": true,
+          "createdAt": "2026-11-26T05:22:44.424Z",
+          "deletedAt": "2026-11-26T05:23:04.350Z"
+        },
+        {
+          "id": 1,
+          "text": "A missing, invalid, expired, or wrong-host token is rejected before Google OAuth or Gmail is called; a honeypot submission still receives the generic success response without delivery.",
+          "deleted": true,
+          "createdAt": "2026-11-26T05:22:45.524Z",
+          "deletedAt": "2026-11-26T05:27:55.561Z"
+        },
+        {
+          "id": 2,
+          "text": "A visitor submits a valid contact message after completing the bot check and sees a confirmation when the message is accepted.",
+          "deleted": false,
+          "createdAt": "2026-11-26T05:23:08.000Z"
+        },
+        {
+          "id": 3,
+          "text": "A visitor who skips or fails the bot check is asked to retry; a bot that completes the hidden decoy field sees a generic confirmation, but no email is sent.",
+          "deleted": false,
+          "createdAt": "2026-11-26T05:23:09.306Z"
+        },
+        {
+          "id": 4,
+          "text": "A visitor whose bot check expires is asked to complete it again, and the contact message is not delivered.",
+          "deleted": false,
+          "createdAt": "2026-11-26T05:27:56.779Z"
+        }
+      ],
+      "nextExampleId": 5,
+      "estimate": 3,
+      "architectureNotes": [
+        {
+          "id": 0,
+          "text": "The contact page receives the public Turnstile site key at static build time. The Pages Function reads the encrypted secret from its runtime environment and calls Cloudflare Siteverify before any OAuth or Gmail request; hostname validation binds the assertion to the incoming request host. Unit tests mock Siteverify and assert missing, rejected, or host-mismatched assertions prevent downstream provider calls.",
+          "deleted": false,
+          "createdAt": "2026-11-26T06:10:31.063Z"
+        }
+      ],
+      "nextNoteId": 1,
+      "attachments": [
+        "spec/attachments/PORT-035/ast-research-turnstile-contact.md"
+      ]
+    },
+    "PORT-036": {
+      "id": "PORT-036",
+      "title": "Resume top-level expand/collapse control",
+      "type": "bug",
+      "status": "done",
+      "createdAt": "2026-11-26T12:22:47.374Z",
+      "updatedAt": "2026-11-26T12:29:06.359Z",
+      "description": "The online resume's Expand all control does not reliably affect all detail sections and is positioned below the resume heading. Put the control at the top level of the resume and ensure one action opens or closes all expandable sections.",
+      "epic": "leadership-portfolio",
+      "children": [],
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-26T12:22:51.898Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-26T12:24:30.427Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-26T12:26:17.036Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-26T12:28:44.189Z"
+        },
+        {
+          "state": "done",
+          "timestamp": "2026-11-26T12:29:06.359Z"
+        }
+      ],
+      "userStory": {
+        "role": "resume reader",
+        "action": "expand or collapse all resume details from a control at the top",
+        "benefit": "see the full experience without scrolling to find the control"
+      },
+      "rules": [
+        {
+          "id": 0,
+          "text": "The expand and collapse controls appear at the top of the resume content, before the identity header and all sections.",
+          "deleted": false,
+          "createdAt": "2026-11-26T12:22:58.336Z"
+        },
+        {
+          "id": 1,
+          "text": "Expand all opens every expandable detail section, including later sections below the initial viewport; Collapse all closes them all.",
+          "deleted": false,
+          "createdAt": "2026-11-26T12:22:58.436Z"
+        }
+      ],
+      "nextRuleId": 2,
+      "examples": [
+        {
+          "id": 0,
+          "text": "At page load, all detail disclosures are collapsed. Selecting Expand all opens every disclosure across roles and skills; selecting Collapse all closes every disclosure.",
+          "deleted": false,
+          "createdAt": "2026-11-26T12:22:58.550Z"
+        }
+      ],
+      "nextExampleId": 1
     }
   },
   "states": {
@@ -1667,15 +2548,25 @@
       "PORT-009"
     ],
     "specifying": [
-      "PORT-021"
+      "PORT-021",
+      "PORT-025",
+      "PORT-027",
+      "PORT-030",
+      "PORT-032"
     ],
     "testing": [
-      "PORT-010"
+      "PORT-010",
+      "PORT-024",
+      "PORT-020"
     ],
     "implementing": [
-      "PORT-022"
+      "PORT-022",
+      "PORT-023"
     ],
-    "validating": [],
+    "validating": [
+      "PORT-031",
+      "PORT-035"
+    ],
     "done": [
       "PORT-002",
       "PORT-003",
@@ -1693,11 +2584,15 @@
       "PORT-017",
       "PORT-018",
       "PORT-019",
-      "PORT-020"
+      "PORT-026",
+      "PORT-028",
+      "PORT-033",
+      "PORT-034",
+      "PORT-036"
     ],
     "blocked": []
   },
   "prefixCounters": {
-    "PORT": 22
+    "PORT": 36
   }
 }

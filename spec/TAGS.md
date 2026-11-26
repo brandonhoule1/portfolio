@@ -41,6 +41,10 @@ Platform-specific tags
 
 Implementation priority tags
 
+| Tag | Description |
+|-----|-------------|
+| `@critical` | High-priority requirement or risk that should be addressed promptly. |
+
 ### Status Tags
 
 Development status tags
@@ -60,4 +64,4 @@ Automation integration tags
 
 ---
 
-_Last updated: 2026-11-23T18:22:22.165Z_
+_Last updated: 2026-11-26T12:30:05.048Z_

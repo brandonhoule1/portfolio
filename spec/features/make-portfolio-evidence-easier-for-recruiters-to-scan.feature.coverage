@@ -1,0 +1,32 @@
+{
+  "scenarios": [
+    {
+      "name": "Recruiter finds the resume and contact path from the homepage",
+      "testMappings": []
+    },
+    {
+      "name": "Recruiter scans the acquisition case at a glance",
+      "testMappings": []
+    },
+    {
+      "name": "Recruiter scans the quality engineering case at a glance",
+      "testMappings": []
+    },
+    {
+      "name": "Recruiter scans the self-service case at a glance",
+      "testMappings": []
+    },
+    {
+      "name": "Published resume remains consistent across formats",
+      "testMappings": []
+    }
+  ],
+  "stats": {
+    "totalScenarios": 5,
+    "coveredScenarios": 0,
+    "coveragePercent": 0,
+    "testFiles": [],
+    "implFiles": [],
+    "totalLinesCovered": 0
+  }
+}

@@ -24,9 +24,24 @@ for (const [name, active, marker, fragment] of [
 ]) {
   let page = fs.readFileSync(path.join(root, 'public', name), 'utf8');
   if (marker) page = page.replace(marker, fs.readFileSync(path.join(root, 'public', fragment), 'utf8'));
-  fs.writeFileSync(path.join(out, name), applySiteShell(page, active));
+  fs.writeFileSync(path.join(out, name), name === 'resume.html' ? page : applySiteShell(page, active));
 }
-const contactPage = fs.readFileSync(path.join(root, 'public', 'contact', 'index.html'), 'utf8');
+let contactPage = fs.readFileSync(path.join(root, 'public', 'contact', 'index.html'), 'utf8');
+const turnstileSiteKey = String(process.env.TURNSTILE_SITE_KEY || '').trim();
+if (process.env.CF_PAGES && !turnstileSiteKey) {
+  throw new Error('TURNSTILE_SITE_KEY must be configured for Cloudflare Pages builds.');
+}
+if (turnstileSiteKey && !/^[A-Za-z0-9_-]{20,200}$/.test(turnstileSiteKey)) {
+  throw new Error('TURNSTILE_SITE_KEY has an invalid format.');
+}
+if (turnstileSiteKey) {
+  contactPage = contactPage
+    .replace('<!--TURNSTILE_WIDGET-->', '<div class="contact-challenge"><div class="cf-turnstile" data-sitekey="' + turnstileSiteKey + '"></div></div>')
+    .replace('</head>', '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script></head>')
+    .replace('id="contact-form" action="/api/contact" method="post"', 'id="contact-form" action="/api/contact" method="post" data-turnstile-enabled="true"');
+} else {
+  contactPage = contactPage.replace('<!--TURNSTILE_WIDGET-->', '<p class="contact-challenge-note">Bot verification is configured for the published site.</p>');
+}
 fs.mkdirSync(path.join(out, 'contact'), { recursive: true });
 fs.writeFileSync(path.join(out, 'contact', 'index.html'), applySiteShell(contactPage, 'contact'));
 const blogRoot = path.join(root, 'public', 'blog');
