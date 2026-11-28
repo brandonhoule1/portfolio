@@ -53,19 +53,15 @@ test('homepage foregrounds leadership, first 90 days, and case studies', async (
 
 test('homepage guides recruiters and hiring managers to relevant evidence', async ({ page }) => {
   await page.goto('/');
-  const recruiterGuide = page.locator('.audience-guide-row').nth(0);
-  const hiringGuide = page.locator('.audience-guide-row').nth(1);
-  await expect(page.getByRole('heading', { name: 'Are you a recruiter?' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Are you a hiring manager?' })).toBeVisible();
-  await expect(recruiterGuide.getByRole('link', { name: /Start the recruiter guide/ })).toHaveAttribute('href', '/recruiter/');
-  await expect(hiringGuide.getByRole('link', { name: /Explore my AI perspective/ })).toHaveAttribute('href', '/how-i-think-about-ai.html');
-  await expect(hiringGuide.getByRole('link', { name: 'Case studies' })).toHaveAttribute('href', '/case-studies.html');
-  await expect(hiringGuide.getByRole('link', { name: 'First 90 days' })).toHaveAttribute('href', '/first-90-days.html');
-  await expect(recruiterGuide.getByRole('link', { name: /Start the recruiter guide/ })).toHaveClass(/button/);
-  await expect(hiringGuide.getByRole('link', { name: /Explore my AI perspective/ })).toHaveClass(/button/);
+  const recruiterGuide = page.getByRole('link', { name: /Are you a recruiter\?/ });
+  const hiringGuide = page.getByRole('link', { name: /Are you a hiring manager\?/ });
+  await expect(recruiterGuide).toBeVisible();
+  await expect(hiringGuide).toBeVisible();
+  await expect(recruiterGuide).toHaveAttribute('href', '/recruiter/');
+  await expect(hiringGuide).toHaveAttribute('href', '/ai-enablement-perspectives.html');
   await page.setViewportSize({ width: 390, height: 844 });
-  await expect(recruiterGuide.getByRole('link', { name: /Start the recruiter guide/ })).toBeVisible();
-  await expect(hiringGuide.getByRole('link', { name: /Explore my AI perspective/ })).toBeVisible();
+  await expect(recruiterGuide).toBeVisible();
+  await expect(hiringGuide).toBeVisible();
 });
 
 test('recruiter follows a linear single-page path from role fit to contact', async ({ page }) => {
@@ -76,7 +72,7 @@ test('recruiter follows a linear single-page path from role fit to contact', asy
   // @step And each section before contact has a clear next link within the guide
   // @step And they can download the resume and open the contact form from the guide
   await page.goto('/');
-  await page.getByRole('link', { name: /Start the recruiter guide/ }).click();
+  await page.getByRole('link', { name: /Are you a recruiter\?/ }).click();
   await expect(page).toHaveURL(/\/recruiter\/$/);
   const stepIds = await page.locator('.recruiter-step').evaluateAll(steps => steps.map(step => step.id));
   expect(stepIds).toEqual(['role-fit', 'resume', 'evidence', 'approach', 'contact']);
@@ -84,7 +80,7 @@ test('recruiter follows a linear single-page path from role fit to contact', asy
   await expect(page.locator('#resume').getByRole('link', { name: 'View the online resume' })).toHaveAttribute('href', '/resume.html');
   await expect(page.locator('#evidence').getByRole('link', { name: /Read all three case studies/ })).toHaveAttribute('href', '/case-studies.html');
   await expect(page.locator('#approach').getByRole('link', { name: 'How I think about AI' })).toHaveAttribute('href', '/how-i-think-about-ai.html');
-  await expect(page.locator('#contact').getByRole('link', { name: /Contact Brandon/ })).toHaveAttribute('href', '/contact/');
+  await expect(page.locator('#contact').getByRole('link', { name: /Open contact form/ }).last()).toHaveAttribute('href', '/contact/');
   for (const [index, nextId] of ['resume', 'evidence', 'approach', 'contact'].entries()) {
     await expect(page.locator('.recruiter-step').nth(index).locator('.recruiter-next')).toHaveAttribute('href', `#${nextId}`);
   }
@@ -199,7 +195,7 @@ test('editorial styling uses display typography and unboxed case notes', async (
   await expect(page.locator('.case-study').first()).toHaveCSS('border-bottom-style', 'solid');
 });
 
-test('case studies and an empty blog have separate pages', async ({ page }) => {
+test('case studies and the blog review draft have separate pages', async ({ page }) => {
   // Feature: spec/features/restructure-portfolio-pages-and-correct-the-public-resume.feature
   // @step Given the site navigation is available
   await page.goto('/case-studies.html');
@@ -207,13 +203,15 @@ test('case studies and an empty blog have separate pages', async ({ page }) => {
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://brandonhoule.com/case-studies.html');
   await expect(page.locator('.case-study')).toHaveCount(3);
   await page.goto('/blog/');
-  // @step Then the blog index has its own canonical URL and no unpublished sample posts
+  // @step Then the blog index has its own canonical URL
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://brandonhoule.com/blog/');
-  await expect(page.getByText('No articles published yet.')).toBeVisible();
+  // @step And the blog index clearly labels the current article as a draft for review, not as published
+  await expect(page.getByText('DRAFT FOR REVIEW')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'AI adoption is an organizational design question' })).toHaveAttribute('href', '/blog/ai-enablement-operating-model/');
   await expect(page.locator('.blog-entry')).toHaveCount(0);
   await page.goto('/resume.html');
-  await expect(page.locator('.resume-contact').getByRole('link', { name: 'Contact form' })).toHaveAttribute('href', '/contact/');
-  await expect(page.locator('.resume-contact').getByRole('link', { name: 'brandonhoule.com' })).toHaveAttribute('href', 'https://brandonhoule.com');
+  await expect(page.locator('.resume-contact').getByRole('link', { name: 'Contact form' })).toHaveCount(0);
+  await expect(page.locator('.resume-contact')).not.toContainText('brandonhoule.com');
   await expect(page.locator('.resume-contact').getByRole('link', { name: 'linkedin.com/in/brandon-houle' })).toHaveAttribute('href', 'https://www.linkedin.com/in/brandon-houle');
   await expect(page.getByRole('heading', { name: /Manager, Applied Automation and AgentOps/ })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Download resume PDF' })).toHaveAttribute('href', '/downloads/Brandon-Houle-Resume.pdf');
@@ -233,12 +231,12 @@ test('leadership page presents the governance starter kit and broader models', a
   await expect(page.locator('.model-list details')).toHaveCount(0);
 });
 
-test('resume page displays the corrected public contact details', async ({ page }) => {
+test('resume page omits the contact form and presents professional resume links', async ({ page }) => {
   await page.goto('/resume.html');
   const contact = page.locator('.resume-contact');
   await expect(contact).not.toContainText('candidatesnet.com');
-  await expect(contact).toContainText('Contact form');
-  await expect(contact).toContainText('brandonhoule.com');
+  await expect(contact).not.toContainText('Contact form');
+  await expect(contact).not.toContainText('brandonhoule.com');
   await expect(contact).toContainText('linkedin.com/in/brandon-houle');
 });
 

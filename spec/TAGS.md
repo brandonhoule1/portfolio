@@ -26,8 +26,10 @@ Functional area tags
 | Tag | Description |
 |-----|-------------|
 | `@port-002` | Requirement traceability tag for PORT-002. |
+| `@port-037` | Requirement traceability tag for PORT-037. |
 | `@quality` | Quality evidence, test execution, and deployment gating. |
 | `@requirements` | Public requirements and acceptance criteria experience. |
+| `@security` | Security headers, request boundaries, and abuse protection. |
 
 ### Technical Tags
 
@@ -64,4 +66,4 @@ Automation integration tags
 
 ---
 
-_Last updated: 2026-11-26T12:30:05.048Z_
+_Last updated: 2026-11-27T01:04:54.211Z_

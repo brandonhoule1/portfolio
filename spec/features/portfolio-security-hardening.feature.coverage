@@ -1,0 +1,75 @@
+{
+  "scenarios": [
+    {
+      "name": "Invalid contact requests are rejected before delivery",
+      "testMappings": [
+        {
+          "file": "tests/unit/contact.test.mjs",
+          "lines": "222-300",
+          "implMappings": [
+            {
+              "file": "functions/api/contact.js",
+              "lines": [
+                117,
+                121,
+                129,
+                134
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "A valid contact request remains usable at the body size limit",
+      "testMappings": [
+        {
+          "file": "tests/unit/contact.test.mjs",
+          "lines": "301-345",
+          "implMappings": [
+            {
+              "file": "functions/api/contact.js",
+              "lines": [
+                69,
+                85,
+                134
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Contact responses include security headers and safe messages",
+      "testMappings": [
+        {
+          "file": "tests/unit/contact.test.mjs",
+          "lines": "55-371",
+          "implMappings": [
+            {
+              "file": "functions/api/contact.js",
+              "lines": [
+                1,
+                14,
+                117,
+                156
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "totalScenarios": 3,
+    "coveredScenarios": 3,
+    "coveragePercent": 100,
+    "testFiles": [
+      "tests/unit/contact.test.mjs"
+    ],
+    "implFiles": [
+      "functions/api/contact.js"
+    ],
+    "totalLinesCovered": 452
+  }
+}

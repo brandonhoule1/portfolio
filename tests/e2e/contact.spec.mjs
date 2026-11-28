@@ -1,13 +1,19 @@
 import { test, expect } from '@playwright/test';
 
 // Feature: spec/features/protect-contact-form-with-cloudflare-turnstile.feature
-test('contact page renders Turnstile and blocks submission without a challenge response', async ({ page }) => {
+test('contact page handles configured Turnstile and the local setup note', async ({ page }) => {
   await page.route('https://challenges.cloudflare.com/turnstile/v0/api.js', route => route.fulfill({ status: 200, body: '' }));
   // @step Given the visitor has not completed the bot check or its verification has expired
   await page.goto('/contact/');
 
   const challenge = page.locator('.cf-turnstile');
   await expect(page.locator('#contact-form')).toBeVisible();
+  if (!process.env.TURNSTILE_SITE_KEY?.trim()) {
+    await expect(page.locator('.contact-challenge-note')).toHaveText('Bot verification is configured for the published site.');
+    await expect(challenge).toHaveCount(0);
+    await expect(page.locator('script[src="https://challenges.cloudflare.com/turnstile/v0/api.js"]')).toHaveCount(0);
+    return;
+  }
   await expect(page.locator('.contact-challenge')).toBeAttached();
   await expect(challenge).toHaveCount(1);
   await expect(challenge).toHaveAttribute('data-sitekey', process.env.TURNSTILE_SITE_KEY);

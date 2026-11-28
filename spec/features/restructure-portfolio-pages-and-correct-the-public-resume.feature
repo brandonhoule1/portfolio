@@ -23,7 +23,7 @@ Feature: Restructure portfolio pages and keep contact details private
     Given the site navigation is available
     When a visitor opens Leadership, First 90 days, Case studies, Blog, and Resume
     Then each destination has its own content and canonical URL
-    And the blog index says no articles are published yet
+    And the blog index clearly labels the current article as a draft for review, not as published
     And Field Notes is not published
 
   Scenario: Visitor contacts Brandon without a published address

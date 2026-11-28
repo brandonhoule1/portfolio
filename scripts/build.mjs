@@ -2,20 +2,34 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadCatalog } from '../src/catalog.mjs';
-import { renderRequirements, manualCases, escapeHtml } from '../src/html.mjs';
+import { renderRequirements, escapeHtml } from '../src/html.mjs';
+import { manualCases, renderManualCasesCsv, renderManualCasesMarkdown } from '../src/manual-cases.mjs';
 import { readPublishedHistory, renderCommitList } from '../src/history.mjs';
 import { applySiteShell } from '../src/site-shell.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const out = path.join(root, 'dist');
 fs.rmSync(out, { recursive: true, force: true });
 fs.mkdirSync(out, { recursive: true });
-for (const file of ['site.css']) fs.copyFileSync(path.join(root, 'public', file), path.join(out, file));
+buildStaticAssets();
 let home = fs.readFileSync(path.join(root, 'public', 'index.html'), 'utf8');
 const commits = await readPublishedHistory(root);
 home = applySiteShell(home, '');
 fs.writeFileSync(path.join(out, 'index.html'), home);
+buildContentPages();
+buildContactPage();
+buildDirectoryPages();
+
+function buildStaticAssets() {
+  for (const file of ['site.css', '_headers', 'robots.txt', 'sitemap.xml', 'llms.txt']) {
+    fs.copyFileSync(path.join(root, 'public', file), path.join(out, file));
+  }
+  fs.cpSync(path.join(root, 'public', 'scripts'), path.join(out, 'scripts'), { recursive: true });
+}
+
+function buildContentPages() {
 for (const [name, active, marker, fragment] of [
   ['ai-enablement.html', 'ai-enablement', null, null],
+  ['ai-enablement-perspectives.html', 'ai-enablement', null, null],
   ['how-i-think-about-ai.html', 'ai-enablement', null, null],
   ['leadership.html', 'leadership', null, null],
   ['first-90-days.html', 'first-90-days', null, null],
@@ -24,8 +38,12 @@ for (const [name, active, marker, fragment] of [
 ]) {
   let page = fs.readFileSync(path.join(root, 'public', name), 'utf8');
   if (marker) page = page.replace(marker, fs.readFileSync(path.join(root, 'public', fragment), 'utf8'));
-  fs.writeFileSync(path.join(out, name), name === 'resume.html' ? page : applySiteShell(page, active));
+  fs.writeFileSync(path.join(out, name), applySiteShell(page, active, { includeFooter: name !== 'resume.html' }));
 }
+
+}
+
+function buildContactPage() {
 let contactPage = fs.readFileSync(path.join(root, 'public', 'contact', 'index.html'), 'utf8');
 const turnstileSiteKey = String(process.env.TURNSTILE_SITE_KEY || '').trim();
 if (process.env.CF_PAGES && !turnstileSiteKey) {
@@ -44,6 +62,10 @@ if (turnstileSiteKey) {
 }
 fs.mkdirSync(path.join(out, 'contact'), { recursive: true });
 fs.writeFileSync(path.join(out, 'contact', 'index.html'), applySiteShell(contactPage, 'contact'));
+
+}
+
+function buildDirectoryPages() {
 const recruiterPage = fs.readFileSync(path.join(root, 'public', 'recruiter', 'index.html'), 'utf8');
 fs.mkdirSync(path.join(out, 'recruiter'), { recursive: true });
 fs.writeFileSync(path.join(out, 'recruiter', 'index.html'), applySiteShell(recruiterPage, ''));
@@ -59,10 +81,9 @@ fs.mkdirSync(independentOut, { recursive: true });
 const independentPage = fs.readFileSync(path.join(root, 'public', 'independent', 'index.html'), 'utf8');
 fs.writeFileSync(path.join(independentOut, 'index.html'), applySiteShell(independentPage, 'independent'));
 fs.copyFileSync(path.join(root, 'public', 'independent', 'independent.css'), path.join(independentOut, 'independent.css'));
+}
+
 fs.writeFileSync(path.join(out, 'commits.json'), JSON.stringify(commits, null, 2));
-fs.copyFileSync(path.join(root, 'public', 'robots.txt'), path.join(out, 'robots.txt'));
-fs.copyFileSync(path.join(root, 'public', 'sitemap.xml'), path.join(out, 'sitemap.xml'));
-fs.copyFileSync(path.join(root, 'public', 'llms.txt'), path.join(out, 'llms.txt'));
 const independentUrl = 'https://brandonhoule.com/independent/';
 const sitemapPath = path.join(out, 'sitemap.xml');
 let sitemap = fs.readFileSync(sitemapPath, 'utf8');
@@ -110,12 +131,8 @@ let processPage = renderRequirements(requirements, report)
 processPage = applySiteShell(processPage, 'process');
 fs.writeFileSync(path.join(out, 'how-this-should-be-made.html'), processPage);
 fs.mkdirSync(path.join(out, 'manual-test-cases'), { recursive: true });
-const headers = ['ID','Category','Priority','Title','Preconditions','Steps','Expected result','Status'];
-const csvCell = value => '"' + String(value).replaceAll('"', '""') + '"';
-const csv = [headers, ...manualCases.map(c => [c.id,c.category,c.priority,c.title,c.pre,c.steps,c.expected,'Not run'])].map(row => row.map(csvCell).join(',')).join('\r\n');
-fs.writeFileSync(path.join(out, 'manual-test-cases.csv'), csv + '\r\n');
-const markdown = ['# Portfolio manual test cases','', 'Status: all cases are **Not run** until a human executes and records them. These are planned checks, not test evidence.', '', ...manualCases.flatMap(c => [`## ${c.id} — ${c.title}`, '', `- **Category:** ${c.category}`, `- **Priority:** ${c.priority}`, '- **Status:** Not run', `- **Preconditions:** ${c.pre}`, `- **Steps:** ${c.steps}`, `- **Expected result:** ${c.expected}`, ''])].join('\n');
-fs.writeFileSync(path.join(out, 'manual-test-cases.md'), markdown);
+fs.writeFileSync(path.join(out, 'manual-test-cases.csv'), renderManualCasesCsv(manualCases));
+fs.writeFileSync(path.join(out, 'manual-test-cases.md'), renderManualCasesMarkdown(manualCases));
 fs.writeFileSync(path.join(out, '_redirects'), [
   '/how-this-was-made.html /how-this-should-be-made.html 301',
   '/requirements.html /how-this-should-be-made.html#requirements 301',

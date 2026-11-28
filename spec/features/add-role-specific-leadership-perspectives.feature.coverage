@@ -1,24 +1,28 @@
 {
   "scenarios": [
     {
-      "name": "Visitor understands the AI enablement leadership lens",
-      "testMappings": []
-    },
-    {
-      "name": "Visitor understands the quality engineering leadership lens",
-      "testMappings": []
-    },
-    {
-      "name": "Visitor understands the AI solutions ownership lens",
-      "testMappings": []
-    },
-    {
       "name": "Visitor can distinguish documented experience from future approach",
+      "testMappings": []
+    },
+    {
+      "name": "Visitor understands the people and capability lens",
+      "testMappings": []
+    },
+    {
+      "name": "Visitor understands the quality and confidence lens",
+      "testMappings": []
+    },
+    {
+      "name": "Visitor understands the enterprise delivery lens",
+      "testMappings": []
+    },
+    {
+      "name": "Hiring manager reaches the perspective from the homepage",
       "testMappings": []
     }
   ],
   "stats": {
-    "totalScenarios": 4,
+    "totalScenarios": 5,
     "coveredScenarios": 0,
     "coveragePercent": 0,
     "testFiles": [],

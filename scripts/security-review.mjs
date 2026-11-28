@@ -8,7 +8,7 @@ function walk(dir) {
     if (['.git', 'node_modules', 'dist', 'test-results', 'playwright-report'].includes(entry.name)) continue;
     const file = path.join(dir, entry.name);
     if (entry.isDirectory()) walk(file);
-    else if (entry.name.endsWith('.mjs') || entry.name.endsWith('.html')) files.push(file);
+    else if (entry.name.endsWith('.mjs') || entry.name.endsWith('.js') || entry.name.endsWith('.html')) files.push(file);
   }
 }
 for (const dir of ['src', 'scripts', 'public']) walk(path.join(root, dir));

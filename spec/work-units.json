@@ -2,7 +2,7 @@
   "version": "0.7.1",
   "meta": {
     "version": "1.0.0",
-    "lastUpdated": "2026-11-26T12:29:06.359Z"
+    "lastUpdated": "2026-11-27T02:24:24.628Z"
   },
   "workUnits": {
     "FOUND-001": {
@@ -1796,12 +1796,12 @@
     },
     "PORT-025": {
       "id": "PORT-025",
-      "title": "Add role-specific leadership perspectives",
+      "title": "AI enablement leadership perspectives",
       "type": "story",
       "status": "specifying",
       "createdAt": "2026-11-24T20:56:01.283Z",
-      "updatedAt": "2026-11-24T20:57:34.016Z",
-      "description": "Add one concise section on the existing Leadership page explaining how Brandon would think about three role lenses: AI enablement and developer experience; quality engineering; and AI solutions / enterprise technology ownership. Use the saved Cardinal Health Manager, AI Solutions Owner and Airbnb Manager, Engineering, Dev AI postings as market context, alongside existing verified portfolio evidence. Frame as proposed leadership perspective, not completed work or a detailed methodology. Preserve the people-centered principle, build on useful current practices, surface human judgment, and explain how outcomes and reclaimed employee time could be evaluated. Improve discoverability of already documented production follow-through in the acquisition case study only if the existing narrative supports it. No new navigation item, employer names, invented experience, quantitative claims, detailed implementation workflow, or changes to unrelated unfinished work. Deliver locally for Brandon's review before any requested testing or commit.",
+      "updatedAt": "2026-11-26T13:35:59.371Z",
+      "description": "Create a dedicated AI enablement leadership perspectives page. Treat people and capability, quality engineering, and enterprise delivery as three connected lenses within AI enablement, not unrelated role families. Explain Brandon’s proposed thought process: build on useful existing systems and knowledge; involve employees and leaders; reduce routine friction; preserve human judgment, feeling, thinking, creativity, relationships, and decisions; connect useful organizational context; make approval authority clear in consequential work; invite improvement ideas; and compare outcomes and operating costs before and after changes, including how people use reclaimed capacity. Clearly distinguish proposed approach from documented experience. Link from the homepage hiring-manager route, AI Enablement page, and Leadership page. Do not add global navigation, employer-specific pages, unsupported claims, or detailed implementation procedures. Deliver locally for Brandon’s review before testing, commit, or deployment.",
       "epic": "leadership-portfolio",
       "children": [
         "PORT-026"
@@ -1821,8 +1821,9 @@
         {
           "id": 0,
           "text": "Keep the three role lenses concise and on the existing Leadership page; do not add a new navigation item or employer-specific page.",
-          "deleted": false,
-          "createdAt": "2026-11-24T20:56:29.182Z"
+          "deleted": true,
+          "createdAt": "2026-11-24T20:56:29.182Z",
+          "deletedAt": "2026-11-26T13:35:59.210Z"
         },
         {
           "id": 1,
@@ -1847,9 +1848,15 @@
           "text": "Use only supported portfolio facts; do not claim scaled developer infrastructure, formal Staff+ coaching, healthcare domain experience, or other unverified qualifications.",
           "deleted": false,
           "createdAt": "2026-11-24T20:56:32.355Z"
+        },
+        {
+          "id": 5,
+          "text": "Present people and capability, quality and confidence, and enterprise delivery as connected perspectives within one AI enablement leadership mandate.",
+          "deleted": false,
+          "createdAt": "2026-11-26T13:35:59.371Z"
         }
       ],
-      "nextRuleId": 5,
+      "nextRuleId": 6,
       "examples": [
         {
           "id": 0,
@@ -2552,6 +2559,193 @@
         }
       ],
       "nextExampleId": 1
+    },
+    "PORT-037": {
+      "id": "PORT-037",
+      "title": "Harden static delivery and contact endpoint security",
+      "type": "bug",
+      "status": "validating",
+      "createdAt": "2026-11-27T00:55:06.715Z",
+      "updatedAt": "2026-11-27T01:24:24.557Z",
+      "description": "Add restrictive Pages security headers and harden the contact endpoint with same-origin enforcement, multipart-only requests, and a true 12 KB streamed-body limit. Add focused source, unit, integration, and browser coverage; retain current Turnstile and Gmail behavior, and document the chosen Cloudflare Free WAF rate-limit rule for later production configuration.",
+      "epic": "engineering-evidence",
+      "children": [],
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-27T00:55:16.968Z"
+        },
+        {
+          "state": "testing",
+          "timestamp": "2026-11-27T00:56:36.191Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-27T01:19:55.013Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-27T01:24:24.557Z",
+          "reason": "Local implementation complete; CI quality suite, security review, dependency audit, Playwright, and feature traceability pass. Cloudflare Free rate limit is documented for production configuration and not applied locally."
+        }
+      ],
+      "rules": [
+        {
+          "id": 0,
+          "text": "Static HTML, CSS, and assets receive CSP and browser security headers through a Cloudflare Pages _headers file that is copied to dist; function responses set equivalent API headers in code because Pages _headers does not govern Functions.",
+          "deleted": false,
+          "createdAt": "2026-11-27T00:55:17.067Z"
+        },
+        {
+          "id": 1,
+          "text": "The contact function accepts only a multipart form request from the exact same origin, enforces the 12,000-byte limit while reading the stream even when Content-Length is absent, and rejects before Turnstile or Gmail provider requests.",
+          "deleted": false,
+          "createdAt": "2026-11-27T00:55:17.164Z"
+        },
+        {
+          "id": 2,
+          "text": "Turnstile hostname validation, honeypot behavior, generic failures, and server-side Gmail secrets remain intact; every function response has the required cache and security headers.",
+          "deleted": false,
+          "createdAt": "2026-11-27T00:55:17.266Z"
+        },
+        {
+          "id": 3,
+          "text": "The source, unit, integration, and browser checks cover policy presence, violations, body-size boundaries, origin and media-type boundaries, and API response headers; production WAF setup is documented but not executed in local implementation.",
+          "deleted": false,
+          "createdAt": "2026-11-27T00:55:17.365Z"
+        }
+      ],
+      "nextRuleId": 4,
+      "examples": [
+        {
+          "id": 0,
+          "text": "A body of exactly 12,000 bytes may be parsed when valid; a streamed body above 12,000 bytes is rejected with 413 even when Content-Length is absent, and no external provider is called.",
+          "deleted": true,
+          "createdAt": "2026-11-27T00:55:17.462Z",
+          "deletedAt": "2026-11-27T00:56:34.780Z"
+        },
+        {
+          "id": 1,
+          "text": "A missing or cross-origin Origin, malformed Origin, or non-multipart request is rejected before form parsing, Turnstile, OAuth, or Gmail.",
+          "deleted": true,
+          "createdAt": "2026-11-27T00:55:17.564Z",
+          "deletedAt": "2026-11-27T00:56:34.680Z"
+        },
+        {
+          "id": 2,
+          "text": "A successful Turnstile-verified form and all error/honeypot responses include no-store and the API security headers; CSP allows same-origin scripts and Cloudflare Turnstile while not allowing inline scripts.",
+          "deleted": true,
+          "createdAt": "2026-11-27T00:55:17.662Z",
+          "deletedAt": "2026-11-27T00:56:34.576Z"
+        },
+        {
+          "id": 3,
+          "text": "Cloudflare Free production rate limiting is configured separately at 5 requests per 10 seconds by IP on /api/contact; local implementation and tests do not change the Cloudflare zone.",
+          "deleted": true,
+          "createdAt": "2026-11-27T00:55:17.767Z",
+          "deletedAt": "2026-11-27T00:56:34.472Z"
+        },
+        {
+          "id": 4,
+          "text": "A visitor opens the site and contact page; only same-site scripts and the Cloudflare Turnstile resources are allowed, the page remains usable, and the browser blocks scripts that are not in the policy.",
+          "deleted": false,
+          "createdAt": "2026-11-27T00:56:34.885Z"
+        },
+        {
+          "id": 5,
+          "text": "A visitor submits a valid contact form from the portfolio origin and receives confirmation after Turnstile verification; an oversized or cross-origin submission is rejected and does not reach Brandon's inbox.",
+          "deleted": false,
+          "createdAt": "2026-11-27T00:56:34.986Z"
+        },
+        {
+          "id": 6,
+          "text": "When the contact service is unavailable or rejects a request, the visitor receives a safe generic message, and private mail-provider details are not exposed.",
+          "deleted": false,
+          "createdAt": "2026-11-27T00:56:35.106Z"
+        }
+      ],
+      "nextExampleId": 7,
+      "userStory": {
+        "role": "portfolio owner",
+        "action": "protect visitors and contact delivery from common web attacks and abusive submissions",
+        "benefit": "visitors can use the site and contact form without weakening privacy or exposing my email service"
+      },
+      "estimate": 5
+    },
+    "PORT-038": {
+      "id": "PORT-038",
+      "title": "Refactor portfolio build and rendering modules",
+      "type": "task",
+      "status": "done",
+      "createdAt": "2026-11-27T02:11:27.208Z",
+      "updatedAt": "2026-11-27T02:24:24.628Z",
+      "description": "Improve general maintainability by splitting build orchestration, page rendering, and contact delivery concerns into focused modules while preserving current generated pages and behavior.",
+      "epic": "engineering-evidence",
+      "children": [],
+      "stateHistory": [
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-27T02:11:38.822Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-27T02:11:39.465Z"
+        },
+        {
+          "state": "specifying",
+          "timestamp": "2026-11-27T02:11:58.014Z"
+        },
+        {
+          "state": "implementing",
+          "timestamp": "2026-11-27T02:11:59.433Z"
+        },
+        {
+          "state": "validating",
+          "timestamp": "2026-11-27T02:24:17.508Z",
+          "reason": "Refactor is implemented and the complete ci:quality pipeline passes after modularizing manual cases, build phases, site-shell insertion, and Gmail delivery."
+        },
+        {
+          "state": "done",
+          "timestamp": "2026-11-27T02:24:24.628Z",
+          "reason": "The complete project quality pipeline passes and generated site checks pass. FSPEC syntax/tag checks pass; its only remaining format warning is the unrelated pre-existing leadership-perspectives feature."
+        }
+      ],
+      "rules": [
+        {
+          "id": 0,
+          "text": "Generated pages, routes, metadata, and downloadable manual test artifacts remain behavior-compatible after modularization.",
+          "deleted": false,
+          "createdAt": "2026-11-27T02:11:58.133Z"
+        }
+      ],
+      "nextRuleId": 1,
+      "examples": [
+        {
+          "id": 0,
+          "text": "A site visitor receives the same page content and navigation after build refactoring; build and quality checks continue to pass.",
+          "deleted": false,
+          "createdAt": "2026-11-27T02:11:58.286Z"
+        },
+        {
+          "id": 1,
+          "text": "A content edit is isolated to its page or renderer module, while the build orchestrator remains focused on composing build steps.",
+          "deleted": false,
+          "createdAt": "2026-11-27T02:11:58.412Z"
+        },
+        {
+          "id": 2,
+          "text": "Manual test case data is maintained separately from HTML rendering and emitted consistently to the page, Markdown, and CSV outputs.",
+          "deleted": false,
+          "createdAt": "2026-11-27T02:11:58.528Z"
+        },
+        {
+          "id": 3,
+          "text": "Build script registration invokes every extracted build task so no generated route or asset disappears.",
+          "deleted": false,
+          "createdAt": "2026-11-27T02:11:58.749Z"
+        }
+      ],
+      "nextExampleId": 4
     }
   },
   "states": {
@@ -2578,7 +2772,8 @@
     ],
     "validating": [
       "PORT-031",
-      "PORT-035"
+      "PORT-035",
+      "PORT-037"
     ],
     "done": [
       "PORT-002",
@@ -2601,11 +2796,12 @@
       "PORT-028",
       "PORT-033",
       "PORT-034",
-      "PORT-036"
+      "PORT-036",
+      "PORT-038"
     ],
     "blocked": []
   },
   "prefixCounters": {
-    "PORT": 36
+    "PORT": 38
   }
 }

@@ -53,12 +53,13 @@ test('build emits requirements and evidence pages', () => {
   const resume = fs.readFileSync('dist/resume.html', 'utf8');
   const process = fs.readFileSync('dist/how-this-should-be-made.html', 'utf8');
   assert.match(blog, /rel="canonical" href="https:\/\/brandonhoule.com\/blog\/"/);
-  assert.match(blog, /No articles published yet\./);
+  assert.match(blog, /DRAFT FOR REVIEW/);
+  assert.match(blog, /AI adoption is an organizational design question/);
   assert.doesNotMatch(blog, /Agree on evidence before a pilot begins/);
   assert.match(cases, /AI-Powered Acquisition Command Center/);
   assert.match(cases, /From Happy-Path Testing to AI-Assisted Quality Engineering/);
   assert.match(cases, /Building an AI-Enabled Enterprise Self-Service Platform/);
-  assert.match(resume, /Contact form/);
+  assert.doesNotMatch(resume, /Contact form/);
   assert.doesNotMatch(resume, /mailto:|\d{3}-\d{3}-\d{4}/);
   assert.match(resume, /linkedin.com\/in\/brandon-houle/);
   assert.match(process, /Development record/);
