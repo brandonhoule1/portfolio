@@ -195,7 +195,7 @@ test('editorial styling uses display typography and unboxed case notes', async (
   await expect(page.locator('.case-study').first()).toHaveCSS('border-bottom-style', 'solid');
 });
 
-test('case studies and the blog review draft have separate pages', async ({ page }) => {
+test('case studies and an empty blog have separate pages', async ({ page }) => {
   // Feature: spec/features/restructure-portfolio-pages-and-correct-the-public-resume.feature
   // @step Given the site navigation is available
   await page.goto('/case-studies.html');
@@ -203,11 +203,9 @@ test('case studies and the blog review draft have separate pages', async ({ page
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://brandonhoule.com/case-studies.html');
   await expect(page.locator('.case-study')).toHaveCount(3);
   await page.goto('/blog/');
-  // @step Then the blog index has its own canonical URL
+  // @step Then the blog index has its own canonical URL and no unpublished draft
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://brandonhoule.com/blog/');
-  // @step And the blog index clearly labels the current article as a draft for review, not as published
-  await expect(page.getByText('DRAFT FOR REVIEW')).toBeVisible();
-  await expect(page.getByRole('link', { name: 'AI adoption is an organizational design question' })).toHaveAttribute('href', '/blog/ai-enablement-operating-model/');
+  await expect(page.getByText('No articles published yet.')).toBeVisible();
   await expect(page.locator('.blog-entry')).toHaveCount(0);
   await page.goto('/resume.html');
   await expect(page.locator('.resume-contact').getByRole('link', { name: 'Contact form' })).toHaveCount(0);
